@@ -1,7 +1,7 @@
 # CorujAPI
 
 [![Build Status](https://travis-ci.org/faeterj-psw-2017/CorujAPI.svg?branch=master)](https://travis-ci.org/faeterj-psw-2017/CorujAPI)
-
+[![codecov](https://codecov.io/gh/faeterj-psw-2017/CorujAPI/branch/master/graph/badge.svg)](https://codecov.io/gh/faeterj-psw-2017/CorujAPI)
 
 ### Dependências
 
