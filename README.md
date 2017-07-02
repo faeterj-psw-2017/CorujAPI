@@ -86,3 +86,18 @@ Aonde o HTML resultante está localizado em:
 * 15 -- Dê _merge_ do seu Pull-Request ou espere outra pessoa dar o _merge_ por você.
 * 16 -- Quando for voltar a programar novamente, pule pro passo 04 ou 07 (assumindo que seu clone
   vai ser "persistido" em seu Workspace, logo não há necessidade de começar do passo 01).
+
+##### Nota de Rodapé
+
+Caso você tenha modificado alguma coisa antes de atualizar com **git pull** do projeto original
+(ou seja, da turma), você então precisa, ao invés, dar **git fetch** do projeto da turma e
+resolver quaisquer conflitos localmente manipulando branchs. É interessante também definir uma
+upstream pro projeto da turma em seu fork com **git remote add**, por exemplo:
+
+        $ git remote add upstream https://github.com/faeterj-psw-2017/CorujAPI.git
+
+**IMPORTANTE**: Dependendo da complexidade dessa aplicação, PRs no branch principal podem serem
+proibidos. Assim, cada controller é mapeado em um branch separado, assim como a autenticação e
+os models. Cabe então as pessoas implementando os controllers manterem seus branchs up-to-date
+com os branchs da autenticação e banco. Após completamente finalizados os controllers, estes podem serem
+"merged" no master branch.
