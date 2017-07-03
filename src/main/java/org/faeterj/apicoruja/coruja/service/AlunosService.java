@@ -23,7 +23,7 @@ public class AlunosService {
         a.setMatricula(11);
         a.setNome("João");
 
-        alunos = new ArrayList<>();
+        alunos = new ArrayList<Aluno>();
         alunos.add(a);
     }
 
