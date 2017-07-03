@@ -101,3 +101,28 @@ proibidos. Assim, cada controller é mapeado em um branch separado, assim como a
 os models. Cabe então as pessoas implementando os controllers manterem seus branchs up-to-date
 com os branchs da autenticação e banco. Após completamente finalizados os controllers, estes podem serem
 "merged" no master branch.
+
+---
+
+### Configuração do Banco
+
+Pra configurar o banco, você precisa criar um arquivo "src/main/resources/application.properties". Tal
+arquivo vai indicar pro Spring qual driver de Banco de Dados você vai usar. Existe um template aqui
+nesse projeto, onde o padrão é usando o PostgreSQL. O padrão já está definido pro usuário "postgres"
+sem nenhuma senha, e pra URL também, sendo no "localhost", porta "5432", se conectando ao banco chamado
+"coruja". Tal padrão é devido ao uso do PostgreSQL no serviço de testes de integração do Travis-CI.
+
+Vale lembrar que você sempre pode configurar tal arquivo, por exemplo, pra se conectar a um outro Driver
+de banco. Não esqueça de definir sua própria senha e usuário em seu _clone local_ pra se conectar se precisar.
+Lembrando que, uma vez configurado este arquivo na sua máquina, você tem que guardar o backup do anterior
+e desse seu application.properties modificado. Estes backups podem estar guardados em uma pasta chamada
+"prop-backups", a qual o ".gitignore" não irá detectá-los devido a entrada dessa pasta em tal _black-list_.
+Antes de commitar, lembre-se de manter o application.properties original em "src/main/resources/application.properties".
+Não serão aceitas modificações nesse arquivo aqui do projeto, mas nada te impede de modificá-lo em seu fork
+e quando for dar o Pull-Request, colocar o original no lugar. Tal regra é pra evitar colisões de configurações
+com outros forks e com o serviço do Travis.
+
+__NOTA__: Não há necessidade de criar os esquemas do banco do Postgre, o Hibernate automaticamente já popula o
+banco com esses esquemas. Como esse Coruja ainda está em fase de desenvolvimento inicial e os esquemas irão mudar
+frequentemente, o application.properties define uma regra de popular os esquemas quando a aplicação é inicializada
+e/ou finalizada, para logo depois, "dropar" todas as tabelas por ele criadas ao término da aplicação.
