@@ -1,76 +1,72 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-@Table(name="aluno")
 @Entity
-public class Aluno {
+@Table(name="aluno")
+public class Aluno extends Pessoa {
 
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Id
-    @Column(name="aluno_id")
-    private long id;
+  @Id
+  @Column(name="aluno_id")
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private long id;
 
-    @Column(name="nome")
-    private String nome;
+  @OneToOne(optional=false)
+  @JoinColumn(name = "historico", referencedColumnName="historico_id") 
+  private Historico historico;
 
-    @Column(name="matricula", unique=true)
-    private long matricula;
+  @Column(name="matricula", unique=true)
+  private String matricula;
 
-    // ======================================================
+  // =======================================
 
-    public Aluno (long id, String nome, long matricula) {
-        this.id        = id;
-        this.nome      = nome;
-        this.matricula = matricula;
-    }
+  protected Aluno ( ) {
 
-    protected Aluno ( ) {
-    
-    }
+  }
 
-    // =============================================
+  public Aluno (long id, Historico historico, String matricula) {
+    this.id        = id;
+    this.historico = historico;
+    this.matricula = matricula;
+  }
 
-    public long getId ( ) {
-        return id;
-    }
+  // ==============================
 
-    public void setId (long id) {
-        this.id = id;
-    }
+  public void setId (long id) {
+    this.id = id;
+  }
 
-    // ----------------------------------------------
+  public long getId ( ) {
+    return id;
+  }
 
-    public String getNome ( ) {
-        return nome;
-    }
+  // ---------------------------------------------
 
-    public void setNome (String nome) {
-        this.nome = nome;
+  public void setMatricula (String matricula) {
+    this.matricula = matricula;
+  }
 
-    }
+  public String getMatricula ( ) {
+    return matricula;
+  }
 
-    // -----------------------------------------------
+  // ------------------------------------
 
-    public long getMatricula ( ) {
-        return matricula;
-    }
+  public Historico getHistorico ( ) {
+    return historico;
+  }
 
-    public void setMatricula (long matricula) {
-        this.matricula = matricula;
-    }
+  public void setHistorico (Historico historico) {
+    this.historico = historico;
+  }
 
-    // =========================================================================
-
-    @Override
-    public String toString ( ) {
-        return String.format ("Aluno(matricula=%d, nome=%s)", matricula, nome);
-    }
 }
 
 // OK
