@@ -23,6 +23,7 @@ public class AutorizacaoController
     {
         String token = "";
 
+        // testando novo branch
         //  Falta resolver o "import java.io.jsonwebtoken.Jwts" para usar este gerador de tokens
         //  token = Jwts.builder()
         //         .setClaims(claims)
