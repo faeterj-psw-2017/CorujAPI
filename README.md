@@ -10,6 +10,12 @@
 
 ---
 
+### Links
+
++ [Trello](https://trello.com/faeterjpsw2017noite)
+
+---
+
 ### Comandos na linha de comando
 
 Para todos aqueles que não possuem uma IDE devidamente configurada no trabalho, por exemplo,
