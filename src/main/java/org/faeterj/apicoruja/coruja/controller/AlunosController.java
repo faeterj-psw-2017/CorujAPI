@@ -1,7 +1,7 @@
 package org.faeterj.apicoruja.coruja.controller;
 
 import org.faeterj.apicoruja.coruja.controller.requestBody.AlunoRequestBody;
-import org.faeterj.apicoruja.coruja.model.Aluno;
+import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.service.AlunosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,12 +25,12 @@ public class AlunosController {
         this.alunosService = alunosService;
     }
 
-    @RequestMapping(value="/alunos", method = RequestMethod.GET)
+    @RequestMapping(value="/aluno", method = RequestMethod.GET)
     public List<Aluno> listarAlunos() {
         return alunosService.obterAlunos();
     }
 
-    @RequestMapping(value="/alunos", method = RequestMethod.POST)
+    @RequestMapping(value="/aluno", method = RequestMethod.POST)
     public Aluno adicionarAluno(@RequestBody AlunoRequestBody requestBody) {
         return alunosService.adicionarAluno(requestBody.getNome(), requestBody.getMatricula());
     }

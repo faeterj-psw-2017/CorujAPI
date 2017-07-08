@@ -12,39 +12,39 @@ import java.io.File;
 @Table(name="atcom")
 @Entity
 public class ATCOM {
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  @Column(name="atcom_id")
-  @Id
-  private long id;
+        @GeneratedValue(strategy=GenerationType.AUTO)
+        @Column(name="atcom_id")
+        @Id
+        private long id;
 
-  @Column(name="foto")
-  private File foto;
+        @Column(name="foto")
+        private File foto;
 
-  @Column(name="descricao_documento")
-  private String descricaoDocumento;
+        @Column(name="descricao_documento")
+        private String descricaoDocumento;
 
-  @Column(name="horas_atribuidas")
-  private double horasAtribuidas;
+        @Column(name="horas_atribuidas")
+        private double horasAtribuidas;
 
-  @Column(name="valido")
-  private boolean valido;
+        @Column(name="valido")
+        private boolean valido;
 
-  // ==================================
+        // ==================================
 
-  protected ATCOM ( ) {
-  }
+        protected ATCOM ( ) {
+        }
 
-  public ATCOM (
-    long id, File foto, String descricaoDocumento, double horasAtribuidas, boolean valido
-  ) {
-    this.id                 = id;
-    this.foto               = foto;
-    this.descricaoDocumento = descricaoDocumento;
-    this.horasAtribuidas    = horasAtribuidas;
-    this.valido             = valido;
-  }
+        public ATCOM (
+                long id, File foto, String descricaoDocumento, double horasAtribuidas, boolean valido
+        ) {
+                this.id                 = id;
+                this.foto               = foto;
+                this.descricaoDocumento = descricaoDocumento;
+                this.horasAtribuidas    = horasAtribuidas;
+                this.valido             = valido;
+        }
 
-  // ==============================================================================================
+        // ==============================================================================================
   
 	public long getId() {
 		return id;
