@@ -6,10 +6,10 @@ import javax.persistence.*;
 @Table(name="pessoa")
 public class Pessoa {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="pessoa_id")
-	private long id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="pessoa_id")
+    private long id;
 	
     @Column(name="nome")
     private String nome;
@@ -22,9 +22,9 @@ public class Pessoa {
 	
     // =================================================
     
-	protected Pessoa ( ) {
+    protected Pessoa ( ) {
 		
-	}
+    }
 	
     public Pessoa (long id, String nome) {
         this.id   = id;
@@ -54,23 +54,23 @@ public class Pessoa {
 
     // ----------------------------------------------
     
-	public String getTelefone() {
-		return telefone;
-	}
+    public String getTelefone() {
+	return telefone;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
     // ----------------------------------------------
 	
-	public String getEndereco() {
-		return endereco;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public void setEndereco(String endereco) {
+	this.endereco = endereco;
+    }
     
 }
 
