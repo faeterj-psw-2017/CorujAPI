@@ -3,8 +3,8 @@ package org.faeterj.apicoruja.coruja.model.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="pessoa")
-public class Pessoa {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Pessoa {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -21,16 +21,7 @@ public class Pessoa {
     private String endereco;
 	
     // =================================================
-    
-    protected Pessoa ( ) {
-		
-    }
-	
-    public Pessoa (long id, String nome) {
-        this.id   = id;
-        this.nome = nome;
-    }
-    
+        
     // ======================================================
  
     public long getId ( ) {

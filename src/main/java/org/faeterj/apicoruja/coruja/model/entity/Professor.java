@@ -20,15 +20,6 @@ public class Professor extends Pessoa {
 
 	// ==========================================
 
-	protected Professor ( ) {
-
-	}
-
-	public Professor (long id, String matricula) {
-		this.id        = id;
-		this.matricula = matricula;
-	}
-
 	// ========================================
 
 	public void setId (long id) {
