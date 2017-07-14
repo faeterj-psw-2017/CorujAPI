@@ -1,64 +1,83 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
 
 @Entity
 @Table(name="turma")
 public class Turma {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="turma_id")
-    private long id;
+  @Id
+  @Column(name="turma_id")
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private long id;
 
-    @Column(name="professor")
-    private String professor;
+  @Column(name="codigo")
+  private String codigo;
 
-    @Column(name="materia")
-    private String materia;
+  @Column(name="sala")
+  private String sala;
 
-    // =============================================
+  @Column(name="turno")
+  private String turno;
 
-    protected Turma ( ) {
+  // ======================================
 
-    }
+  protected Turma ( ) {
+    
+  }
 
-    // ============================================
+  public Turma (long id, String codigo, String sala, String turno) {
+    this.id     = id;
+    this.codigo = codigo;
+    this.sala   = sala;
+    this.turno  = turno;
+  }
 
-    public long getId ( ) {
-        return id;
-    }
+  // ==========================================
+  
+	public long getId ( ) {
+		return id;
+	}
+	
+	public void setId (long id) {
+		this.id = id;
+	}
 
-    public void setId (long id) {
-        this.id = id;
-    }
+	// ---------------------------------------------------
+	
+	public String getCodigo ( ) {
+		return codigo;
+	}
+	
+	public void setCodigo (String codigo) {
+		this.codigo = codigo;
+	}
 
-    // --------------------------------------------
+	// ---------------------------------------------------
+	
+	public String getSala ( ) {
+		return sala;
+	}
+	
+	public void setSala (String sala) {
+		this.sala = sala;
+	}
 
-    public String getProfessor ( ) {
-        return professor;
-    }
-
-    public void setProfessor (String professor) {
-        this.professor = professor;
-    }
-
-    // ---------------------------------------------
-
-    public String getMateria ( ) {
-        return materia;
-    }
-
-    public void setMateria (String materia) {
-        this.materia = materia;
-    }
-
+	// ---------------------------------------------------
+	
+	public String getTurno ( ) {
+		return turno;
+	}
+	
+	public void setTurno (String turno) {
+		this.turno = turno;
+	}
+  
 }
+
+// OK

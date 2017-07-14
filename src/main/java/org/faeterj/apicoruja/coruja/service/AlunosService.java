@@ -1,6 +1,6 @@
 package org.faeterj.apicoruja.coruja.service;
 
-import org.faeterj.apicoruja.coruja.model.Aluno;
+import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -19,8 +19,8 @@ public class AlunosService {
     public void init() {
         System.out.println("Criado modelo de alunos");
         Aluno a = new Aluno();
-        a.setId(1);
-        a.setMatricula(11);
+        a.setId(1L);
+        a.setMatricula("11");
         a.setNome("João");
 
         alunos = new ArrayList<Aluno>();
@@ -33,8 +33,8 @@ public class AlunosService {
 
     }
 
-    public Aluno adicionarAluno(String nome, Integer matricula) {
-        Integer id = 0;
+    public Aluno adicionarAluno(String nome, String matricula) {
+        long id = 0L;
         for (Aluno a : alunos) {
             if (a.getId() > id) {
                 id = a.getId();
