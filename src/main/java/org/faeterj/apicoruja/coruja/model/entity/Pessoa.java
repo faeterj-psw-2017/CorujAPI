@@ -2,46 +2,49 @@ package org.faeterj.apicoruja.coruja.model.entity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="pessoa")
-public class Pessoa {
+// @Entity
+// @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+// @Table(name="pessoa")
+@MappedSuperclass
+public abstract class Pessoa {
 
+    /*
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="pessoa_id")
     private long id;
-	
+    */
+
     @Column(name="nome")
-    private String nome;
+    protected String nome;
     
     @Column(name="telefone")
-    private String telefone;
+    protected String telefone;
     
     @Column(name="endereco")
-    private String endereco;
+    protected String endereco;
 	
     // =================================================
     
     protected Pessoa ( ) {
 		
     }
-	
-    public Pessoa (long id, String nome) {
-        this.id   = id;
-        this.nome = nome;
-    }
-    
-    // ======================================================
- 
-    public long getId ( ) {
-        return id;
-    }
 
-    public void setId (long id) {
+    /*
+    protected Pessoa (long id) {
         this.id = id;
     }
+    */
 
-    // ----------------------------------------------
+    /*
+    protected Pessoa (String nome, String telefone, String endereco) {
+        this.nome     = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+    */
+    
+    // ======================================================
 
     public String getNome ( ) {
         return nome;
@@ -54,21 +57,21 @@ public class Pessoa {
 
     // ----------------------------------------------
     
-    public String getTelefone() {
+    public String getTelefone ( ) {
 	return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone (String telefone) {
         this.telefone = telefone;
     }
 
     // ----------------------------------------------
 	
-    public String getEndereco() {
+    public String getEndereco ( ) {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco (String endereco) {
 	this.endereco = endereco;
     }
     

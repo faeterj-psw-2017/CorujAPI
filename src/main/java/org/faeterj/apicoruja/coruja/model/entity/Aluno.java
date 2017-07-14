@@ -14,61 +14,69 @@ import javax.persistence.GenerationType;
 
 @Entity
 @Table(name="aluno")
-public class Aluno extends Pessoa {
+public final class Aluno extends Pessoa {
 
-  @Id
-  @Column(name="aluno_id")
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  private long id;
+        @Id
+        @Column(name="aluno_id")
+        @GeneratedValue(strategy=GenerationType.AUTO)
+        private long id;
 
-  @OneToOne(optional=false)
-  @JoinColumn(name = "historico", referencedColumnName="historico_id") 
-  private Historico historico;
+        @OneToOne(optional=false)
+        @JoinColumn(name = "historico", referencedColumnName="historico_id") 
+        private Historico historico;
 
-  @Column(name="matricula", unique=true)
-  private String matricula;
+        @Column(name="matricula", unique=true)
+        private String matricula;
 
-  // =======================================
+        // =======================================
 
-  public Aluno ( ) {
+        public Aluno ( ) {
 
-  }
+        }
 
-  public Aluno (long id, Historico historico, String matricula) {
-    this.id        = id;
-    this.historico = historico;
-    this.matricula = matricula;
-  }
+        public Aluno (long id, Historico historico, String matricula) {
+                this.id        = id;
+                this.historico = historico;
+                this.matricula = matricula;
+        }
 
-  // ==============================
+        public Aluno (long id, String nome, String telefone, String endereco, Historico historico, String matricula) {
+                this(id, historico, matricula);
 
-  public void setId (long id) {
-    this.id = id;
-  }
+                this.nome     = nome;
+                this.telefone = telefone;
+                this.endereco = endereco;
+        }
 
-  public long getId ( ) {
-    return id;
-  }
+        // ==============================
 
-  // ---------------------------------------------
+        public void setId (long id) {
+                this.id = id;
+        }
 
-  public void setMatricula (String matricula) {
-    this.matricula = matricula;
-  }
+        public long getId ( ) {
+                return id;
+        }
 
-  public String getMatricula ( ) {
-    return matricula;
-  }
+        // ---------------------------------------------
 
-  // ------------------------------------
+        public void setMatricula (String matricula) {
+                this.matricula = matricula;
+        }
 
-  public Historico getHistorico ( ) {
-    return historico;
-  }
+        public String getMatricula ( ) {
+                return matricula;
+        }
 
-  public void setHistorico (Historico historico) {
-    this.historico = historico;
-  }
+        // ------------------------------------
+
+        public Historico getHistorico ( ) {
+                return historico;
+        }
+
+        public void setHistorico (Historico historico) {
+                this.historico = historico;
+        }
 
 }
 

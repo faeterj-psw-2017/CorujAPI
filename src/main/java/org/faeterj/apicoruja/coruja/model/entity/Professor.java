@@ -9,7 +9,7 @@ import javax.persistence.Column;
 
 @Entity
 @Table(name="professor")
-public class Professor extends Pessoa {
+public final class Professor extends Pessoa {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="professor_id")
@@ -28,6 +28,14 @@ public class Professor extends Pessoa {
 		this.id        = id;
 		this.matricula = matricula;
 	}
+
+        public Professor (long id, String nome, String telefone, String endereco, String matricula) {
+                this (id, matricula);
+
+                this.nome     = nome;
+                this.telefone = telefone;
+                this.endereco = endereco;
+        }
 
 	// ========================================
 
