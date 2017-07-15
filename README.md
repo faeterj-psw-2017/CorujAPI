@@ -36,7 +36,7 @@ segue uns comandos úteis para usar na linha de comando.
 
 ---
 
-### Cobertura de códigos
+### Cobertura de códigos (Não é importante!)
 
 O pom.xml também possui configurações pra plugins de _code coverage_. As ações de
 build do Maven operam sob a pasta "target", enquanto o cache dos pacotes vai sendo
@@ -71,22 +71,49 @@ Aonde o HTML resultante está localizado em:
 
 ### Desenvolvimento no GitHub
 
-* 01 -- Dê um *Fork* nesse repositório da turma pra sua própria conta.
+* 01 -- Crie um branch no projeto da turma relativo aos seus futuros trabalhos. Tal branch pode
+  ter o seu nome de usuário (por exemplo, _fulano_ ou _cicrano_), ou pode também carregar o nome
+  do papel que você vai desempenhar aqui, por exemplo, _turma-controller_ ou só _turma_ mesmo.
+  Certifique-se antes que tal branch não existe e que ele possui o branch _master_ (ou seja, o
+  principal) como base pro seu branch. Após criado o branch, fork o projeto da turma em sua
+  própria conta.
 * 02 -- Dê um **git clone** em seu próprio Fork/projeto (e não baixe como ZIP, já que
   esse ignora o histórico do Git). Algumas IDEs possuem um mecanismo de importar do Git/GitHub
   também.
-* 03 -- Importe tal clone em sua IDE (possivelmente configurando algumas coisas).
+* 03 -- Importe tal clone em sua IDE (possivelmente configurando algumas coisas). Adicione também
+  uma upstream apontando pro projeto da turma (e não o seu fork). Na linha de comando do git, isso
+  pode ser feito assim:
+
+        $ git remote add upstream https://github.com/faeterj-psw-2017/CorujAPI.git
+
 * 04 -- Rode os testes.
 * 05 -- Rode a aplicação (que vai inicializar um servidor no http://localhost:8080).
 * 06 -- Mande requests, por exemplo, pelo Postman do Chrome (OPCIONAL).
-* 07 -- Dê um **git pull** pra URL do projeto da turma (e não pra URL do seu fork), só para
-  verificar se alguém modificou alguma coisa.
-* 08 -- Comece a escrever o que precisa/pode.
-* 09 -- Dê um **git commit** sempre que puder para não perder seu trabalho,
-  _mesmo em mudanças mínimas e/ou bobas_.
+* 07 -- Dê um **git fetch upstream** só para verificar se alguém modificou alguma coisa e então
+  estar a par dessas mudanças.
+* 08 -- Aqui você já pode começar a escrever o que precisa/pode. Mas antes, certifique-se que você
+  está em seu próprio branch dedicado. Na linha de comando, você pode ver em qual branch está com:
+  
+        $ git branch -va
+  
+  Caso você esteja em outro branch qualquer, mude para o seu branch com:
+  
+        $ git checkout O-NOME-QUE-VOCE-DEU-PRO-SEU-BRANCH
+        
+  Se estiver tudo OK, comece a programar sem problemas. **IMPORTANTE**: Se você está designado pra
+  algum controller, entre em contato com o @rt3norio ou @marcoonroad para saber se o respectivo
+  repository/entity/model do seu controller foi implementado. Se não, peça pra estas pessoas implementarem
+  o seu repository. Se este já foi implementado, dê um merge (em seu atual branch) passando _upstream/model_
+  (a upstream frequentemente contém códigos mais atualizados do que sua _origin_, ou seja, seu fork).
+  
+* 09 -- Dê um **git commit -m "QUALQUER-MENSAGEM-DESCREVENDO-O-COMMIT"** sempre que puder para não
+  perder seu trabalho, _mesmo em mudanças mínimas e/ou bobas_ (antes, certifique-se que os arquivos
+  modificados são "trackeados" com **git add**).
 * 10 -- Faça a iteração escrever-"comitar" quantas vezes quiser.
 * 11 -- Dê um **git push** (que vai pro seu fork no GitHub).
-* 12 -- No seu fork, dê um Pull-Request (que vai rodar os testes de integração implicitamente).
+* 12 -- No seu fork, dê um Pull-Request (que vai rodar os testes de integração implicitamente). Lembre-se
+  que tal Pull-Request tem que ser do seu próprio branch pro branch associado da turma. Se na turma não
+  há um branch com o mesmo nome que o seu do seu clone, crie um branch com tal nome na turma também.
 * 13 -- Veja se há conflitos e se os testes passam na "thread" do P(ull-)R(equest).
 * 14 -- Modifique os arquivos para resolver conflitos existentes. Testes não precisam passar, mas
   passarem é o ideal.
@@ -94,24 +121,9 @@ Aonde o HTML resultante está localizado em:
 * 16 -- Quando for voltar a programar novamente, pule pro passo 04 ou 07 (assumindo que seu clone
   vai ser "persistido" em seu Workspace, logo não há necessidade de começar do passo 01).
 
-##### Nota de Rodapé
-
-Caso você tenha modificado alguma coisa antes de atualizar com **git pull** do projeto original
-(ou seja, da turma), você então precisa, ao invés, dar **git fetch** do projeto da turma e
-resolver quaisquer conflitos localmente manipulando branchs. É interessante também definir uma
-upstream pro projeto da turma em seu fork com **git remote add**, por exemplo:
-
-        $ git remote add upstream https://github.com/faeterj-psw-2017/CorujAPI.git
-
-**IMPORTANTE**: Dependendo da complexidade dessa aplicação, PRs no branch principal podem serem
-proibidos. Assim, cada controller é mapeado em um branch separado, assim como a autenticação e
-os models. Cabe então as pessoas implementando os controllers manterem seus branchs up-to-date
-com os branchs da autenticação e banco. Após completamente finalizados os controllers, estes podem serem
-"merged" no master branch.
-
 ---
 
-### Configuração do Banco
+### Configuração do Banco (Importante!)
 
 Pra configurar o banco, você precisa criar um arquivo "src/main/resources/application.properties". Tal
 arquivo vai indicar pro Spring qual driver de Banco de Dados você vai usar. Existe um template aqui
