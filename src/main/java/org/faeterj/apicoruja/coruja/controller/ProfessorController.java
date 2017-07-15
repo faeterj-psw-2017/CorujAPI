@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by Gabriel Capanema on 23/06/17.
- */
-
 @RestController
 @RequestMapping("/professor")
 public class ProfessorController {
@@ -73,5 +69,25 @@ public class ProfessorController {
 		   return true;
 	   }
 	   return false;
+   }
+   
+   @RequestMapping(value="/busca_professor_matricula", method=RequestMethod.GET)
+   public Professor encontraProfessorPelaMatricula(String matricula){
+	   return professorService.encontrarProfessorPelaMatricula(matricula);
+   }
+   
+   @RequestMapping(value="/busca_professor_nome", method=RequestMethod.GET)
+   public List<Professor> encontraProfessorPeloNome(String nome){
+	   return professorService.encontrarProfessorPeloNome(nome);
+   }
+   
+   @RequestMapping(value="/busca_professor_endereco", method=RequestMethod.GET)
+   public List<Professor> encontraProfessorPeloEndereco(String endereco){
+	   return professorService.encontrarProfessorPeloEndereco(endereco);
+   }
+   
+   @RequestMapping(value="/busca_professor_telefone", method=RequestMethod.GET)
+   public List<Professor> encontraProfessorPeloTelefone(String telefone){
+	   return professorService.encontrarProfessorPeloTelefone(telefone);
    }
 }

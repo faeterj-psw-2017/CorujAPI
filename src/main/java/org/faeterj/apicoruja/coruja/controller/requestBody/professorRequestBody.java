@@ -1,8 +1,5 @@
 package org.faeterj.apicoruja.coruja.controller.requestBody;
 
-/**
- * Created by Gabriel Capanema on 23/06/17.
- */
 public class professorRequestBody {
 
     public String nome;

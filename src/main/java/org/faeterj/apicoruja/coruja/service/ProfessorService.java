@@ -7,9 +7,6 @@ import org.faeterj.apicoruja.coruja.model.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Gabriel Capanema on 23/06/17.
- */
 @Service
 public class ProfessorService{
 	
@@ -29,12 +26,24 @@ public class ProfessorService{
 		return (List<Professor>) professorRepositorio.findAll();
 	}
 	
+	public void excluirProfessor(long id){
+		professorRepositorio.delete(id);
+	}
+	
 	public Professor encontrarProfessorPelaMatricula(String matricula){
 		return professorRepositorio.findByMatricula(matricula);
 	}
 	
-	public void excluirProfessor(long id){
-		professorRepositorio.delete(id);
+	public List<Professor> encontrarProfessorPeloEndereco(String endereco){
+		return professorRepositorio.findByEndereco(endereco);
+	}
+	
+	public List<Professor> encontrarProfessorPeloNome(String nome){
+		return professorRepositorio.findByNome(nome);
+	}
+	
+	public List<Professor> encontrarProfessorPeloTelefone(String telefone){
+		return professorRepositorio.findByNome(telefone);
 	}
 
 }
