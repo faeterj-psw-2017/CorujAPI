@@ -1,4 +1,4 @@
-package org.faeterj.apicoruja.coruja.model.jpa;
+package org.faeterj.apicoruja.coruja.model.entity;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
