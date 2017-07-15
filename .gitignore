@@ -3,3 +3,5 @@
 target/
 src/main/resources/application.properties
 prop-backups/
+coruja.iml
+.idea/
