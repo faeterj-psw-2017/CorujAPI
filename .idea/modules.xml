@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/coruja.iml" filepath="$PROJECT_DIR$/coruja.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../gs-serving-web-content/complete/src/CorujaFront/coruja-front.iml" filepath="$PROJECT_DIR$/../../gs-serving-web-content/complete/src/CorujaFront/coruja-front.iml" />
+    </modules>
+  </component>
+</project>
