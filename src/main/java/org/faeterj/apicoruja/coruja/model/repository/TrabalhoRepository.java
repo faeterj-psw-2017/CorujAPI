@@ -2,14 +2,13 @@ package org.faeterj.apicoruja.faeterj.model.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import org.faeterj.apicoruja.coruja.model.entity.Trabalho;
 
-public interface TrabalhoRepository extends PagingAndSortingRepository<Trabalho, Long> {
+public interface TrabalhoRepository extends
+        PagingAndSortingRepository<Trabalho, Long> {
 
     List<Trabalho> findById     (@Param("trabalho_id") long   id);
     List<Trabalho> findByTitulo (@Param("titulo")      String titulo);
