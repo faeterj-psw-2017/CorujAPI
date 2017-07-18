@@ -49,33 +49,33 @@ public class Disciplina {
 
     // ---------------------------------
   
-	public String getNome ( ) {
-		return nome;
-	}
+    public String getNome ( ) {
+	return nome;
+    }
 	
-	public void setNome (String nome) {
-		this.nome = nome;
-	}
+    public void setNome (String nome) {
+	this.nome = nome;
+    }
 
-	// ---------------------------------
+    // ---------------------------------
 	
-	public Double getCargaHoraria ( ) {
-		return cargaHoraria;
-	}
+    public Double getCargaHoraria ( ) {
+	return cargaHoraria;
+    }
 	
-	public void setCargaHoraria (Double cargaHoraria) {
-		this.cargaHoraria = cargaHoraria;
-	}
+    public void setCargaHoraria (Double cargaHoraria) {
+	this.cargaHoraria = cargaHoraria;
+    }
 	
-	// ---------------------------------
+    // ---------------------------------
 	
-	public String getDescricao ( ) {
-		return descricao;
-	}
+    public String getDescricao ( ) {
+	return descricao;
+    }
 	
-	public void setDescricao (String descricao) {
-		this.descricao = descricao;
-	}
+    public void setDescricao (String descricao) {
+	this.descricao = descricao;
+    }
 
 }
 

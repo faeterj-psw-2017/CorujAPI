@@ -2,18 +2,8 @@ package org.faeterj.apicoruja.coruja.model.entity;
 
 import javax.persistence.*;
 
-// @Entity
-// @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-// @Table(name="pessoa")
 @MappedSuperclass
 public abstract class Pessoa {
-
-    /*
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="pessoa_id")
-    private long id;
-    */
 
     @Column(name="nome")
     protected String nome;
@@ -23,7 +13,10 @@ public abstract class Pessoa {
     
     @Column(name="endereco")
     protected String endereco;
-	
+
+    @Column(name="sexo")
+    protected char sexo;
+
     // =================================================
     
     protected Pessoa ( ) {
@@ -63,6 +56,16 @@ public abstract class Pessoa {
 
     public void setTelefone (String telefone) {
         this.telefone = telefone;
+    }
+
+    // -----------------------------------------
+
+    public char getSexo ( ) {
+        return sexo;
+    }
+
+    public void setSexo (char sexo) {
+        this.sexo = sexo;
     }
 
     // ----------------------------------------------
