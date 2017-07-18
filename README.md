@@ -26,6 +26,10 @@ segue uns comandos úteis para usar na linha de comando.
 
         $ mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
+Ou simplesmente:
+
+        $ mvn clean install
+
 ##### Testando a aplicação
 
         $ mvn test
@@ -95,17 +99,17 @@ Aonde o HTML resultante está localizado em:
   está em seu próprio branch dedicado. Na linha de comando, você pode ver em qual branch está com:
   
         $ git branch -va
-  
+
   Caso você esteja em outro branch qualquer, mude para o seu branch com:
   
         $ git checkout O-NOME-QUE-VOCE-DEU-PRO-SEU-BRANCH
-        
+
   Se estiver tudo OK, comece a programar sem problemas. **IMPORTANTE**: Se você está designado pra
   algum controller, entre em contato com o @rt3norio ou @marcoonroad para saber se o respectivo
   repository/entity/model do seu controller foi implementado. Se não, peça pra estas pessoas implementarem
   o seu repository. Se este já foi implementado, dê um merge (em seu atual branch) passando _upstream/model_
   (a upstream frequentemente contém códigos mais atualizados do que sua _origin_, ou seja, seu fork).
-  
+
 * 09 -- Dê um **git commit -m "QUALQUER-MENSAGEM-DESCREVENDO-O-COMMIT"** sempre que puder para não
   perder seu trabalho, _mesmo em mudanças mínimas e/ou bobas_ (antes, certifique-se que os arquivos
   modificados são "trackeados" com **git add**).
