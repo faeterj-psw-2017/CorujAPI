@@ -7,7 +7,7 @@ import org.faeterj.apicoruja.coruja.model.entity.Professor;
 public interface ProfessorRepository extends
     PagingAndSortingRepository<Professor, Long> {
 
-         Professor  findByMatricula (long   matricula);
+         Professor  findByMatricula (String matricula);
     List<Professor> findByNome      (String nome);
     List<Professor> findByEndereco  (String endereco);
     List<Professor> findByTelefone  (String telefone);

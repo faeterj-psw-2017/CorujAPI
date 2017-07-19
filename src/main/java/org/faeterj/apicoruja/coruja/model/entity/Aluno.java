@@ -32,7 +32,11 @@ public final class Aluno extends Pessoa {
                 this.matricula = matricula;
         }
 
-        public Aluno (long id, String nome, String telefone, String endereco, Historico historico, String matricula) {
+        public Aluno (
+                long id,             String nome,
+                String telefone,     String endereco,
+                Historico historico, String matricula
+        ) {
                 this(id, historico, matricula);
 
                 this.nome     = nome;

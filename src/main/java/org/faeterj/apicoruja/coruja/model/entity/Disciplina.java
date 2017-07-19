@@ -1,11 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 
 @Table(name="disciplina")
 @Entity
@@ -30,14 +25,17 @@ public class Disciplina {
     protected Disciplina ( ) {
     }
 
-    public Disciplina (long id, String nome, Double cargaHoraria, String descricao) {
+    public Disciplina (
+      long id,             String nome,
+      Double cargaHoraria, String descricao
+    ) {
       this.id           = id;
       this.nome         = nome;
       this.cargaHoraria = cargaHoraria;
       this.descricao    = descricao;
     }
 
-    // =================================================================================
+    // =====================================================================
 
     public long getId ( ) {
     	return id;

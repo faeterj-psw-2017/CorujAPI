@@ -3,8 +3,6 @@ package org.faeterj.apicoruja.coruja.model.entity;
 import java.io.File;
 import javax.persistence.*;
 
-import java.io.File;
-
 @Table(name="atcom")
 @Entity
 public class ATCOM {

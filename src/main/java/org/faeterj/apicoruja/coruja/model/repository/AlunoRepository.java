@@ -8,7 +8,7 @@ public interface AlunoRepository extends
     PagingAndSortingRepository<Aluno, Long> {
 
     List<Aluno> findByNome      (String nome);
-         Aluno  findByMatricula (long   matricula);
+         Aluno  findByMatricula (String matricula);
     List<Aluno> findBySexo      (char   sexo);
     List<Aluno> findByEndereco  (String endereco);
     List<Aluno> findByTelefone  (String telefone);
