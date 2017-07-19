@@ -1,7 +1,5 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import org.faeterj.apicoruja.coruja.model.entity.Pessoa;
-import org.faeterj.apicoruja.coruja.model.entity.Historico;
 import javax.persistence.*;
 
 @Entity
