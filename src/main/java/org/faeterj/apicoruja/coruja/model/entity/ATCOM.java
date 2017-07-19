@@ -1,13 +1,7 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-
 import java.io.File;
+import javax.persistence.*;
 
 @Table(name="atcom")
 @Entity
@@ -35,7 +29,9 @@ public class ATCOM {
         }
 
         public ATCOM (
-                long id, File foto, String descricaoDocumento, double horasAtribuidas, boolean valido
+                long id,                   File foto,
+                String descricaoDocumento, double horasAtribuidas,
+                boolean valido
         ) {
                 this.id                 = id;
                 this.foto               = foto;
@@ -44,53 +40,53 @@ public class ATCOM {
                 this.valido             = valido;
         }
 
-        // ==============================================================================================
+        // ==================================================================
   
-	public long getId() {
+	public long getId ( ) {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId (long id) {
 		this.id = id;
 	}
 	
 	// ------------------------------------------------------------------------
 	
-	public File getFoto() {
+	public File getFoto ( ) {
 		return foto;
 	}
 	
-	public void setFoto(File foto) {
+	public void setFoto (File foto) {
 		this.foto = foto;
 	}
 	
-	//------------------------------------------------------------------------
+	//------------------------------------------------------------------
 	
-	public String getDescricaoDocumento() {
+	public String getDescricaoDocumento ( ) {
 		return descricaoDocumento;
 	}
 	
-	public void setDescricaoDocumento(String descricaoDocumento) {
+	public void setDescricaoDocumento (String descricaoDocumento) {
 		this.descricaoDocumento = descricaoDocumento;
 	}
 	
-	//------------------------------------------------------------------------
+	//------------------------------------------------------------------
 	
-	public double getHorasAtribuidas() {
+	public double getHorasAtribuidas ( ) {
 		return horasAtribuidas;
 	}
 	
-	public void setHorasAtribuidas(double horasAtribuidas) {
+	public void setHorasAtribuidas (double horasAtribuidas) {
 		this.horasAtribuidas = horasAtribuidas;
 	}
 	
-	//------------------------------------------------------------------------
+	//-------------------------------------------------------------------
 	
-	public boolean isValido() {
+	public boolean isValido ( ) {
 		return valido;
 	}
 	
-	public void setValido(boolean valido) {
+	public void setValido (boolean valido) {
 		this.valido = valido;
 	}
 

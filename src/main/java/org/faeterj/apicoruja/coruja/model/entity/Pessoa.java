@@ -22,21 +22,7 @@ public abstract class Pessoa {
     protected Pessoa ( ) {
 		
     }
-
-    /*
-    protected Pessoa (long id) {
-        this.id = id;
-    }
-    */
-
-    /*
-    protected Pessoa (String nome, String telefone, String endereco) {
-        this.nome     = nome;
-        this.telefone = telefone;
-        this.endereco = endereco;
-    }
-    */
-    
+ 
     // ======================================================
 
     public String getNome ( ) {

@@ -8,7 +8,6 @@ public interface ATCOMRepository extends
     PagingAndSortingRepository<ATCOM, Long> {
 
     List<ATCOM> findByDescricaoDocumento (String  descricaoDocumento);
-    List<ATCOM> findById                 (long    id);
     List<ATCOM> findByHorasAtribuidas    (Double  horasAtribuidas);
     List<ATCOM> findByValido             (boolean valido);
 
