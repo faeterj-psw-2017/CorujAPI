@@ -6,7 +6,7 @@ package org.faeterj.apicoruja.coruja.controller.requestBody;
 public class AlunoRequestBody {
 
     public String nome;
-    public Integer matricula;
+    public String matricula;
 
     public String getNome() {
         return nome;
@@ -16,11 +16,11 @@ public class AlunoRequestBody {
         this.nome = nome;
     }
 
-    public Integer getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(Integer matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 }
