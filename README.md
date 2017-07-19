@@ -104,11 +104,12 @@ Aonde o HTML resultante está localizado em:
   
         $ git checkout O-NOME-QUE-VOCE-DEU-PRO-SEU-BRANCH
 
-  Se estiver tudo OK, comece a programar sem problemas. **IMPORTANTE**: Se você está designado pra
+  Se estiver tudo OK, comece a programar sem problemas. ~~**IMPORTANTE**: Se você está designado pra
   algum controller, entre em contato com o @rt3norio ou @marcoonroad para saber se o respectivo
   repository/entity/model do seu controller foi implementado. Se não, peça pra estas pessoas implementarem
   o seu repository. Se este já foi implementado, dê um merge (em seu atual branch) passando _upstream/model_
-  (a upstream frequentemente contém códigos mais atualizados do que sua _origin_, ou seja, seu fork).
+  (a upstream frequentemente contém códigos mais atualizados do que sua _origin_, ou seja, seu fork).~~ O branch
+  _model_ já foi mergeado no _master_, então um merge da _upstream/master_ é suficiente.
 
 * 09 -- Dê um **git commit -m "QUALQUER-MENSAGEM-DESCREVENDO-O-COMMIT"** sempre que puder para não
   perder seu trabalho, _mesmo em mudanças mínimas e/ou bobas_ (antes, certifique-se que os arquivos
