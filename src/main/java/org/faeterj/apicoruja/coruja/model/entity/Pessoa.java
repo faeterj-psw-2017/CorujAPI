@@ -5,25 +5,39 @@ import javax.persistence.*;
 @MappedSuperclass
 public abstract class Pessoa {
 
-    @Column(name="nome")
+    @Column(name="nome", nullable=false)
     protected String nome;
     
-    @Column(name="telefone")
+    @Column(name="telefone", nullable=false)
     protected String telefone;
     
-    @Column(name="endereco")
+    @Column(name="endereco", nullable=false)
     protected String endereco;
 
-    @Column(name="sexo")
+    @Column(name="sexo", nullable=false)
     protected char sexo;
 
-    // =================================================
+    // ================================================================
     
     protected Pessoa ( ) {
 		
     }
+
+    public Pessoa (String nome, String telefone, String endereco) {
+        this.nome     = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
+    public Pessoa (
+        String nome, String telefone, String endereco, char sexo
+    ) {
+        this(nome, telefone, endereco);
+
+        this.sexo = sexo;
+    }
  
-    // ======================================================
+    // ==============================================================
 
     public String getNome ( ) {
         return nome;

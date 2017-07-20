@@ -10,10 +10,10 @@ public final class Professor extends Pessoa {
 	@Column(name="professor_id")
 	private long id;
 
-	@Column(name="matricula", unique=true)
+	@Column(name="matricula", unique=true, nullable=false)
 	private String matricula;
 
-	// ==========================================
+	// ====================================================
 
 	protected Professor ( ) {
 
