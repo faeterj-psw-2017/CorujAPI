@@ -11,14 +11,16 @@ public final class Aluno extends Pessoa {
         @GeneratedValue(strategy=GenerationType.AUTO)
         private long id;
 
-        @OneToOne(optional=false)
-        @JoinColumn(name = "historico", referencedColumnName="historico_id") 
+        @OneToOne(optional=true)
+        @JoinColumn(name                 = "historico",
+                    referencedColumnName = "historico_id",
+                    nullable             = true)
         private Historico historico;
 
-        @Column(name="matricula", unique=true)
+        @Column(name="matricula", unique=true, nullable=false)
         private String matricula;
 
-        // =======================================
+        // ====================================================
 
         public Aluno ( ) {
 
@@ -28,6 +30,16 @@ public final class Aluno extends Pessoa {
                 this.id        = id;
                 this.historico = historico;
                 this.matricula = matricula;
+        }
+
+        public Aluno (String nome, String telefone, String endereco) {
+                super(nome, telefone, endereco);
+        }
+
+        public Aluno (
+                String nome, String telefone, String endereco, char sexo
+        ) {
+                super(nome, telefone, endereco, sexo);
         }
 
         public Aluno (

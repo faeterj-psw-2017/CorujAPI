@@ -7,9 +7,10 @@ import org.faeterj.apicoruja.coruja.model.entity.Disciplina;
 public interface DisciplinaRepository extends
         PagingAndSortingRepository<Disciplina, Long> {
 
-        List<Disciplina> findByNome         (String nome);
+             Disciplina  findByNome         (String nome);
+             Disciplina  findBySigla        (String sigla);
         List<Disciplina> findByCargaHoraria (Double cargaHoraria);
-        List<Disciplina> findByDescricao    (String descricao);
+             Disciplina  findByDescricao    (String descricao);
 
 }
 
