@@ -11,26 +11,31 @@ public class Disciplina {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @Column(name="nome")
+    @Column(name="nome", nullable=false)
     private String nome;
 
-    @Column(name="carga_horaria")
+    @Column(name="sigla", nullable=false)
+    private String sigla;
+
+    @Column(name="carga_horaria", nullable=false)
     private Double cargaHoraria;
 
-    @Column(name="descricao")
+    @Column(name="descricao", nullable=false)
     private String descricao;
 
-    // ====================================
+    // ==========================================
 
     protected Disciplina ( ) {
     }
 
     public Disciplina (
-      long id,             String nome,
-      Double cargaHoraria, String descricao
+      long   id,       String nome,
+      String sigla,    Double cargaHoraria,
+      String descricao
     ) {
       this.id           = id;
       this.nome         = nome;
+      this.sigla        = sigla;
       this.cargaHoraria = cargaHoraria;
       this.descricao    = descricao;
     }
@@ -55,7 +60,17 @@ public class Disciplina {
 	this.nome = nome;
     }
 
-    // ---------------------------------
+    // -----------------------------------
+   
+    public String getSigla ( ) {
+        return sigla;
+    }
+
+    public void setSigla (String nome) {
+        this.sigla = sigla;
+    }
+
+    // -----------------------------------
 	
     public Double getCargaHoraria ( ) {
 	return cargaHoraria;

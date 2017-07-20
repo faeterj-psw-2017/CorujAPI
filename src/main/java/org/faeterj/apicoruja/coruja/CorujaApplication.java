@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //
 // @EntityScan(basePackages={ "org.faeterj.apicoruja.coruja.model.entity" })
-// @EnableJpaRepositories(basePackages={ "org.faeterj.apicoruja.coruja.model.repository" })
+// @EnableJpaRepositories(
+//   basePackages={ "org.faeterj.apicoruja.coruja.model.repository" }
+// )
 @SpringBootApplication
 public class CorujaApplication {
 

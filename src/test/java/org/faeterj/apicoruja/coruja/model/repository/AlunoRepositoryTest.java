@@ -20,7 +20,9 @@ import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 // import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 // @EntityScan(basePackages={ "org.faeterj.apicoruja.coruja.model.entity" })
-// @EnableJpaRepositories(basePackages={ "org.faeterj.apicoruja.coruja.model.repository" })
+// @EnableJpaRepositories(
+//   basePackages={ "org.faeterj.apicoruja.coruja.model.repository" }
+// )
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AlunoRepositoryTest {
@@ -40,11 +42,15 @@ public class AlunoRepositoryTest {
 
         @Test
         public void findById ( ) {
+                String nome     = "Marco Aurélio da Silva";
+                String endereco = "Rua TB";
+                String telefone = "8888-8888";
+
                 Aluno aluno = repository.findOne (12345L);
 
-                assertThat (aluno.getNome ( ),     is ("Marco Aurélio da Silva"));
-                assertThat (aluno.getEndereco ( ), is ("Rua TB"));
-                assertThat (aluno.getTelefone ( ), is ("8888-8888"));
+                assertThat (aluno.getNome ( ),     is (nome));
+                assertThat (aluno.getEndereco ( ), is (endereco));
+                assertThat (aluno.getTelefone ( ), is (telefone));
         }
 
 }
