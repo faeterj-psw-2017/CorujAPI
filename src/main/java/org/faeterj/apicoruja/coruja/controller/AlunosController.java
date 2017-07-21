@@ -26,21 +26,28 @@ public class AlunosController {
         this.alunosService = alunosService;
     }
 
-    @RequestMapping(value="/aluno", method = RequestMethod.GET)
-    public List<Aluno> listarAlunos() {
-        return alunosService.obterAlunos();
-    }
-
 //    @RequestMapping(value="/aluno", method = RequestMethod.POST)
 //    public Aluno adicionarAluno(@RequestBody AlunoRequestBody requestBody) {
 //        return alunosService.adicionarAluno(requestBody.getNome(), requestBody.getMatricula());
 //    }
 
-    public void removerAluno() {
-
+//    @RequestMapping(value="/aluno/{matricula}", method = RequestMethod.DELETE)
+//    public void removerAlunoPorMatricula(@PathVariable String matricula) {
+//    	
+//    }
+    @RequestMapping(value="/aluno/salvar", method = RequestMethod.POST)
+    public Aluno criarAluno(@RequestBody AlunoRequestBody requestBody){
+    	Aluno aluno = new Aluno();
+    	aluno.setEndereco(requestBody.endereco);
+    	aluno.setNome(requestBody.nome);
+    	aluno.setTelefone(requestBody.telefone);
+    	aluno.setSexo(requestBody.sexo);
+    	aluno.setMatricula(requestBody.matricula);
+    	alunosService.salvarAluno(aluno);
+    	return aluno;
     }
     
-    @RequestMapping(value="/aluno", method = RequestMethod.POST)
+    @RequestMapping(value="/aluno/alterar", method = RequestMethod.POST)
     public Aluno alterarAlunoPorMatricula(@RequestBody AlunoRequestBody requestBody) {
     	Aluno aluno = alunosService.obterAlunoPorMatricula(requestBody.getMatricula());
     	if(null != aluno){
