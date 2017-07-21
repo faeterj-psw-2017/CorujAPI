@@ -1,11 +1,15 @@
 package org.faeterj.apicoruja.coruja.service;
 
-import org.faeterj.apicoruja.coruja.model.entity.Aluno;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.faeterj.apicoruja.coruja.controller.requestBody.AlunoRequestBody;
+import org.faeterj.apicoruja.coruja.model.entity.Aluno;
+import org.faeterj.apicoruja.coruja.model.repository.AlunoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Gabriel Capanema on 23/06/17.
@@ -14,6 +18,13 @@ import java.util.List;
 public class AlunosService {
 
     private List<Aluno> alunos;
+    private AlunoRepository alunoRepo;
+    
+    @Autowired
+    public AlunosService(AlunoRepository alunoRepo){
+    	this.alunoRepo = alunoRepo;
+    }
+
 
     @PostConstruct
     public void init() {
@@ -47,6 +58,14 @@ public class AlunosService {
         a.setMatricula(matricula);
         alunos.add(a);
         return a;
+    }
+    
+    public Aluno obterAlunoPorMatricula(String matricula){
+    	return alunoRepo.findByMatricula(matricula);
+    }
+    
+    public void alterarAlunoPorMatricula(Aluno aluno){
+    	alunoRepo.save(aluno);
     }
 
 }
