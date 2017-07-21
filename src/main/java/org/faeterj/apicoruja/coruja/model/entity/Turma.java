@@ -6,34 +6,34 @@ import javax.persistence.*;
 @Table(name="turma")
 public class Turma {
 
-        @Id
-        @Column(name="turma_id")
-        @GeneratedValue(strategy=GenerationType.AUTO)
-        private long id;
+    @Id
+    @Column(name="turma_id")
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
 
-        @Column(name="codigo")
-        private String codigo;
+    @Column(name="codigo")
+    private String codigo;
 
-        @Column(name="sala")
-        private String sala;
+    @Column(name="sala")
+    private String sala;
 
-        @Column(name="turno")
-        private char turno; // M = Manhã, T = Tarde, N = Noite, D = Diurno
+    @Column(name="turno")
+    private char turno; // M = Manhã, T = Tarde, N = Noite, D = Diurno
 
-        // ==================================================================
+    // ==================================================================
 
-        protected Turma ( ) {
+    protected Turma ( ) {
     
-        }
+    }
 
-        public Turma (long id, String codigo, String sala, char turno) {
-                this.id     = id;
-                this.codigo = codigo;
-                this.sala   = sala;
-                this.turno  = turno;
-        }
+    public Turma (long id, String codigo, String sala, char turno) {
+        this.id     = id;
+        this.codigo = codigo;
+        this.sala   = sala;
+        this.turno  = turno;
+    }
 
-        // ====================================================================
+    // ====================================================================
   
 	public long getId ( ) {
 		return id;

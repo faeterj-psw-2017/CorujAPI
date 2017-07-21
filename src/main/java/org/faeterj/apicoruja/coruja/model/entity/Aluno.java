@@ -6,83 +6,83 @@ import javax.persistence.*;
 @Table(name="aluno")
 public final class Aluno extends Pessoa {
 
-        @Id
-        @Column(name="aluno_id")
-        @GeneratedValue(strategy=GenerationType.AUTO)
-        private long id;
+    @Id
+    @Column(name="aluno_id")
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
 
-        @OneToOne(optional=true)
-        @JoinColumn(name                 = "historico",
-                    referencedColumnName = "historico_id",
-                    nullable             = true)
-        private Historico historico;
+    @OneToOne(optional=true)
+    @JoinColumn(name                 = "historico",
+                referencedColumnName = "historico_id",
+                nullable             = true)
+    private Historico historico;
 
-        @Column(name="matricula", unique=true, nullable=false)
-        private String matricula;
+    @Column(name="matricula", unique=true, nullable=false)
+    private String matricula;
 
-        // ====================================================
+    // ====================================================
 
-        public Aluno ( ) {
+    public Aluno ( ) {
 
-        }
+    }
 
-        public Aluno (long id, Historico historico, String matricula) {
-                this.id        = id;
-                this.historico = historico;
-                this.matricula = matricula;
-        }
+    public Aluno (long id, Historico historico, String matricula) {
+        this.id        = id;
+        this.historico = historico;
+        this.matricula = matricula;
+    }
 
-        public Aluno (String nome, String telefone, String endereco) {
-                super(nome, telefone, endereco);
-        }
+    public Aluno (String nome, String telefone, String endereco) {
+        super(nome, telefone, endereco);
+    }
 
-        public Aluno (
-                String nome, String telefone, String endereco, char sexo
-        ) {
-                super(nome, telefone, endereco, sexo);
-        }
+    public Aluno (
+        String nome, String telefone, String endereco, char sexo
+    ) {
+        super(nome, telefone, endereco, sexo);
+    }
 
-        public Aluno (
-                long id,             String nome,
-                String telefone,     String endereco,
-                Historico historico, String matricula
-        ) {
-                this(id, historico, matricula);
+    public Aluno (
+        long id,             String nome,
+        String telefone,     String endereco,
+        Historico historico, String matricula
+    ) {
+        this(id, historico, matricula);
 
-                this.nome     = nome;
-                this.telefone = telefone;
-                this.endereco = endereco;
-        }
+        this.nome     = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
 
-        // ==============================
+    // ==============================
 
-        public void setId (long id) {
-                this.id = id;
-        }
+    public void setId (long id) {
+        this.id = id;
+    }
 
-        public long getId ( ) {
-                return id;
-        }
+    public long getId ( ) {
+        return id;
+    }
 
-        // ---------------------------------------------
+    // ---------------------------------------------
 
-        public void setMatricula (String matricula) {
-                this.matricula = matricula;
-        }
+    public void setMatricula (String matricula) {
+        this.matricula = matricula;
+    }
 
-        public String getMatricula ( ) {
-                return matricula;
-        }
+    public String getMatricula ( ) {
+        return matricula;
+    }
 
-        // ------------------------------------
+    // ------------------------------------
 
-        public Historico getHistorico ( ) {
-                return historico;
-        }
+    public Historico getHistorico ( ) {
+        return historico;
+    }
 
-        public void setHistorico (Historico historico) {
-                this.historico = historico;
-        }
+    public void setHistorico (Historico historico) {
+        this.historico = historico;
+    }
 
 }
 
