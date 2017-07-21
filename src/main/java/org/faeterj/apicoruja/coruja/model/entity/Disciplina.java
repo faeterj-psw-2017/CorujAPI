@@ -29,15 +29,15 @@ public class Disciplina {
     }
 
     public Disciplina (
-      long   id,       String nome,
-      String sigla,    Double cargaHoraria,
-      String descricao
+        long   id,       String nome,
+        String sigla,    Double cargaHoraria,
+        String descricao
     ) {
-      this.id           = id;
-      this.nome         = nome;
-      this.sigla        = sigla;
-      this.cargaHoraria = cargaHoraria;
-      this.descricao    = descricao;
+        this.id           = id;
+        this.nome         = nome;
+        this.sigla        = sigla;
+        this.cargaHoraria = cargaHoraria;
+        this.descricao    = descricao;
     }
 
     // =====================================================================
@@ -53,11 +53,11 @@ public class Disciplina {
     // ---------------------------------
   
     public String getNome ( ) {
-	return nome;
+    	return nome;
     }
 	
     public void setNome (String nome) {
-	this.nome = nome;
+    	this.nome = nome;
     }
 
     // -----------------------------------
@@ -73,21 +73,21 @@ public class Disciplina {
     // -----------------------------------
 	
     public Double getCargaHoraria ( ) {
-	return cargaHoraria;
+    	return cargaHoraria;
     }
 	
     public void setCargaHoraria (Double cargaHoraria) {
-	this.cargaHoraria = cargaHoraria;
+    	this.cargaHoraria = cargaHoraria;
     }
 	
     // ---------------------------------
 	
     public String getDescricao ( ) {
-	return descricao;
+    	return descricao;
     }
 	
     public void setDescricao (String descricao) {
-	this.descricao = descricao;
+    	this.descricao = descricao;
     }
 
 }
