@@ -30,6 +30,7 @@ public class AlunosController {
         return alunosService.obterAlunos();
     }
 //mudança aleatoria de teste
+    //segundo teste de commit
     @RequestMapping(value="/aluno", method = RequestMethod.POST)
     public Aluno adicionarAluno(@RequestBody AlunoRequestBody requestBody) {
         return alunosService.adicionarAluno(requestBody.getNome(), requestBody.getMatricula());
