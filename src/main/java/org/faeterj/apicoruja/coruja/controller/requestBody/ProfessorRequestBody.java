@@ -1,11 +1,12 @@
 package org.faeterj.apicoruja.coruja.controller.requestBody;
 
-public class professorRequestBody {
+public class ProfessorRequestBody {
 
     public String nome;
     public String matricula;
     private String telefone;
     private String endereco;
+    private String codigoTurma;
 
     public String getNome() {
         return nome;
@@ -37,5 +38,13 @@ public class professorRequestBody {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getCodigoTurma() {
+		return codigoTurma;
+	}
+
+	public void setCodigoTurma(String codigoTurma) {
+		this.codigoTurma = codigoTurma;
 	}
 }

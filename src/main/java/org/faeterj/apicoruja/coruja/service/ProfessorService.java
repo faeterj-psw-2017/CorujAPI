@@ -3,6 +3,7 @@ package org.faeterj.apicoruja.coruja.service;
 import java.util.List;
 
 import org.faeterj.apicoruja.coruja.model.entity.Professor;
+import org.faeterj.apicoruja.coruja.model.entity.Turma;
 import org.faeterj.apicoruja.coruja.model.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ public class ProfessorService{
 	
 	
 	private ProfessorRepository professorRepositorio;
+	
+	@Autowired
+	TurmaService turmaService;
 	
 	@Autowired
 	public void setProfessorRepository(ProfessorRepository professorRepositorio){
@@ -44,6 +48,23 @@ public class ProfessorService{
 	
 	public List<Professor> encontrarProfessorPeloTelefone(String telefone){
 		return professorRepositorio.findByNome(telefone);
+	}
+	
+	public Professor encontrarProfessorPeloId(long id){
+		return professorRepositorio.findById(id);
+	}
+	
+	public Professor encontrarProfessorPelaTurma(String codigoTurma){
+		Turma turma = turmaService.obterTurma(codigoTurma);
+		Professor professor;
+		if(turma==null){
+			return null;
+		}
+		if(turma.getProfessor()!=null){
+			professor = turma.getProfessor();
+			return professor;
+		}
+		return null;
 	}
 
 }

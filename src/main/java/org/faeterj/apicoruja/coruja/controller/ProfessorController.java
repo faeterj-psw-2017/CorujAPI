@@ -2,7 +2,7 @@ package org.faeterj.apicoruja.coruja.controller;
 
 import java.util.List;
 
-import org.faeterj.apicoruja.coruja.controller.requestBody.professorRequestBody;
+import org.faeterj.apicoruja.coruja.controller.requestBody.ProfessorRequestBody;
 import org.faeterj.apicoruja.coruja.model.entity.Professor;
 import org.faeterj.apicoruja.coruja.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class ProfessorController {
     }
 
    @RequestMapping(value="/salvar", method = RequestMethod.POST)
-    public boolean salvaProfessor(@RequestBody professorRequestBody requestBody){
+    public boolean salvaProfessor(@RequestBody ProfessorRequestBody requestBody){
        Professor professor = new Professor();
        professor.setNome(requestBody.getNome());
        professor.setMatricula(requestBody.getMatricula());
@@ -37,7 +37,7 @@ public class ProfessorController {
        return false;
     }
    @RequestMapping(value="/excluir", method = RequestMethod.POST)
-   public boolean excluirProfessor(@RequestBody professorRequestBody requestBody){
+   public boolean excluirProfessor(@RequestBody ProfessorRequestBody requestBody){
 	   professor = professorService.encontrarProfessorPelaMatricula(requestBody.getMatricula());
 	   if(professor!=null){
 		   professorService.excluirProfessor(professor.getId());
@@ -47,7 +47,7 @@ public class ProfessorController {
    }
    
    @RequestMapping(value="/editar", method=RequestMethod.POST)
-   public boolean editar(@RequestBody professorRequestBody requestBody){
+   public boolean editar(@RequestBody ProfessorRequestBody requestBody){
 	   professor = professorService.encontrarProfessorPelaMatricula(requestBody.getMatricula());
 	   if(professor!=null){
 		   if(requestBody.getNome()!=null && !professor.getNome().equals(requestBody.getNome())){
@@ -89,5 +89,15 @@ public class ProfessorController {
    @RequestMapping(value="/busca_professor_telefone", method=RequestMethod.GET)
    public List<Professor> encontraProfessorPeloTelefone(String telefone){
 	   return professorService.encontrarProfessorPeloTelefone(telefone);
+   }
+   
+   @RequestMapping(value="/busca_professor_id", method=RequestMethod.GET)
+   public Professor encontraProfessorPeloId(long id){
+	   return professorService.encontrarProfessorPeloId(id);
+   }
+   @RequestMapping(value="/busca_professor_turma", method=RequestMethod.GET)
+   public Professor encontraProfessorPelaTurma(String codigoTurma){
+	   professor = professorService.encontrarProfessorPelaTurma(codigoTurma);
+	   return professor;
    }
 }

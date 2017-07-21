@@ -1,11 +1,15 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="turma")
@@ -24,6 +28,10 @@ public class Turma {
 
   @Column(name="turno")
   private String turno;
+  
+  @ManyToOne
+  @JoinColumn(name="professor_id")
+  private Professor professor;
 
   // ======================================
 
@@ -31,8 +39,7 @@ public class Turma {
     
   }
 
-  public Turma (long id, String codigo, String sala, String turno) {
-    this.id     = id;
+  public Turma (String codigo, String sala, String turno) {
     this.codigo = codigo;
     this.sala   = sala;
     this.turno  = turno;
@@ -76,6 +83,14 @@ public class Turma {
 	
 	public void setTurno (String turno) {
 		this.turno = turno;
+	}
+	@JsonIgnore
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
   
 }
