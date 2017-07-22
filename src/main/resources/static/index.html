@@ -94,16 +94,18 @@
         <div class="col-md-6">
             <div style="margin:40px;">
                 <h1 class="titulo-coruja">CorujApi</h1>
-                <form id="autenticaForm" action="http://localhost:8080/autenticar" method="post" target="respostaFrame"
-                      style="display:inline-block;">
+                <!--<form id="autenticaForm" action="http://localhost:8080/autenticar" method="post"-->
+                      <!--style="display:inline-block;">-->
+                    <form id="autenticaForm" action="" method="post"
+                          style="display:inline-block;">
                     <input type="text" class="bordinha" id="inputMatricula" placeholder="matricula" required name="matricula"
                            style="display:inline;">
                     <input type="password" class="bordinha" id="inputSenha" placeholder="senha" required name="senha"
                            style="display:inline;">
-                    <button type="submit" class="btn btn-default btn-redondo bordinha"><i class="fa fa-user"
+                    <button type="submit" class="btn btn-default btn-redondo bordinha" onclick="autenticar()"><i class="fa fa-user"
                                                                                           aria-hidden="true"></i>
                     </button>
-                    Login válido para testes: usuário(matricula): "123456" e senha: "123456"
+                    Login válido para testes: usuário(matricula): "123" e senha: "123"
                 </form>
             </div>
         </div>
@@ -112,7 +114,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default bordinha-painel" id="login">
-                <div class="alert alert-danger bordinha-painel cabecalho-painel" id="naoAutenticado">
+                <div class="alert alert-danger bordinha-painel cabecalho-painel" id="autenticadoInfo">
                     Não autenticado...
                 </div>
                 <h4><i>_____________________________ Serviços ...</i></h4>
@@ -127,10 +129,9 @@
                     <h3 class="panel-title">Resposta ...</h3>
                 </div>
                 <div class="panel-body">
-                    <iframe name="respostaFrame" class="bordinha-painel" style="width:100%;"></iframe>
-                    <button type="button" id="visualizarToken" class="btn btn-info" onclick="carregarToken();">ver token</button>
-                    <div id="tokenDiv"></div>
-                    <pre class="bordinha-painel" id="resposta"></pre>
+                    <div name="respostaDiv" class="bordinha-painel" style="width:100%; padding:25pX;">
+                        Responses aparecerão aqui...
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,11 +148,18 @@
 
 var TOKEN_KEY = "jToken";
 
+    function alternaAutenticadoInfo(positivo)
+    {
+        if(positivo == true) {
+            $('#autenticadoInfo').fadeOut().html(' ').removeClass('alert-danger').addClass('alert-success').html('Autenticao :)').fadeIn();
+        }
+        else {
+            $('#autenticadoInfo').fadeOut().html(' ').removeClass('alert-success').addClass('alert-danger').html('Não autenticao :(').fadeIn();
+        }
+    }
+
     $("#autenticaForm").submit(function (event) {
         event.preventDefault();
-        var $form = $(this);
-        var dados = $form.serialize();
-        autenticar(dados);
     });
 
     function salvarToken(token) {
@@ -160,26 +168,30 @@ var TOKEN_KEY = "jToken";
 
     function carregarToken() {
         var token = localStorage.getItem(TOKEN_KEY);
-        $('#tokenDiv').html(token);
     }
 
-    function autenticar(loginData) {
+    function autenticar()
+    {
+        var $form = $("#autenticaForm");
+        var dados = $form.serialize();
+
         $.ajax({
             url: "/autenticar",
             type: "POST",
-            data: loginData,
+            data: dados,
             success: function (data) {
-
                 // Checagem temporaria enquanto nao se cria objeto de retorno adequado
                 var invalido = data.includes("incorretos");
                 if (invalido){
-                    $('#tokenDiv').html(data);
+                    // alert('login invalido');
+                    $('#respostaDiv').html(data);
+                    alternaAutenticadoInfo(false);
                 }
                 else{
                     salvarToken(data);
+                    alternaAutenticadoInfo(true);
                 }
                 // FIM "Checagem temporaria..."
-
             },
             error: function (errorThrown) {
                 throw new Error("Erro: " + errorThrown);
