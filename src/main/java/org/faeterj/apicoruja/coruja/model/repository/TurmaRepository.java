@@ -1,4 +1,4 @@
-package org.faeterj.apicoruja.faeterj.model.repository;
+package org.faeterj.apicoruja.coruja.model.repository;
 
 import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;

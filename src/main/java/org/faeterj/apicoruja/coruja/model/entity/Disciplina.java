@@ -20,6 +20,9 @@ public class Disciplina {
     @Column(name="descricao")
     private String descricao;
 
+    @Column(name="sigla")
+    private String sigla;
+
     // ====================================
 
     protected Disciplina ( ) {
@@ -28,11 +31,13 @@ public class Disciplina {
     public Disciplina (
       long id,             String nome,
       Double cargaHoraria, String descricao
+      ,String sigla
     ) {
       this.id           = id;
       this.nome         = nome;
       this.cargaHoraria = cargaHoraria;
       this.descricao    = descricao;
+      this.sigla        = sigla;
     }
 
     // =====================================================================
@@ -75,6 +80,13 @@ public class Disciplina {
 	this.descricao = descricao;
     }
 
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
 }
 
 // OK

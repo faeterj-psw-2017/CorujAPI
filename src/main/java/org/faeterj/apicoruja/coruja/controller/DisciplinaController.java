@@ -4,10 +4,7 @@ import org.faeterj.apicoruja.coruja.controller.requestBody.DisciplinaRequestBody
 import org.faeterj.apicoruja.coruja.model.entity.Disciplina;
 import org.faeterj.apicoruja.coruja.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,15 +29,16 @@ public class DisciplinaController {
 
     @RequestMapping(value="/disciplina", method = RequestMethod.POST)
     public Disciplina adicionarDisciplina(@RequestBody DisciplinaRequestBody requestBody) {
-        return disciplinaService.adicionarDisciplina(requestBody.getNome(), requestBody.getCargaHoraria(), requestBody.getDescricao());
+        return disciplinaService.adicionarDisciplina(requestBody.getNome(), requestBody.getCargaHoraria(), requestBody.getDescricao(), requestBody.getSigla());
     }
 
     public void removerDisciplina() {
 
     }
 
-    public void obterDisciplina() {
-
+    @RequestMapping(value="/disciplina/{sigla}", method = RequestMethod.GET)
+    public void obterDisciplina(@PathVariable String sigla) {
+        disciplinaService.obterDisciplina(sigla);
     }
 
 }

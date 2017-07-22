@@ -22,7 +22,7 @@ public class DisciplinaService {
     @PostConstruct
     public void init() {
         System.out.println("Criado modelo de disciplinas...");
-        Disciplina d = new Disciplina( 1, "Algoritmo e Linguagem de Programação 1", 180.0, "Disciplina que ensina os fundamentos da programação." );
+        Disciplina d = new Disciplina( 1, "Algoritmo e Linguagem de Programação 1", 180.0, "Disciplina que ensina os fundamentos da programação.", "AL1" );
 
         repo.save(d);
     }
@@ -32,7 +32,7 @@ public class DisciplinaService {
         return IteratorUtils.toList( it ); // De Iterator para List
     }
 
-    public Disciplina adicionarDisciplina(String nome, Double cargaHoraria, String descricao) {
+    public Disciplina adicionarDisciplina(String nome, Double cargaHoraria, String descricao, String sigla) {
         long id = 0L;
         List<Disciplina> disciplinas = this.obterDisciplinas();
         for (Disciplina d : disciplinas) {
@@ -41,9 +41,13 @@ public class DisciplinaService {
             }
         }
         id++;
-        Disciplina d = new Disciplina(id, nome, cargaHoraria, descricao);
+        Disciplina d = new Disciplina(id, nome, cargaHoraria, descricao, sigla);
         repo.save(d);
         return d;
+    }
+
+    public Disciplina obterDisciplina(String sigla) {
+        return repo.findBySigla(sigla);
     }
 
 }

@@ -13,7 +13,7 @@ public class Estagio {
 	private long id;
 
     @OneToOne(optional=false)
-    @JoinColumn(name = "aluno", referencedColumnName="aluno_id")
+    @JoinColumn(name = "aluno", referencedColumnName="aluno_id", nullable = true)
     private Aluno aluno;
 
     @Column(name="empresa")
