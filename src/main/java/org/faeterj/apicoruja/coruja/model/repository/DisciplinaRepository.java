@@ -10,6 +10,7 @@ public interface DisciplinaRepository extends
         List<Disciplina> findByNome         (String nome);
         List<Disciplina> findByCargaHoraria (Double cargaHoraria);
         List<Disciplina> findByDescricao    (String descricao);
+        Disciplina findBySigla    (String sigla);
 
 }
 

@@ -1,0 +1,5 @@
+*~
+*.swp
+target/
+src/main/resources/application.properties
+prop-backups/

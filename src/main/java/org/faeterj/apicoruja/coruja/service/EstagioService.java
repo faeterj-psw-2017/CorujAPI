@@ -26,13 +26,16 @@ public class EstagioService {
     @Autowired
     private EstagioRepository repo;
 
-    @PostConstruct
     @Autowired
-    public void init(EstagioRepository repo) {
+    public EstagioService (EstagioRepository repo) {
         this.repo = repo;
+    }
 
+    @PostConstruct
+    public void init(){
+        /*
         Aluno aluno = new Aluno();
-        aluno.setId(2L);
+        aluno.setId(5L);
         aluno.setMatricula("13");
         aluno.setNome("Mario");
 
@@ -42,6 +45,7 @@ public class EstagioService {
         Estagio e = new Estagio( 1, aluno, "TI Soluções", "Suporte e Desenvolvimento", data );
 
         repo.save(e);
+        */
     }
 
     public List<Estagio> obterEstagios() {
