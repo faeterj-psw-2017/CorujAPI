@@ -5,6 +5,10 @@ import org.faeterj.apicoruja.coruja.model.entity.Usuario;
 import org.faeterj.apicoruja.coruja.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.faeterj.apicoruja.coruja.controller.requestBody.AutorizacaoRequestBody;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
