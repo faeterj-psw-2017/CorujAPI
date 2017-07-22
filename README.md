@@ -2,11 +2,18 @@
 
 [![Build Status](https://travis-ci.org/faeterj-psw-2017/CorujAPI.svg?branch=master)](https://travis-ci.org/faeterj-psw-2017/CorujAPI)
 [![codecov](https://codecov.io/gh/faeterj-psw-2017/CorujAPI/branch/master/graph/badge.svg)](https://codecov.io/gh/faeterj-psw-2017/CorujAPI)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1ad00727a0ed47cd98a8bd603ff10971)](https://www.codacy.com/app/marcoonroad/CorujAPI_2?utm_source=github.com&utm_medium=referral&utm_content=faeterj-psw-2017/CorujAPI&utm_campaign=badger)
 
 ### Dependências
 
 + Java 8
 + Maven 3.x
+
+---
+
+### Links
+
++ [Trello](https://trello.com/faeterjpsw2017noite)
 
 ---
 

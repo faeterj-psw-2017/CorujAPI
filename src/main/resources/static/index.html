@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CorujApi</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            border: solid 2px ;
+            border-radius: 30px;
+            height: 95%;
+            min-height: 95%;
+            margin: 10px;
+            border-bottom: none;
+        }
+
+       .titulo-coruja {
+            display:inline-block;
+            position:relative;
+            left:50px;
+            top:15px;
+            color:#105194;
+       }
+
+       .escondido {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+       }
+
+       .exibido {
+          word-wrap: break-word;
+       }
+
+       .btn-redondo {
+          width: 30px;
+          height: 30px;
+          text-align: center;
+          padding: 6px 0;
+          font-size: 12px;
+          line-height: 1.42;
+          border: solid 2px;
+          border-radius: 15px;
+        }
+
+        .alert-redondo {
+            width: 128px;
+            height: 128px;
+            border-radius:
+            64px; border: 2px solid;
+            position: relative;
+        }
+
+        input {
+            padding: 3px;
+            padding-left: 10px;
+            width: 150px;
+        }
+
+        .bordinha {
+            border: solid 2px ;
+            border-radius: 15px;
+        }
+
+        .bordinha-painel {
+            border: solid 2px;
+            border-radius: 30px;
+        }
+
+        .cabecalho-painel {
+            position: relative;
+            top: -20px;
+            left: 10px;
+            width: 30%;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin:40px;">
+        <div class="col-md-6">
+            <!--IMAGEM EXTRAÍDA DE https://dribbble.com/shots/1063369-Smart-owl-->
+            <img src="img/coruja.png">
+        </div>
+        <div class="col-md-6">
+            <div style="margin:40px;">
+                <h1 class="titulo-coruja">CorujApi</h1>
+                <form id="autenticaForm" action="http://localhost:8080/autenticar" method="post" target="respostaFrame"
+                      style="display:inline-block;">
+                    <input type="text" class="bordinha" id="inputMatricula" placeholder="matricula" required name="matricula"
+                           style="display:inline;">
+                    <input type="password" class="bordinha" id="inputSenha" placeholder="senha" required name="senha"
+                           style="display:inline;">
+                    <button type="submit" class="btn btn-default btn-redondo bordinha"><i class="fa fa-user"
+                                                                                          aria-hidden="true"></i>
+                    </button>
+                    Login válido para testes: usuário(matricula): "123456" e senha: "123456"
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default bordinha-painel" id="login">
+                <div class="alert alert-danger bordinha-painel cabecalho-painel" id="naoAutenticado">
+                    Não autenticado...
+                </div>
+                <h4><i>_____________________________ Serviços ...</i></h4>
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default bordinha-painel">
+                <div class="panel-heading bordinha-painel cabecalho-painel">
+                    <h3 class="panel-title">Resposta ...</h3>
+                </div>
+                <div class="panel-body">
+                    <iframe name="respostaFrame" class="bordinha-painel" style="width:100%;"></iframe>
+                    <button type="button" id="visualizarToken" class="btn btn-info" onclick="carregarToken();">ver token</button>
+                    <div id="tokenDiv"></div>
+                    <pre class="bordinha-painel" id="resposta"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+<script>
+
+var TOKEN_KEY = "jToken";
+
+    $("#autenticaForm").submit(function (event) {
+        event.preventDefault();
+        var $form = $(this);
+        var dados = $form.serialize();
+        autenticar(dados);
+    });
+
+    function salvarToken(token) {
+        localStorage.setItem(TOKEN_KEY, token);
+    }
+
+    function carregarToken() {
+        var token = localStorage.getItem(TOKEN_KEY);
+        $('#tokenDiv').html(token);
+    }
+
+    function autenticar(loginData) {
+        $.ajax({
+            url: "/autenticar",
+            type: "POST",
+            data: loginData,
+            success: function (data) {
+
+                // Checagem temporaria enquanto nao se cria objeto de retorno adequado
+                var invalido = data.includes("incorretos");
+                if (invalido){
+                    $('#tokenDiv').html(data);
+                }
+                else{
+                    salvarToken(data);
+                }
+                // FIM "Checagem temporaria..."
+
+            },
+            error: function (errorThrown) {
+                throw new Error("Erro: " + errorThrown);
+            }
+        });
+    }
+
+</script>
