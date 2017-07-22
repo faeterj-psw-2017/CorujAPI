@@ -27,7 +27,7 @@ public class UsuarioService
     @PostConstruct
     public void init() {
 
-        Usuario usuario = new Usuario(new Long(1), "123456", "123456");
+        Usuario usuario = new Usuario(new Long(1), "123", "123");
         repo.save(usuario);
     }
 
