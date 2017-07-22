@@ -6,13 +6,15 @@ import javax.persistence.*;
  * Created by Rodrigo Sudano on 21-Jul-17.
  */
 
-@MappedSuperclass
+//@MappedSuperclass
+    @Entity
+    @Table(name="usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="usuario_id")
-    private long id;
+    private Long id;
 
     @Column(name="matricula", unique=true)
     private String matricula;
@@ -20,7 +22,7 @@ public class Usuario {
     @Column(name="senha")
     private String senha;
 
-    public Usuario (long id, String matricula, String senha)
+    public Usuario (Long id, String matricula, String senha)
     {
         this.id        = id;
         this.matricula = matricula;
