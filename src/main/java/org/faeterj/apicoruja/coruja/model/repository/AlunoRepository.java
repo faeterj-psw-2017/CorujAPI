@@ -14,7 +14,7 @@ public interface AlunoRepository extends PagingAndSortingRepository<Aluno, Long>
 
     List<Aluno> findByNome      (@Param("nome")      String nome);
     List<Aluno> findById        (@Param("aluno_id")  long   id);
-    List<Aluno> findByMatricula (@Param("matricula") long   matricula);
+    Aluno findByMatricula (@Param("matricula") String   matricula);
 
 }
 

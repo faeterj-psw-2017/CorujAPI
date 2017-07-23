@@ -1,12 +1,17 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,6 +37,10 @@ public class Turma {
   @ManyToOne
   @JoinColumn(name="professor_id")
   private Professor professor;
+  
+  @OneToMany(mappedBy = "id.turma", targetEntity = TurmaAlunoNotas.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  private List <TurmaAlunoNotas> alunos;
+
 
   // ======================================
 
@@ -92,7 +101,17 @@ public class Turma {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-  
+	
+	public List<TurmaAlunoNotas> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(TurmaAlunoNotas alunos) {
+		this.alunos.add(alunos);
+	}
+
+	
+    
 }
 
 // OK

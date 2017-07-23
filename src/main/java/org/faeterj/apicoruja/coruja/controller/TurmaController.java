@@ -3,9 +3,13 @@ package org.faeterj.apicoruja.coruja.controller;
 import java.util.List;
 
 import org.faeterj.apicoruja.coruja.controller.requestBody.TurmaRequestBody;
+import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.model.entity.Professor;
 import org.faeterj.apicoruja.coruja.model.entity.Turma;
+import org.faeterj.apicoruja.coruja.model.entity.TurmaAlunoNotas;
+import org.faeterj.apicoruja.coruja.service.AlunosService;
 import org.faeterj.apicoruja.coruja.service.ProfessorService;
+import org.faeterj.apicoruja.coruja.service.TurmaAlunoNotasService;
 import org.faeterj.apicoruja.coruja.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,11 +27,15 @@ public class TurmaController {
 	
 	private ProfessorService professorService;
     private TurmaService turmaService;
+    private AlunosService alunoService;
+    private TurmaAlunoNotasService alunoTurmaService;
 
     @Autowired
-    public TurmaController(TurmaService turmaService, ProfessorService professorService) {
+    public TurmaController(TurmaService turmaService, ProfessorService professorService, AlunosService alunoService, TurmaAlunoNotasService alunoTurmaService) {
         this.turmaService = turmaService;
         this.professorService=professorService;
+        this.alunoService=alunoService;
+        this.alunoTurmaService=alunoTurmaService;
     }
 
     @RequestMapping(value="/listar", method = RequestMethod.GET)
@@ -70,8 +78,57 @@ public class TurmaController {
     	turmaService.excluirTurma(turma);
     }
 
-    public void obterTurma() {
-
+    @RequestMapping(value="/adicionar_aluno", method = RequestMethod.POST)
+    public boolean adicionarAluno(@RequestBody TurmaRequestBody turmaRequestBody){
+    	Aluno aluno=alunoService.encontrarAlunoPelaMatricula(turmaRequestBody.getMatricula());
+       	if(aluno!=null && turmaRequestBody.getCodigo()!=null){
+       		return turmaService.adicionaAluno(turmaRequestBody.getCodigo(), aluno);
+       	}
+       	return false;
+   	}
+    @RequestMapping(value="/adiciona_av1", method = RequestMethod.POST)
+    public boolean adicionarAv1(@RequestBody TurmaRequestBody turmaRequestBody){
+    	Aluno aluno=alunoService.encontrarAlunoPelaMatricula(turmaRequestBody.getMatricula());
+    	Turma turma = turmaService.obterTurma(turmaRequestBody.getCodigo());
+    	TurmaAlunoNotas alunoTurma;
+    	if(aluno!=null && turma!=null && turmaRequestBody.getNota()!=null){
+    		alunoTurma=alunoTurmaService.encontrarTurmaAlunoNotasPeloAluno(aluno);
+    		if(alunoTurma!=null){
+    			return turmaService.lancarNotaAv1(turma, alunoTurma, turmaRequestBody.getNota());
+    		}
+    		return false;
+    	}
+    	return false;
+    }
+    
+    @RequestMapping(value="/adiciona_av2", method = RequestMethod.POST)
+    public boolean adicionarAv2(@RequestBody TurmaRequestBody turmaRequestBody){
+    	Aluno aluno=alunoService.encontrarAlunoPelaMatricula(turmaRequestBody.getMatricula());
+    	Turma turma = turmaService.obterTurma(turmaRequestBody.getCodigo());
+    	TurmaAlunoNotas alunoTurma;
+    	if(aluno!=null && turma!=null && turmaRequestBody.getNota()!=null){
+    		alunoTurma=alunoTurmaService.encontrarTurmaAlunoNotasPeloAluno(aluno);
+    		if(alunoTurma!=null){
+    			return turmaService.lancarNotaAv2(turma, alunoTurma, turmaRequestBody.getNota());
+    		}
+    		return false;
+    	}
+    	return false;
+    }
+    
+    @RequestMapping(value="/adiciona_avf", method = RequestMethod.POST)
+    public boolean adicionarAvf(@RequestBody TurmaRequestBody turmaRequestBody){
+    	Aluno aluno=alunoService.encontrarAlunoPelaMatricula(turmaRequestBody.getMatricula());
+    	Turma turma = turmaService.obterTurma(turmaRequestBody.getCodigo());
+    	TurmaAlunoNotas alunoTurma;
+    	if(aluno!=null && turma!=null && turmaRequestBody.getNota()!=null){
+    		alunoTurma=alunoTurmaService.encontrarTurmaAlunoNotasPeloAluno(aluno);
+    		if(alunoTurma!=null){
+    			return turmaService.lancarNotaAvf(turma, alunoTurma, turmaRequestBody.getNota());
+    		}
+    		return false;
+    	}
+    	return false;
     }
 
 }

@@ -1,5 +1,7 @@
 package org.faeterj.apicoruja.coruja.controller;
 
+import java.util.List;
+
 import org.faeterj.apicoruja.coruja.controller.requestBody.AlunoRequestBody;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.service.AlunosService;
@@ -9,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * Created by Gabriel Capanema on 23/06/17.
  */
 
 @RestController
+@RequestMapping("/aluno")
 public class AlunosController {
 
     private AlunosService alunosService;
@@ -25,14 +26,24 @@ public class AlunosController {
         this.alunosService = alunosService;
     }
 
-    @RequestMapping(value="/aluno", method = RequestMethod.GET)
+    @RequestMapping(value="/listar", method = RequestMethod.GET)
     public List<Aluno> listarAlunos() {
-        return alunosService.obterAlunos();
+        return alunosService.listarAlunos();
     }
 
-    @RequestMapping(value="/aluno", method = RequestMethod.POST)
-    public Aluno adicionarAluno(@RequestBody AlunoRequestBody requestBody) {
-        return alunosService.adicionarAluno(requestBody.getNome(), requestBody.getMatricula());
+    @RequestMapping(value="/salvar", method = RequestMethod.POST)
+    public boolean adicionarAluno(@RequestBody AlunoRequestBody requestBody) {
+        
+    	 Aluno aluno = new Aluno();
+    	 aluno.setNome(requestBody.getNome());
+    	 aluno.setMatricula(requestBody.getMatricula());
+    	 aluno.setEndereco(requestBody.getEndereco());
+    	 aluno.setTelefone(requestBody.getTelefone());
+         if(aluno.getNome()!=null && aluno.getMatricula()!=null && aluno.getEndereco()!=null && aluno.getTelefone()!=null){
+      	   alunosService.salvarAluno(aluno);
+      	   return true;
+         }
+         return false;
     }
 
     public void removerAluno() {

@@ -13,6 +13,8 @@ public class TurmaRequestBody {
 	private String turno;
 	
 	private String matricula;
+	
+	private Float nota;
 
 	public String getCodigo() {
 		return codigo;
@@ -44,6 +46,14 @@ public class TurmaRequestBody {
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+
+	public Float getNota() {
+		return nota;
+	}
+
+	public void setNota(Float nota) {
+		this.nota = nota;
 	}
 	
 	
