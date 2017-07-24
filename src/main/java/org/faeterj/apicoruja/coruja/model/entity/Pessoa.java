@@ -2,49 +2,42 @@ package org.faeterj.apicoruja.coruja.model.entity;
 
 import javax.persistence.*;
 
-// @Entity
-// @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-// @Table(name="pessoa")
 @MappedSuperclass
 public abstract class Pessoa {
 
-    /*
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="pessoa_id")
-    private long id;
-    */
-
-    @Column(name="nome")
+    @Column(name="nome", nullable=false)
     protected String nome;
     
-    @Column(name="telefone")
+    @Column(name="telefone", nullable=false)
     protected String telefone;
     
-    @Column(name="endereco")
+    @Column(name="endereco", nullable=false)
     protected String endereco;
-	
-    // =================================================
+
+    @Column(name="sexo", nullable=false)
+    protected char sexo;
+
+    // ================================================================
     
     protected Pessoa ( ) {
 		
     }
 
-    /*
-    protected Pessoa (long id) {
-        this.id = id;
-    }
-    */
-
-    /*
-    protected Pessoa (String nome, String telefone, String endereco) {
+    public Pessoa (String nome, String telefone, String endereco) {
         this.nome     = nome;
         this.telefone = telefone;
         this.endereco = endereco;
     }
-    */
-    
-    // ======================================================
+
+    public Pessoa (
+        String nome, String telefone, String endereco, char sexo
+    ) {
+        this(nome, telefone, endereco);
+
+        this.sexo = sexo;
+    }
+ 
+    // ==============================================================
 
     public String getNome ( ) {
         return nome;
@@ -63,6 +56,16 @@ public abstract class Pessoa {
 
     public void setTelefone (String telefone) {
         this.telefone = telefone;
+    }
+
+    // -----------------------------------------
+
+    public char getSexo ( ) {
+        return sexo;
+    }
+
+    public void setSexo (char sexo) {
+        this.sexo = sexo;
     }
 
     // ----------------------------------------------

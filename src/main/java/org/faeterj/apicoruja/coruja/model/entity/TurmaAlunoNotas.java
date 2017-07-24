@@ -1,11 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @Table(name="turma_aluno_notas")

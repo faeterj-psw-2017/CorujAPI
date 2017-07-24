@@ -17,20 +17,21 @@ public class Historico {
 		
 	}
 
-	public Historico(long id) {
-		super();
+	public Historico (long id) {
+		super ( );
 		this.id = id;
 	}
 
 	// ================================================
 	
-	public long getId() {
+	public long getId ( ) {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId (long id) {
 		this.id = id;
 	}
 	
-	
 }
+
+// OK

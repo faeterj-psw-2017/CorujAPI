@@ -1,11 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
 
 @Table(name="disciplina")
 @Entity
@@ -16,28 +11,36 @@ public class Disciplina {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @Column(name="nome")
+    @Column(name="nome", nullable=false)
     private String nome;
 
-    @Column(name="carga_horaria")
+    @Column(name="sigla", nullable=false)
+    private String sigla;
+
+    @Column(name="carga_horaria", nullable=false)
     private Double cargaHoraria;
 
-    @Column(name="descricao")
+    @Column(name="descricao", nullable=false)
     private String descricao;
 
-    // ====================================
+    // ==========================================
 
     protected Disciplina ( ) {
     }
 
-    public Disciplina (long id, String nome, Double cargaHoraria, String descricao) {
-      this.id           = id;
-      this.nome         = nome;
-      this.cargaHoraria = cargaHoraria;
-      this.descricao    = descricao;
+    public Disciplina (
+        long   id,       String nome,
+        String sigla,    Double cargaHoraria,
+        String descricao
+    ) {
+        this.id           = id;
+        this.nome         = nome;
+        this.sigla        = sigla;
+        this.cargaHoraria = cargaHoraria;
+        this.descricao    = descricao;
     }
 
-    // =================================================================================
+    // =====================================================================
 
     public long getId ( ) {
     	return id;
@@ -49,33 +52,43 @@ public class Disciplina {
 
     // ---------------------------------
   
-	public String getNome ( ) {
-		return nome;
-	}
+    public String getNome ( ) {
+    	return nome;
+    }
 	
-	public void setNome (String nome) {
-		this.nome = nome;
-	}
+    public void setNome (String nome) {
+    	this.nome = nome;
+    }
 
-	// ---------------------------------
+    // -----------------------------------
+   
+    public String getSigla ( ) {
+        return sigla;
+    }
+
+    public void setSigla (String nome) {
+        this.sigla = sigla;
+    }
+
+    // -----------------------------------
 	
-	public Double getCargaHoraria ( ) {
-		return cargaHoraria;
-	}
+    public Double getCargaHoraria ( ) {
+    	return cargaHoraria;
+    }
 	
-	public void setCargaHoraria (Double cargaHoraria) {
-		this.cargaHoraria = cargaHoraria;
-	}
+    public void setCargaHoraria (Double cargaHoraria) {
+    	this.cargaHoraria = cargaHoraria;
+    }
 	
-	// ---------------------------------
+    // ---------------------------------
 	
-	public String getDescricao ( ) {
-		return descricao;
-	}
+    public String getDescricao ( ) {
+    	return descricao;
+    }
 	
-	public void setDescricao (String descricao) {
-		this.descricao = descricao;
-	}
+    public void setDescricao (String descricao) {
+    	this.descricao = descricao;
+    }
 
 }
 

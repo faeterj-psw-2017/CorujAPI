@@ -1,11 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.*;
 
 @Entity
 @Table(name="professor")
@@ -15,10 +10,10 @@ public final class Professor extends Pessoa {
 	@Column(name="professor_id")
 	private long id;
 
-	@Column(name="matricula", unique=true)
+	@Column(name="matricula", unique=true, nullable=false)
 	private String matricula;
 
-	// ==========================================
+	// ====================================================
 
 	protected Professor ( ) {
 
@@ -29,7 +24,11 @@ public final class Professor extends Pessoa {
 		this.matricula = matricula;
 	}
 
-        public Professor (long id, String nome, String telefone, String endereco, String matricula) {
+        public Professor (
+                long id,          String nome,
+                String telefone,  String endereco,
+                String matricula
+        ) {
                 this (id, matricula);
 
                 this.nome     = nome;
