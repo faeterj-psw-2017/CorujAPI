@@ -9,25 +9,21 @@ public class Calendario {
 	@Id
 	@Column(name="calendario_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private Long id;
 
 	// ============================================
 
-	public Calendario (long id) {
-		this.id = id;
-	}
+	public Calendario ( ) {
 
-	protected Calendario ( ) {
-
-	}
+    }
 
 	// ============================
 
-	public void setId (long id) {
+	public void setId (Long id) {
 		this.id = id;
 	}
 
-	public long getId ( ) {
+	public Long getId ( ) {
 		return id;
 	}
 

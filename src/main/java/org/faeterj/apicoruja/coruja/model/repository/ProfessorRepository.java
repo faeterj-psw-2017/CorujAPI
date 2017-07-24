@@ -12,6 +12,8 @@ public interface ProfessorRepository extends
     List<Professor> findByEndereco  (String endereco);
     List<Professor> findByTelefone  (String telefone);
     List<Professor> findBySexo      (char   sexo);
+         Professor  findByRg        (String rg);
+         Professor  findByCpf       (String cpf);
 
 }
 

@@ -1,49 +1,81 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name="trabalho")
 @Entity
 public class Trabalho {
 
-  @Column(name="trabalho_id")
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  private long id;
+    @Column(name="trabalho_id")
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-  @Column(name="titulo")
-  private String titulo;
+    @Column(name="titulo", nullable=false)
+    private String titulo;
 
-  // ==============================================
+    @ManyToOne(optional=false)
+    @JoinColumn(name                 ="turma",
+                referencedColumnName = "turma_id",
+                nullable             = false)
+    private Turma turma;
 
-  protected Trabalho ( ) {
+    @ManyToOne(optional=false)
+    @JoinColumn(name                 = "aluno",
+                referencedColumnName = "aluno_id",
+                nullable             = false)
+    private Aluno aluno;
 
-  }
+    // ==============================================
 
-  public Trabalho (long id, String titulo) {
-    this.id     = id;
-    this.titulo = titulo;
-  }
+    protected Trabalho ( ) {
 
-  // ==========================================
+    }
 
-  public void setId (long id) {
-    this.id = id;
-  }
+    public Trabalho (String titulo) {
+        this.titulo = titulo;
+    }
 
-  public long getId ( ) {
-    return id;
-  }
+    // ==========================================
 
-  // ----------------------------------------
+    public void setId (Long id) {
+        this.id = id;
+    }
 
-  public void setTitulo (String titulo) {
-    this.titulo = titulo;
-  }
+    public Long getId ( ) {
+        return id;
+    }
 
-  public String getTitulo ( ) {
-    return titulo;
-  }
+    // ----------------------------------------
+
+    public void setTitulo (String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getTitulo ( ) {
+        return titulo;
+    }
+
+    // ------------------------------------------------
+
+    public Aluno getAluno ( ) {
+        return aluno;
+    }
+
+    public void setAluno (Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    // ------------------------------------
+
+    public Turma getTurma ( ) {
+        return turma;
+    }
+
+    public void setTurma (Turma turma) {
+        this.aluno = aluno;
+    }
 
 }
 

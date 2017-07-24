@@ -9,7 +9,7 @@ public class Grade {
 	@Id
 	@Column(name="grade_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private Long id;
 
 	// ============================================
 
@@ -23,11 +23,11 @@ public class Grade {
 
 	// ============================
 
-	public void setId (long id) {
+	public void setId (Long id) {
 		this.id = id;
 	}
 
-	public long getId ( ) {
+	public Long getId ( ) {
 		return id;
 	}
 

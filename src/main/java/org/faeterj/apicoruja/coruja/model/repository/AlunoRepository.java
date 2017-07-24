@@ -12,6 +12,8 @@ public interface AlunoRepository extends
     List<Aluno> findBySexo      (char   sexo);
     List<Aluno> findByEndereco  (String endereco);
     List<Aluno> findByTelefone  (String telefone);
+         Aluno  findByCpf       (String cpf);
+         Aluno  findByRg        (String rg);
 
 }
 
