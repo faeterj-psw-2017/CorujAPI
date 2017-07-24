@@ -1,5 +1,7 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.faeterj.apicoruja.coruja.controller.requestBody.ProfessorRequestBody;
 import javax.persistence.*;
 
 @Entity
@@ -36,13 +38,27 @@ public final class Professor extends Pessoa {
         this.endereco = endereco;
     }
 
-	// ========================================
+    public Professor (ProfessorRequestBody requestBody) {
+        this (
+            requestBody.getNome ( ),
+            requestBody.getTelefone ( ),
+            requestBody.getEndereco ( ),
+            requestBody.getMatricula ( )
+        );
 
-	public void setId (long id) {
+        this.sexo = requestBody.getSexo ( );
+        this.rg   = requestBody.getRg ( );
+        this.cpf  = requestBody.getCpf ( );
+    }
+
+	// ====================================================
+
+	public void setId (Long id) {
 		this.id = id;
 	}
 
-	public long getId ( ) {
+    @JsonIgnore
+	public Long getId ( ) {
 		return id;
 	}
 

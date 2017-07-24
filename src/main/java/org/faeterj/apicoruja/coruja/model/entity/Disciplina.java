@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Table(name="disciplina")
@@ -25,7 +26,7 @@ public class Disciplina {
 
     // ==========================================
 
-    protected Disciplina ( ) {
+    public Disciplina ( ) {
 
     }
 
@@ -42,6 +43,7 @@ public class Disciplina {
 
     // =====================================================================
 
+    @JsonIgnore
     public Long getId ( ) {
         return id;
     }

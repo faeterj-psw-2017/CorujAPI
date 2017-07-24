@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +20,7 @@ public class Historico {
 
 	// ================================================
 	
+    @JsonIgnore
 	public Long getId ( ) {
         return id;
 	}

@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import org.faeterj.apicoruja.coruja.controller.requestBody.PessoaRequestBody;
 import javax.persistence.*;
 
 @MappedSuperclass
@@ -25,7 +26,7 @@ public abstract class Pessoa {
 
     // ================================================================
     
-    protected Pessoa ( ) {
+    public Pessoa ( ) {
 		
     }
 
@@ -51,6 +52,17 @@ public abstract class Pessoa {
 
         this.rg  = rg;
         this.cpf = cpf;
+    }
+
+    public Pessoa (PessoaRequestBody requestBody) {
+        this (
+            requestBody.getNome ( ),
+            requestBody.getTelefone ( ),
+            requestBody.getEndereco ( ),
+            requestBody.getSexo ( ),
+            requestBody.getRg ( ),
+            requestBody.getCpf ( )
+        );
     }
 
     // ==============================================================

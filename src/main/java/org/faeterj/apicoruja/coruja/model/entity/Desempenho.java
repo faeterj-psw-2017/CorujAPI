@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
@@ -43,7 +44,7 @@ public class Desempenho {
 
     // ==============================================
 
-    protected Desempenho ( ) {
+    public Desempenho ( ) {
 
     }
 
@@ -66,6 +67,7 @@ public class Desempenho {
         this.id = id;
     }
 
+    @JsonIgnore
     public Long getId ( ) {
         return id;
     }
