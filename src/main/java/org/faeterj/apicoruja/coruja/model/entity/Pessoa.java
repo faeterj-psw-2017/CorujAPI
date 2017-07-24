@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import org.faeterj.apicoruja.coruja.controller.requestBody.PessoaRequestBody;
 import javax.persistence.*;
 
 @MappedSuperclass
@@ -17,9 +18,15 @@ public abstract class Pessoa {
     @Column(name="sexo", nullable=false)
     protected char sexo;
 
+    @Column(name="rg", unique=true, nullable=false)
+    protected String rg;
+
+    @Column(name="cpf", unique=true, nullable=false)
+    protected String cpf;
+
     // ================================================================
     
-    protected Pessoa ( ) {
+    public Pessoa ( ) {
 		
     }
 
@@ -36,7 +43,28 @@ public abstract class Pessoa {
 
         this.sexo = sexo;
     }
- 
+
+    public Pessoa (
+        String nome, String telefone, String endereco, char sexo,
+        String rg,   String cpf
+    ) {
+        this(nome, telefone, endereco, sexo);
+
+        this.rg  = rg;
+        this.cpf = cpf;
+    }
+
+    public Pessoa (PessoaRequestBody requestBody) {
+        this (
+            requestBody.getNome ( ),
+            requestBody.getTelefone ( ),
+            requestBody.getEndereco ( ),
+            requestBody.getSexo ( ),
+            requestBody.getRg ( ),
+            requestBody.getCpf ( )
+        );
+    }
+
     // ==============================================================
 
     public String getNome ( ) {
@@ -75,9 +103,29 @@ public abstract class Pessoa {
     }
 
     public void setEndereco (String endereco) {
-	this.endereco = endereco;
+	    this.endereco = endereco;
     }
     
+    // -------------------------------------------
+
+    public String getRg ( ) {
+        return rg;
+    }
+
+    public void setRg (String rg) {
+        this.rg = rg;
+    }
+
+    // ---------------------------------------------
+
+    public String getCpf ( ) {
+        return cpf;
+    }
+
+    public void setCpf (String cpf) {
+        this.cpf = cpf;
+    }
+
 }
 
 // OK

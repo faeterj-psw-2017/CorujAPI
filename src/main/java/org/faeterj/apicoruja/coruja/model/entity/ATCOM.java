@@ -1,15 +1,17 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.File;
 import javax.persistence.*;
 
 @Table(name="atcom")
 @Entity
 public class ATCOM {
+
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="atcom_id")
     @Id
-    private long id;
+    private Long id;
 
     @Column(name="foto")
     private File foto;
@@ -23,13 +25,20 @@ public class ATCOM {
     @Column(name="valido")
     private boolean valido;
 
-    // ==================================
+    @ManyToOne(optional=false)
+    @JoinColumn(name                 = "aluno",
+                referencedColumnName = "aluno_id",
+                nullable             = true)
+    private Aluno aluno;
 
-    protected ATCOM ( ) {
+    // =============================================
+
+    public ATCOM ( ) {
+
     }
 
     public ATCOM (
-        long id,                   File foto,
+        File foto,
         String descricaoDocumento, double horasAtribuidas,
         boolean valido
     ) {
@@ -42,53 +51,64 @@ public class ATCOM {
 
     // ==================================================================
   
-	public long getId ( ) {
-		return id;
+    @JsonIgnore
+	public Long getId ( ) {
+	    return id;
 	}
 	
-	public void setId (long id) {
-		this.id = id;
+	public void setId (Long id) {
+	    this.id = id;
 	}
 	
 	// -----------------------------------------------------------------
 	
 	public File getFoto ( ) {
-		return foto;
+	    return foto;
 	}
 	
 	public void setFoto (File foto) {
-		this.foto = foto;
+	    this.foto = foto;
 	}
 	
 	//------------------------------------------------------------------
 	
 	public String getDescricaoDocumento ( ) {
-		return descricaoDocumento;
+	    return descricaoDocumento;
 	}
 	
 	public void setDescricaoDocumento (String descricaoDocumento) {
-		this.descricaoDocumento = descricaoDocumento;
+	    this.descricaoDocumento = descricaoDocumento;
 	}
 	
 	//------------------------------------------------------------------
 	
 	public double getHorasAtribuidas ( ) {
-		return horasAtribuidas;
+	    return horasAtribuidas;
 	}
 	
 	public void setHorasAtribuidas (double horasAtribuidas) {
-		this.horasAtribuidas = horasAtribuidas;
+	    this.horasAtribuidas = horasAtribuidas;
 	}
 	
 	//-------------------------------------------------------------------
 	
 	public boolean isValido ( ) {
-		return valido;
+	    return valido;
 	}
 	
 	public void setValido (boolean valido) {
-		this.valido = valido;
+        this.valido = valido;
 	}
+
+    // ----------------------------------------------------
+
+    public Aluno getAluno ( ) {
+        return aluno;
+    }
+
+    public void setAluno (Aluno aluno) {
+        this.aluno = aluno;
+    }
 
 }
 
