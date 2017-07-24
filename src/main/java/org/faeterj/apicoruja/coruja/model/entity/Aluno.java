@@ -9,7 +9,7 @@ public final class Aluno extends Pessoa {
     @Id
     @Column(name="aluno_id")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @OneToOne(optional=true)
     @JoinColumn(name                 = "historico",
@@ -26,8 +26,7 @@ public final class Aluno extends Pessoa {
 
     }
 
-    public Aluno (long id, Historico historico, String matricula) {
-        this.id        = id;
+    public Aluno (Historico historico, String matricula) {
         this.historico = historico;
         this.matricula = matricula;
     }
@@ -43,11 +42,11 @@ public final class Aluno extends Pessoa {
     }
 
     public Aluno (
-        long id,             String nome,
+        String nome,
         String telefone,     String endereco,
         Historico historico, String matricula
     ) {
-        this(id, historico, matricula);
+        this(historico, matricula);
 
         this.nome     = nome;
         this.telefone = telefone;
@@ -56,11 +55,11 @@ public final class Aluno extends Pessoa {
 
     // ==============================
 
-    public void setId (long id) {
+    public void setId (Long id) {
         this.id = id;
     }
 
-    public long getId ( ) {
+    public Long getId ( ) {
         return id;
     }
 

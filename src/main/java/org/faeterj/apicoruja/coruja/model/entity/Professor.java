@@ -5,36 +5,36 @@ import javax.persistence.*;
 @Entity
 @Table(name="professor")
 public final class Professor extends Pessoa {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="professor_id")
-	private long id;
+	private Long id;
 
 	@Column(name="matricula", unique=true, nullable=false)
 	private String matricula;
 
 	// ====================================================
 
-	protected Professor ( ) {
+	public Professor ( ) {
 
 	}
 
-	public Professor (long id, String matricula) {
-		this.id        = id;
+	public Professor (String matricula) {
 		this.matricula = matricula;
 	}
 
-        public Professor (
-                long id,          String nome,
-                String telefone,  String endereco,
-                String matricula
-        ) {
-                this (id, matricula);
+    public Professor (
+        String nome,
+        String telefone,  String endereco,
+        String matricula
+    ) {
+        this (matricula);
 
-                this.nome     = nome;
-                this.telefone = telefone;
-                this.endereco = endereco;
-        }
+        this.nome     = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
 
 	// ========================================
 
@@ -49,11 +49,11 @@ public final class Professor extends Pessoa {
 	// ---------------------------------------------
 
 	public void setMatricula (String matricula) {
-		this.matricula = matricula;
+        this.matricula = matricula;
 	}
 
 	public String getMatricula ( ) {
-		return matricula;
+        return matricula;
 	}
 
 }
