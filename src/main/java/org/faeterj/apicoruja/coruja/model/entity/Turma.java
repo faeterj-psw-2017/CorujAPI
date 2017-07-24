@@ -1,9 +1,8 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
+// import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 @Table(name="turma")
@@ -37,7 +36,7 @@ public class Turma {
 
     // ==================================================================
 
-    protected Turma ( ) {
+    public Turma ( ) {
 
     }
 
@@ -49,6 +48,7 @@ public class Turma {
 
     // ====================================================================
   
+    @JsonIgnore
 	public Long getId ( ) {
         return id;
 	}

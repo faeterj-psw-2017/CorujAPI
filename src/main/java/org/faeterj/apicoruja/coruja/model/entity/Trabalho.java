@@ -1,6 +1,7 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import java.util.List;
+// import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Table(name="trabalho")
@@ -43,6 +44,7 @@ public class Trabalho {
         this.id = id;
     }
 
+    @JsonIgnore
     public Long getId ( ) {
         return id;
     }

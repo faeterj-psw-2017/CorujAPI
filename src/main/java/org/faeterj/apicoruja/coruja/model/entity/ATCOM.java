@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.File;
 import javax.persistence.*;
 
@@ -50,6 +51,7 @@ public class ATCOM {
 
     // ==================================================================
   
+    @JsonIgnore
 	public Long getId ( ) {
 	    return id;
 	}

@@ -1,5 +1,7 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.faeterj.apicoruja.coruja.controller.requestBody.AlunoRequestBody;
 import javax.persistence.*;
 
 @Entity
@@ -53,12 +55,27 @@ public final class Aluno extends Pessoa {
         this.endereco = endereco;
     }
 
-    // ==============================
+    public Aluno (AlunoRequestBody requestBody) {
+        this (
+            requestBody.getNome ( ),
+            requestBody.getTelefone ( ),
+            requestBody.getEndereco ( ),
+            null,
+            requestBody.getMatricula ( )
+        );
+
+        this.sexo = requestBody.getSexo ( );
+        this.cpf  = requestBody.getCpf ( );
+        this.rg   = requestBody.getRg ( );
+    }
+
+    // ==========================================
 
     public void setId (Long id) {
         this.id = id;
     }
 
+    @JsonIgnore
     public Long getId ( ) {
         return id;
     }

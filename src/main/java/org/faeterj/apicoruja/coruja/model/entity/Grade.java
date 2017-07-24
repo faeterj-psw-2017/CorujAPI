@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Table(name="grade")
@@ -13,10 +14,6 @@ public class Grade {
 
 	// ============================================
 
-	public Grade (long id) {
-		this.id = id;
-	}
-
 	protected Grade ( ) {
 
 	}
@@ -27,6 +24,7 @@ public class Grade {
 		this.id = id;
 	}
 
+    @JsonIgnore
 	public Long getId ( ) {
 		return id;
 	}
