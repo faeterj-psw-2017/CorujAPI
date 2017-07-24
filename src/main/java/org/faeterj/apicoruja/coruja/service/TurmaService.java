@@ -49,13 +49,11 @@ public final class TurmaService {
     public boolean removerProfessor (String codigo, Professor professor) {
         Turma turma = turmaRepository.findByCodigo (codigo);
 
-        if(turma != null) {
-            if (professor == turma.getProfessor ( )) {
-                turma.setProfessor (null);
-                turmaRepository.save (turma);
+        if ((turma != null) && (professor == turma.getProfessor ( ))) {
+            turma.setProfessor (null);
+            turmaRepository.save (turma);
 
-                return true;
-            }
+            return true;
         }
 
         return false;

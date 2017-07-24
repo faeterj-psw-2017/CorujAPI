@@ -38,7 +38,10 @@ public class AlunoController {
         aluno.setCpf       (requestBody.getCpf ( ));
         aluno.setRg        (requestBody.getRg ( ));
 
-        if (aluno.getNome()!=null && aluno.getMatricula()!=null && aluno.getEndereco()!=null && aluno.getTelefone()!=null){
+        if (aluno.getNome ( )      != null &&
+            aluno.getMatricula ( ) != null &&
+            aluno.getEndereco ( )  != null &&
+            aluno.getTelefone ( )  != null) {
             alunoService.salvarAluno (aluno);
             return true;
         }
