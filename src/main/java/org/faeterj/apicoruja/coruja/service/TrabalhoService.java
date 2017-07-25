@@ -20,11 +20,15 @@ public class TrabalhoService {
 	{
 		TrabalhoRepositorio.save(trabalho);
 	}
-	 List<Trabalho>  encontrarTrabalhoPeloAluno(Aluno aluno)
+	List<Trabalho>  encontrarTrabalhoPeloTitulo(String titulo)
+	{
+		return TrabalhoRepositorio.findByTitulo (titulo);
+	}
+	List<Trabalho>  encontrarTrabalhoPeloAluno(Aluno aluno)
 	{
 		return TrabalhoRepositorio.findByAluno (aluno);
 	}
-	 List<Trabalho> encontrarTrabalhoPelaTurma(Turma turma)
+	List<Trabalho> encontrarTrabalhoPelaTurma(Turma turma)
 	{
 		return TrabalhoRepositorio.findByTurma (turma);
 	}
