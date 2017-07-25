@@ -35,4 +35,8 @@ public class TokenJwt
         this.expiracao = expiracao;
         this.matricula = matricula;
     }
+
+    public String getToken(){
+        return this.token;
+    }
 }

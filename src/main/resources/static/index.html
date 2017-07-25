@@ -111,6 +111,11 @@
         </div>
     </div>
 
+    <form id="testaForm" action="" method="post" style="display:inline-block;">
+        <input type="text" name="token" id="tokenPraValidar" value="">
+        <button class="btn btn-default" onclick="validarTokenTeste()">VALIDAR</button>
+    </form>
+
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default bordinha-painel" id="login">
@@ -148,6 +153,28 @@
 
 var TOKEN_KEY = "jToken";
 
+    function validarTokenTeste()
+    {
+     //   var tokenPraValidar = $("#tokenPraValidar").val();
+
+        var $form = $("#testaForm");
+        var dados = $form.serialize();
+
+        $.ajax({
+            url: "/validar",
+            type: "POST",
+            data: dados,
+            success: function (data) {
+
+               console.log('resultado validacao: ' + data);
+
+            },
+            error: function (errorThrown) {
+                throw new Error("Erro: " + errorThrown);
+            }
+        });
+    }
+
     function alternaAutenticadoInfo(positivo)
     {
         if(positivo == true) {
@@ -159,6 +186,9 @@ var TOKEN_KEY = "jToken";
     }
 
     $("#autenticaForm").submit(function (event) {
+        event.preventDefault();
+    });
+    $("#testaForm").submit(function (event) {
         event.preventDefault();
     });
 
@@ -189,6 +219,7 @@ var TOKEN_KEY = "jToken";
                 }
                 else{
                     salvarToken(data);
+                    console.log('token: ' + data);
                     alternaAutenticadoInfo(true);
                 }
                 // FIM "Checagem temporaria..."
