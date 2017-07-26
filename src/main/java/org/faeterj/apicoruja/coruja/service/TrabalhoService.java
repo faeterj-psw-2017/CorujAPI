@@ -10,13 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
-
+@Service
 public class TrabalhoService {
-	private final TrabalhoRepository TrabalhoRepositorio;
-
+	
+	private TrabalhoRepository TrabalhoRepositorio;
+	@Autowired
 	public TrabalhoService(TrabalhoRepository trabalhoRepositorio) {
-		TrabalhoRepositorio = trabalhoRepositorio;
+		this.TrabalhoRepositorio = trabalhoRepositorio;
 	}
+	@PostConstruct
 	void init()
 	{
 	}

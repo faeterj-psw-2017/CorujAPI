@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
+@RestController
 public class TrabalhoController {
 	
 	private TrabalhoService trabalhoService;
-	private TrabalhoRequestBody trabalhoRequestBody;
 	private Trabalho trabalho;
 	
 	@RequestMapping(value="/trabalho", method=RequestMethod.GET)
@@ -36,11 +37,10 @@ public class TrabalhoController {
             trabalho.getTitulo() != null &&
             trabalho.getTurma()  != null &&
             trabalho.getId()  != null) 
-        		{
-    	    	trabalhoService.salvarTrabalho(trabalho);
-    	    	return true;
-        		}
-
+        	{
+    	    trabalhoService.salvarTrabalho(trabalho);
+    	    return true;
+        	}
         return false;
     }
 	
@@ -50,12 +50,11 @@ public class TrabalhoController {
 	   
 	    if (trabalho!=null)
 	    {
-		
 		if(requestBody.getTitulo()!=null && !trabalho.getTitulo().equals(requestBody.getTitulo())){
 			trabalho.setTitulo(requestBody.getTitulo());
 			}
-		    trabalhoService.salvarTrabalho(trabalho);
-		    	return true;
+		trabalhoService.salvarTrabalho(trabalho);
+		return true;
 		    }
 	    return false;
 	}
