@@ -11,16 +11,16 @@ public class Disciplina {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @Column(name="nome")
+    @Column(name="nome", nullable=false)
     private String nome;
 
-    @Column(name="carga_horaria")
+    @Column(name="carga_horaria", nullable=false)
     private Double cargaHoraria;
 
     @Column(name="descricao")
     private String descricao;
 
-    @Column(name="sigla")
+    @Column(name="sigla", unique=true, nullable=false)
     private String sigla;
 
     // ====================================
