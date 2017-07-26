@@ -12,7 +12,8 @@ public interface ATCOMRepository extends
     List<ATCOM> findByHorasAtribuidas    (Double  horasAtribuidas);
     List<ATCOM> findByValido             (boolean valido);
     List<ATCOM> findByAluno              (Aluno   aluno);
-
+    ATCOM findById              (Long   id);
+    ATCOM update(ATCOM atcom);
 }
 
 // OK
