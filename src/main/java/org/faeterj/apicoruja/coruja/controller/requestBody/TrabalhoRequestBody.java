@@ -1,10 +1,13 @@
 package org.faeterj.apicoruja.coruja.controller.requestBody;
 
+import org.faeterj.apicoruja.coruja.model.entity.Aluno;
+import org.faeterj.apicoruja.coruja.model.entity.Turma;
+
 public class TrabalhoRequestBody {
     private Long id;
     private String titulo;
-    private String turma; //verificar
-    private String aluno; // verificar
+    private Turma turma; 
+    private Aluno aluno; 
     
     public Long getId() {
 		return id;
@@ -18,16 +21,16 @@ public class TrabalhoRequestBody {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getTurma() {
+	public Turma getTurma() {
 		return turma;
 	}
-	public void setTurma(String turma) {
+	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
-	public String getAluno() {
+	public Aluno getAluno() {
 		return aluno;
 	}
-	public void setAluno(String aluno) {
+	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
 	

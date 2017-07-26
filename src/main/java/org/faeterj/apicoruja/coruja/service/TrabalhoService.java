@@ -2,10 +2,14 @@ package org.faeterj.apicoruja.coruja.service;
 import org.faeterj.apicoruja.coruja.model.entity.Trabalho;
 
 import java.util.List;
-
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
+import org.faeterj.apicoruja.coruja.model.entity.Professor;
 import org.faeterj.apicoruja.coruja.model.entity.Turma;
 import org.faeterj.apicoruja.coruja.model.repository.TrabalhoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import javax.annotation.PostConstruct;
+
 
 public class TrabalhoService {
 	private final TrabalhoRepository TrabalhoRepositorio;
@@ -16,20 +20,27 @@ public class TrabalhoService {
 	void init()
 	{
 	}
-	void salvarTrabalho(Trabalho trabalho)
+	public void salvarTrabalho(Trabalho trabalho)
 	{
 		TrabalhoRepositorio.save(trabalho);
 	}
-	List<Trabalho>  encontrarTrabalhoPeloTitulo(String titulo)
+	public List<Trabalho> listarTrabalhos ( ) {
+        return (List<Trabalho>) TrabalhoRepositorio.findAll();
+	}
+	public List<Trabalho>  encontrarTrabalhoPeloTitulo(String titulo)
 	{
 		return TrabalhoRepositorio.findByTitulo (titulo);
 	}
-	List<Trabalho>  encontrarTrabalhoPeloAluno(Aluno aluno)
+	public List<Trabalho>  encontrarTrabalhoPeloAluno(Aluno aluno)
 	{
 		return TrabalhoRepositorio.findByAluno (aluno);
 	}
-	List<Trabalho> encontrarTrabalhoPelaTurma(Turma turma)
+	public List<Trabalho> encontrarTrabalhoPelaTurma(Turma turma)
 	{
 		return TrabalhoRepositorio.findByTurma (turma);
+	}
+	public Trabalho encontrarTrabalhoPeloId(long id)
+	{
+		return TrabalhoRepositorio.findById(id);
 	}
 }
