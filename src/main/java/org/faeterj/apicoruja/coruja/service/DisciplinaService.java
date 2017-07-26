@@ -21,15 +21,9 @@ public class DisciplinaService {
 
     @PostConstruct
     public void init() {
-        System.out.println("Criado modelo de disciplinas...");
-        Disciplina d = new Disciplina( 1, "Algoritmo e Linguagem de Programação 1", 180.0, "Disciplina que ensina os fundamentos da programação.", "AL1" );
-
-        repo.save(d);
-    }
-
-    public List<Disciplina> obterDisciplinas() {
-        Iterator it = repo.findAll().iterator(); // De Repository para Iterator
-        return IteratorUtils.toList( it ); // De Iterator para List
+        System.out.println("Criado modelo de disciplinas..."); // Criando algumas disciplinas para testar
+        this.adicionarDisciplina("Algoritmo e Linguagem de Programação 1", 180.0, "Disciplina que ensina os fundamentos da programação.", "AL1");
+        this.adicionarDisciplina("Algoritmo e Linguagem de Programação 2", 220.0, "teste...", "AL2");
     }
 
     public Disciplina adicionarDisciplina(String nome, Double cargaHoraria, String descricao, String sigla) {
@@ -46,8 +40,33 @@ public class DisciplinaService {
         return d;
     }
 
-    public Disciplina obterDisciplina(String sigla) {
-        return repo.findBySigla(sigla);
+    public List<Disciplina> obterDisciplinas() {
+        Iterator it = repo.findAll().iterator(); // De Repository para Iterator
+        return IteratorUtils.toList( it ); // De Iterator para List
+    }
+
+    public List<Disciplina> obterDisciplinaPorNome(String nome) {
+        return repo.findByNomeIgnoreCaseContaining(nome);
+    }
+
+    public List<Disciplina> obterDisciplinaPorCargaHoraria(Double cargaHoraria) {
+        return repo.findByCargaHoraria(cargaHoraria);
+    }
+
+    public List<Disciplina> obterDisciplinaPorDescricao(String descricao) {
+        return repo.findByDescricaoIgnoreCaseContaining(descricao);
+    }
+
+    public Disciplina obterDisciplinaPorSigla(String sigla) {
+        return repo.findBySiglaIgnoreCase(sigla);
+    }
+
+    public void alterarDisciplina(Disciplina d) {
+        repo.save(d);
+    }
+
+    public void removerDisciplina(Disciplina d) {
+        repo.delete(d.getId());
     }
 
 }
