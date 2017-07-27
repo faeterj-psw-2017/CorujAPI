@@ -9,7 +9,7 @@ public class Turma {
     @Id
     @Column(name="turma_id")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name="codigo")
     private String codigo;
@@ -22,11 +22,11 @@ public class Turma {
 
     // ==================================================================
 
-    protected Turma ( ) {
+    public Turma ( ) {
     
     }
 
-    public Turma (long id, String codigo, String sala, char turno) {
+    public Turma (Long id, String codigo, String sala, char turno) {
         this.id     = id;
         this.codigo = codigo;
         this.sala   = sala;
@@ -35,11 +35,11 @@ public class Turma {
 
     // ====================================================================
   
-	public long getId ( ) {
+	public Long getId ( ) {
 		return id;
 	}
 	
-	public void setId (long id) {
+	public void setId (Long id) {
 		this.id = id;
 	}
 
