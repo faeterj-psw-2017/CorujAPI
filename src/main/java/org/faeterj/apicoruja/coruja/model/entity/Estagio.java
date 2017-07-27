@@ -12,8 +12,8 @@ public class Estagio {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 
-    @OneToOne(optional=false)
-    @JoinColumn(name = "aluno", referencedColumnName="aluno_id", nullable = true)
+    @ManyToOne(optional=false)
+    @JoinColumn(name = "aluno", referencedColumnName="aluno_id")
     private Aluno aluno;
 
     @Column(name="empresa")
@@ -28,6 +28,9 @@ public class Estagio {
     @Column(name="dataFim")
     private Date dataFim;
 
+    @Column(name="horas")
+    private float horas;
+
 	// ==============================================
 
 	protected Estagio ( ) {
@@ -38,12 +41,22 @@ public class Estagio {
 		this.id = id;
 	}
 
-    public Estagio (long id, Aluno aluno, String empresa, String funcao, Date data ) {
+    public Estagio (long id, Aluno aluno, String empresa, String funcao, Date dataInicio ) {
         this(id);
         this.aluno = aluno;
         this.empresa = empresa;
         this.funcao = funcao;
-        this.dataInicio = data;
+        this.dataInicio = dataInicio;
+    }
+
+    public Estagio (long id, Aluno aluno, String empresa, String funcao, Date dataInicio, Date dataFim ) {
+        this(id, aluno, empresa, funcao, dataInicio);
+        this.dataFim = dataFim;
+    }
+
+    public Estagio (long id, Aluno aluno, String empresa, String funcao, Date dataInicio, Date dataFim, float horas ) {
+        this(id, aluno, empresa, funcao, dataInicio, dataFim);
+        this.horas = horas;
     }
 
 	// ===========================================
@@ -84,7 +97,7 @@ public class Estagio {
         this.dataInicio = dataInicio;
     }
 
-    public Date getdataInicio ( ) {
+    public Date getDataInicio ( ) {
         return dataInicio;
     }
 
@@ -92,10 +105,17 @@ public class Estagio {
         this.dataFim = dataFim;
     }
 
-    public Date getdataFim ( ) {
+    public Date getDataFim ( ) {
         return dataFim;
     }
 
+    public float getHoras() {
+        return horas;
+    }
+
+    public void setHoras(float horas) {
+        this.horas = horas;
+    }
 }
 
 // OK
