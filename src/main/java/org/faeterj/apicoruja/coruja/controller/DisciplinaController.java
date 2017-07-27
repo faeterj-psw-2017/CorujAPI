@@ -36,22 +36,22 @@ public class DisciplinaController {
         return disciplinaService.adicionarDisciplina(requestBody.getNome(), requestBody.getCargaHoraria(), requestBody.getDescricao(), requestBody.getSigla());
     }
 
-    @RequestMapping(value="/disciplina/nome={nome}", method = RequestMethod.GET)
+    @RequestMapping(value="/disciplina/nome/{nome}", method = RequestMethod.GET)
     public List<Disciplina> obterDisciplinaPorNome(@PathVariable String nome) {
         return disciplinaService.obterDisciplinaPorNome(nome);
     }
 
-    @RequestMapping(value="/disciplina/cargaHoraria={cargaHoraria}", method = RequestMethod.GET)
+    @RequestMapping(value="/disciplina/cargaHoraria/{cargaHoraria}", method = RequestMethod.GET)
     public List<Disciplina> obterDisciplinaPorCargaHoraria(@PathVariable Double cargaHoraria) {
         return disciplinaService.obterDisciplinaPorCargaHoraria(cargaHoraria);
     }
 
-    @RequestMapping(value="/disciplina/descricao={descricao}", method = RequestMethod.GET)
+    @RequestMapping(value="/disciplina/descricao/{descricao}", method = RequestMethod.GET)
     public List<Disciplina> obterDisciplinaPorDescricao(@PathVariable String descricao) {
         return disciplinaService.obterDisciplinaPorDescricao(descricao);
     }
 
-    @RequestMapping(value="/disciplina/sigla={sigla}", method = RequestMethod.GET)
+    @RequestMapping(value="/disciplina/sigla/{sigla}", method = RequestMethod.GET)
     public Disciplina obterDisciplinaPorSigla(@PathVariable String sigla) {
         return disciplinaService.obterDisciplinaPorSigla(sigla);
     }
