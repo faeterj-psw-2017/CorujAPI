@@ -13,12 +13,21 @@ import java.util.Date;
  */
 public class EstagioRequestBody {
 
+    public Long id;
     public Aluno aluno;
     public String empresa;
     public String funcao;
     public Date dataInicio;
     public Date dataFim;
     public float horas;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Aluno getAluno() {
         return aluno;
