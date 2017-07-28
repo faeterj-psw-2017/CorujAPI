@@ -25,41 +25,6 @@ public class AlunosService {
     	this.alunoRepo = alunoRepo;
     }
 
-
-    @PostConstruct
-    public void init() {
-        System.out.println("Criado modelo de alunos");
-        Aluno a = new Aluno();
-        a.setId(1L);
-        a.setMatricula("11");
-        a.setNome("João");
-
-        alunos = new ArrayList<Aluno>();
-        alunos.add(a);
-    }
-
-    public List<Aluno> obterAlunos() {
-
-        return alunos;
-
-    }
-
-    public Aluno adicionarAluno(String nome, String matricula) {
-        long id = 0L;
-        for (Aluno a : alunos) {
-            if (a.getId() > id) {
-                id = a.getId();
-            }
-        }
-        id++;
-        Aluno a = new Aluno();
-        a.setId(id);
-        a.setNome(nome);
-        a.setMatricula(matricula);
-        alunos.add(a);
-        return a;
-    }
-    
     public Aluno obterAlunoPorMatricula(String matricula){
     	return alunoRepo.findByMatricula(matricula);
     }
@@ -67,5 +32,13 @@ public class AlunosService {
     public void alterarAlunoPorMatricula(Aluno aluno){
     	alunoRepo.save(aluno);
     }
+    
+    public void salvarAluno(Aluno aluno){
+    	alunoRepo.save(aluno);
+    }
+
+	public List<Aluno> obterAlunosPorNome(String nome) {
+		return alunoRepo.findByNomeIgnoreCaseContaining(nome);
+	}
 
 }
