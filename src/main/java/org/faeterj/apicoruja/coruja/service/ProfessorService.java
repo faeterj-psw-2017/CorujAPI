@@ -107,6 +107,9 @@ public final class ProfessorService {
         return repository.findByTelefone (telefone);
 	}
 
+	public List<Professor> encontrarPorSexo (char sexo) {
+		return repository.findBySexo (sexo);
+	}
 }
 
 // OK
