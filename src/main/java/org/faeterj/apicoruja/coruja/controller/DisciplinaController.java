@@ -4,10 +4,12 @@ import org.faeterj.apicoruja.coruja.controller.requestBody.DisciplinaRequestBody
 import org.faeterj.apicoruja.coruja.model.entity.Disciplina;
 import org.faeterj.apicoruja.coruja.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -15,72 +17,134 @@ import java.util.List;
  * Created by Marcos Felipe on 19/07/17.
  */
 
+/**
+ * Modified by William Lemos on 23/07/17.
+ */
 @RestController
 public class DisciplinaController {
 
-    private DisciplinaService disciplinaService;
+    private DisciplinaService service;
 
     @Autowired
-    public DisciplinaController (DisciplinaService disciplinaService) {
-        this.disciplinaService = disciplinaService;
+    public DisciplinaController (DisciplinaService service) {
+        this.service = service;
     }
+    
+    // ========================================================================
 
-    @RequestMapping(value="/disciplina", method=RequestMethod.GET)
+    /*
+    @DeleteMapping(value="/disciplina")
+    public boolean removerDisciplina (@RequestBody String sigla) {
+    	return service.removerDisciplina (sigla);
+    }
+    */
+
+    @DeleteMapping(value="/disciplina/sigla/{sigla}")
+    public Disciplina removerDisciplina (@PathVariable String sigla) {
+        Disciplina d = service.obterDisciplinaPorSigla (sigla);
+
+        if (d != null) {
+            service.removerDisciplina (d.getSigla ( ));
+        }
+
+        return d;
+    }
+    
+    // -----------------------------------------------------------------------
+    
+    @GetMapping(value="/disciplina")
     public List<Disciplina> listarDisciplinas ( ) {
-        return disciplinaService.obterDisciplinas ( );
+        return service.obterDisciplinas ( );
     }
 
-    @RequestMapping(value="/disciplina", method=RequestMethod.POST)
+    /*
+    @RequestMapping(value="/DisciplinaTodas", method = RequestMethod.GET)
+    public List<Disciplina> listarDisciplina() {
+        return DisciplinaService.obterTodasDisciplinas();
+    }
+    */
+
+    // -----------------------------------------------------------------------
+
+    @PostMapping(value="/disciplina")
     public Disciplina adicionarDisciplina (@RequestBody DisciplinaRequestBody requestBody) {
-        return disciplinaService.adicionarDisciplina (
-        	new Disciplina (requestBody)
-        );
+    	Disciplina d = new Disciplina (requestBody);
+
+        service.adicionarDisciplina (d);
+
+        return d;
     }
 
-    @RequestMapping(value="/disciplina/nome/{nome}", method=RequestMethod.GET)
+    /*
+    @PostMapping(value="/disciplina")
+    public boolean adicionarDisciplina (@RequestBody DisciplinaRequestBody requestBody) {
+    	Disciplina nova = new Disciplina (requestBody);
+
+        return service.adicionarDisciplina (nova);
+    }
+    */
+
+    // -------------------------------------------------------
+    
+    @GetMapping(value="/disciplina/nome/{nome}")
     public List<Disciplina> obterDisciplinaPorNome (@PathVariable String nome) {
-        return disciplinaService.obterDisciplinaPorNome (nome);
+        return service.obterDisciplinaPorNome (nome);
     }
 
-    @RequestMapping(value="/disciplina/cargaHoraria/{cargaHoraria}", method=RequestMethod.GET)
-    public List<Disciplina> obterDisciplinaPorCargaHoraria (@PathVariable Double cargaHoraria) {
-        return disciplinaService.obterDisciplinaPorCargaHoraria (cargaHoraria);
+    @GetMapping(value="/disciplina/carga-horaria/{cargaHoraria}")
+    public List<Disciplina> obterDisciplinaPorCargaHoraria (@PathVariable double cargaHoraria) {
+        return service.obterDisciplinaPorCargaHoraria (cargaHoraria);
     }
 
-    @RequestMapping(value="/disciplina/descricao/{descricao}", method=RequestMethod.GET)
+    /*
+    @GetMapping(value="/disciplina/carga/{carga}")
+    public List<Disciplina> listarDisciplinaPorCargaHoraria (@RequestBody double cargaHoraria) {
+    	return service.obterDisciplinaCargaHoraria (cargaHoraria);
+    }
+    */
+    
+    @GetMapping(value="/disciplina/descricao/{descricao}")
     public List<Disciplina> obterDisciplinaPorDescricao (@PathVariable String descricao) {
-        return disciplinaService.obterDisciplinaPorDescricao (descricao);
+        return service.obterDisciplinaPorDescricao (descricao);
     }
 
-    @RequestMapping(value="/disciplina/sigla/{sigla}", method=RequestMethod.GET)
+    @GetMapping(value="/disciplina/sigla/{sigla}")
     public Disciplina obterDisciplinaPorSigla (@PathVariable String sigla) {
-        return disciplinaService.obterDisciplinaPorSigla (sigla);
+        return service.obterDisciplinaPorSigla (sigla);
     }
+    
+    // ------------------------------------------------------------------------------
 
-    @RequestMapping(value="/disciplina", method=RequestMethod.PUT)
+    @PutMapping(value="/disciplina")
     public Disciplina alterarDisciplinaPorSigla (@RequestBody DisciplinaRequestBody requestBody) {
-        Disciplina d = disciplinaService.obterDisciplinaPorSigla (requestBody.sigla);
+        Disciplina d = service.obterDisciplinaPorSigla (requestBody.sigla);
 
         if (d != null) {
             d.setNome (requestBody.nome);
             d.setCargaHoraria (requestBody.cargaHoraria);
             d.setDescricao (requestBody.descricao);
 
-            disciplinaService.alterarDisciplina (d);
+            service.alterarDisciplina (d);
         }
 
         return d;
     }
 
-    @RequestMapping(value="/disciplina/sigla/{sigla}", method=RequestMethod.DELETE)
-    public Disciplina removerDisciplina (@PathVariable String sigla) {
-        Disciplina d = disciplinaService.obterDisciplinaPorSigla (sigla);
+    /*
+    @PutMapping(value="/disciplina")
+    public boolean alterarDisciplina (@RequestBody String siglaAntiga, DisciplinaRequestBody requestBody) {
+    	Disciplina nova   = new Disciplina (requestBody);
+    	Disciplina antiga = service.obterDisciplinaPorSigla (siglaAntiga);
 
-        if (d != null) {
-            disciplinaService.removerDisciplina (d);
-        }
+    	nova.setId (antiga.getId ( ));
+    	
+    	service.removerDisciplina (siglaAntiga);
+        service.adicionarDisciplina (nova);
 
-        return d;
+        return true;
     }
-
+    */
+    
 }
+
+// OK

@@ -16,7 +16,7 @@ public class Turma {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Column(name="codigo", nullable=false)
+    @Column(name="codigo", nullable=false, unique=true)
     private String codigo;
 
     @Column(name="sala", nullable=false)
@@ -40,7 +40,7 @@ public class Turma {
     // ==================================================================
 
     public Turma ( ) {
-
+    	
     }
 
     public Turma (String codigo, String sala, char turno) {
@@ -132,6 +132,7 @@ public class Turma {
     public void setDisciplina (Disciplina disciplina) {
         this.disciplina = disciplina;
     }
+
 }
 
 // OK
