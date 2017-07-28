@@ -40,15 +40,15 @@ public final class Professor extends Pessoa {
 
     public Professor (ProfessorRequestBody requestBody) {
         this (
-            requestBody.getNome ( ),
-            requestBody.getTelefone ( ),
-            requestBody.getEndereco ( ),
-            requestBody.getMatricula ( )
+            requestBody.nome,
+            requestBody.telefone,
+            requestBody.endereco,
+            requestBody.matricula
         );
 
-        this.sexo = requestBody.getSexo ( );
-        this.rg   = requestBody.getRg ( );
-        this.cpf  = requestBody.getCpf ( );
+        this.sexo = requestBody.sexo;
+        this.rg   = requestBody.rg;
+        this.cpf  = requestBody.cpf;
     }
 
 	// ====================================================

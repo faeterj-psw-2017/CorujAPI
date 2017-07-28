@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.faeterj.apicoruja.coruja.log.BootMessage;
@@ -13,16 +14,11 @@ import javax.annotation.PostConstruct;
 @Service
 public final class ProfessorService {
 
-	private ProfessorRepository professorRepositorio;
-	private TurmaService        turmaService;
+	private ProfessorRepository repository;
 	
 	@Autowired
-	public void setProfessorRepository (
-        ProfessorRepository professorRepositorio,
-        TurmaService        turmaService
-    ) {
-        this.professorRepositorio = professorRepositorio;
-        this.turmaService         = turmaService;
+	public ProfessorService (ProfessorRepository repository) {
+        this.repository = repository;
 	}
 
     @PostConstruct
@@ -30,54 +26,87 @@ public final class ProfessorService {
     	BootMessage.log (this);
     }
 
-	public void salvarProfessor (Professor professor) {
-        professorRepositorio.save (professor);
-	}
-	
-	public List<Professor> listarProfessores ( ) {
-        return (List<Professor>) professorRepositorio.findAll ( );
-	}
-	
-	public void excluirProfessor (Long id){
-        Professor prof = professorRepositorio.findOne (id);
-
-        professorRepositorio.delete (prof);
-	}
-	
-	public Professor encontrarProfessorPelaMatricula (String matricula) {
-        return professorRepositorio.findByMatricula (matricula);
-	}
-	
-	public List<Professor> encontrarProfessorPeloEndereco (String endereco) {
-        return professorRepositorio.findByEndereco (endereco);
-	}
-	
-	public List<Professor> encontrarProfessorPeloNome (String nome) {
-        return professorRepositorio.findByNome (nome);
-	}
-	
-	public List<Professor> encontrarProfessorPeloTelefone(String telefone){
-        return professorRepositorio.findByNome(telefone);
-	}
-	
-	public Professor encontrarProfessorPeloId (Long id) {
-        return professorRepositorio.findOne (id);
-	}
-	
-	public Professor encontrarProfessorPelaTurma (String codigoTurma) {
-        Turma turma = turmaService.obterTurma (codigoTurma);
-        Professor professor;
-
-        if (turma == null) {
-            return null;
+    // -----------------------------------------------------------
+    
+	public void salvar (Professor professor) {
+        // no banco existem constraints contra atributos nulos
+        if (
+        	professor.getNome ( )      != null &&
+            professor.getMatricula ( ) != null &&
+            professor.getEndereco ( )  != null &&
+            professor.getTelefone ( )  != null &&
+            professor.getCpf ( )       != null &&
+            professor.getRg ( )        != null
+        ) {
+    	    repository.save (professor);
         }
+	}
+	
+	public boolean editar (
+		String matricula, String nome,
+		String endereco, String telefone
+	) {
+	    Professor professor = repository.findByMatricula (matricula);
 
-        if (turma.getProfessor ( ) != null) {
-            professor = turma.getProfessor ( );
-            return professor;
+	    // o professor pode ser alterado, desde que seu nome nao seja nulo
+	    // ou seja, todo o resto de atributos (com excecao da matricula, rg
+	    // e cpf), pode ser modificado sem problemas
+	    if ((professor != null) && (nome != null)) {
+	    	professor.setNome     (nome);
+	    	professor.setEndereco (endereco);
+	    	professor.setTelefone (telefone);
+
+		    repository.save (professor);
+
+		    return true;
+	    }
+
+	    return false;
+	}
+	
+	public List<Professor> listar ( ) {
+        Iterable<Professor> iterable = repository.findAll ( );
+        List<Professor> professores  = new ArrayList<Professor> ( );
+
+        for (Professor prof : iterable) {
+        	professores.add (prof);
         }
+        
+        return professores;
+	}
+	
+	// ----------------------------------------------------------------
+	
+	public boolean excluir (String matricula) {
+	    Professor professor = repository.findByMatricula (matricula);
 
-        return null;
+	    if (professor == null) {
+		    return false;
+	    }
+
+        repository.delete (professor.getId ( ));
+        
+        return true;
+	}
+	
+	// ---------------------------------------------------------------------
+	
+	public Professor encontrarPorMatricula (String matricula) {
+        return repository.findByMatricula (matricula);
+	}
+	
+	public List<Professor> encontrarPorEndereco (String endereco) {
+        return repository.findByEndereco (endereco);
+	}
+	
+	public List<Professor> encontrarPorNome (String nome) {
+        return repository.findByNome (nome);
+	}
+	
+	public List<Professor> encontrarPorTelefone (String telefone) {
+        return repository.findByTelefone (telefone);
 	}
 
 }
+
+// OK

@@ -3,6 +3,8 @@ package org.faeterj.apicoruja.coruja.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
+import org.faeterj.apicoruja.coruja.controller.requestBody.HistoricoRequestBody;
+
 @Entity
 @Table(name="historico")
 public class Historico {
@@ -18,6 +20,10 @@ public class Historico {
 		
 	}
 
+	public Historico (HistoricoRequestBody requestBody) {
+		
+	}
+	
 	// ================================================
 	
     @JsonIgnore
