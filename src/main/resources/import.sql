@@ -10,3 +10,6 @@ INSERT INTO
 INSERT INTO
   aluno  (aluno_id, endereco, nome, cpf, rg, sexo, telefone, matricula, historico)
   VALUES (23478, 'Rua QQ', 'Jefferson Luis', '333.333.333-33', '898.989.898.9', 'M', '2121-2121', '8234786234', null);
+INSERT INTO
+  aluno  (aluno_id, endereco, nome, sexo, telefone, matricula, historico, cpf, rg)
+  VALUES (12346, 'Rua KLKL', 'Arthur Avilla', 'M', '9999-5588', '1310478300032', null, '555.555.555-55', '987.654.321.0');

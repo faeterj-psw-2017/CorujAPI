@@ -76,7 +76,7 @@ public class Trabalho {
     }
 
     public void setTurma (Turma turma) {
-        this.aluno = aluno;
+        this.turma = turma;
     }
 
 }

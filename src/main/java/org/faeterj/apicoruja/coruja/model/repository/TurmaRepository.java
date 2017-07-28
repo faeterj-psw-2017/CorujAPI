@@ -7,7 +7,7 @@ import org.faeterj.apicoruja.coruja.model.entity.Turma;
 public interface TurmaRepository extends
     PagingAndSortingRepository<Turma, Long> {
 
-         Turma findByCodigo  (String codigo);
+         Turma  findByCodigo (String codigo);
     List<Turma> findBySala   (String sala);
     List<Turma> findByTurno  (char   turno);
 

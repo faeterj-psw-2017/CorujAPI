@@ -68,7 +68,7 @@ public class Disciplina {
         return sigla;
     }
 
-    public void setSigla (String nome) {
+    public void setSigla (String sigla) {
         this.sigla = sigla;
     }
 

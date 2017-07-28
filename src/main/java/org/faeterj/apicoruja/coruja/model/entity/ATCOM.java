@@ -42,7 +42,6 @@ public class ATCOM {
         String descricaoDocumento, double horasAtribuidas,
         boolean valido
     ) {
-        this.id                 = id;
         this.foto               = foto;
         this.descricaoDocumento = descricaoDocumento;
         this.horasAtribuidas    = horasAtribuidas;
