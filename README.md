@@ -11,6 +11,19 @@
 
 ---
 
+### Contribuidores (PR e/ou commit)
+
++ Alexandre Fonseca (@alexandre-layer)
++ Arthur Ávilla (@arthuravilla7)
++ Bruno Bandeira (@bandeirabruno)
++ Jefferson Luis (@jtricolor16)
++ Marco Aurélio (@marcoonroad)
++ Marcos Felipe (@Marcos521)
++ William (@Nibelung0)
++ Rodrigo Sudano (@SudaGaiden)
+
+---
+
 ### Links
 
 + [Trello](https://trello.com/faeterjpsw2017noite)
