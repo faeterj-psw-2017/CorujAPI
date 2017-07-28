@@ -20,22 +20,21 @@ public class AtcomController {
         this.atcomService = atcomService;
     }
 
-    /*busca
+    //busca
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/atcom/{atcomId}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ATCOM get(@PathVariable(value = "atcomId") Aluno aluno){
+    public ATCOM get(@PathVariable(value = "atcomId") Long atcomId){
+        return atcomService.encontrarAtcomPeloId(atcomId);
+    }
 
-        return atcomService.listarPorAluno(ATCOM);
-    }*/
-
-    //inserirDocumento
+    //inserir
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value="/atcom/create", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ATCOM create(@RequestBody ATCOM atcom){
         return atcomService.create(atcom);
     }
 
-    //listaHoras
+    //listaAtcom's
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/atcom/findAll",
             method = RequestMethod.GET,
@@ -44,7 +43,7 @@ public class AtcomController {
         return atcomService.listarAtcom();
     }
 
-    //excluiHoras
+    //excluiAtcom
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/atcom/{atcomId}",
             method = RequestMethod.DELETE)

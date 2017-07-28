@@ -27,6 +27,8 @@ public class AtcomService {
 
     public  void delete(Long id){atcomRepositorio.delete(id);}
 
+    public ATCOM encontrarAtcomPeloId (Long id) {        return atcomRepositorio.findOne (id);    }
+
     public List<ATCOM> listarAtcom ( ) {
         Iterable<ATCOM> iterable = atcomRepositorio.findAll ( );
         List<ATCOM> list = new ArrayList<ATCOM>( );
@@ -37,7 +39,5 @@ public class AtcomService {
 
         return list;
     }
-
-    public List<ATCOM> listarPorAluno (Aluno aluno){return  (List<ATCOM>) atcomRepositorio.findByAluno(aluno);}
 
 }
