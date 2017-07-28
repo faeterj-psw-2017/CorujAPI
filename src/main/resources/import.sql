@@ -35,8 +35,17 @@ INSERT INTO
   disciplina (disciplina_id, nome, descricao, sigla, carga_horaria)
   VALUES (002, 'Algoritmo e Linguagem de Programação 2', 'Refinando o mindset de programador dos alunos.', 'AL2', 220.0);
 INSERT INTO
+  disciplina (disciplina_id, nome, descricao, sigla, carga_horaria)
+  VALUES (003, 'Produção de Software', 'Alunos se tornam aptos a trabalhar em equipe no mercado de TI.', 'PSW', 300.0);
+INSERT INTO
   estagio (estagio_id, aluno, empresa, funcao, data_inicio, cancelado)
   VALUES (001, 003, 'TI Soluções', 'Suporte e Desenvolvimento', '2017-01-10', false);
 INSERT INTO
   estagio (estagio_id, aluno, empresa, funcao, data_inicio, cancelado)
   VALUES (002, 002, 'Empresa na Barra', 'Java Backend', '2017-03-05', false);
+INSERT INTO
+  turma (turma_id, codigo, sala, turno, disciplina, professor)
+  VALUES (100, 'PSW', '4', 'N', 003, 001);
+INSERT INTO
+  turma (turma_id, codigo, sala, turno, disciplina, professor)
+  VALUES (101, 'ALG', '2', 'M', 001, 002);
