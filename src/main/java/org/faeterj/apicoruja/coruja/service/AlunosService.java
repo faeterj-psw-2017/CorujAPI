@@ -37,4 +37,8 @@ public class AlunosService {
     	alunoRepo.save(aluno);
     }
 
+	public List<Aluno> obterAlunosPorNome(String nome) {
+		return alunoRepo.findByNomeIgnoreCaseContaining(nome);
+	}
+
 }

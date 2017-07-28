@@ -20,6 +20,7 @@ public final class Aluno extends Pessoa {
     @Column(name="matricula", unique=true, nullable=false)
     private String matricula;
 
+
     // ====================================================
 
     public Aluno ( ) {
@@ -37,7 +38,7 @@ public final class Aluno extends Pessoa {
     }
 
     public Aluno (
-        String nome, String telefone, String endereco, char sexo
+        String nome, String telefone, String endereco, char sexo, Long turma
     ) {
         super(nome, telefone, endereco, sexo);
     }
@@ -45,7 +46,8 @@ public final class Aluno extends Pessoa {
     public Aluno (
         long id,             String nome,
         String telefone,     String endereco,
-        Historico historico, String matricula
+        Historico historico, String matricula,
+        Long turma
     ) {
         this(id, historico, matricula);
 

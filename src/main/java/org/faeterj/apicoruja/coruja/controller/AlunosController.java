@@ -64,5 +64,10 @@ public class AlunosController {
     public Aluno obterAlunoPorMatricula(@PathVariable String matricula) {
     	return alunosService.obterAlunoPorMatricula(matricula);
     }
+    
+    @RequestMapping(value="/aluno/nome/{nome}", method = RequestMethod.GET)
+    public List<Aluno> obterAlunosPorNome(@PathVariable String nome) {
+    	return alunosService.obterAlunosPorNome(nome);
+    }
 
 }
