@@ -53,3 +53,5 @@ derby.log
 .factorypath
 .cproject
 .buildpath
+.settings/
+bin/
