@@ -3,6 +3,8 @@ package org.faeterj.apicoruja.coruja.model.repository;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +31,11 @@ public class AlunoRepositoryTest {
 
         @Test
         public void findByNome ( ) {
-                assertThat (true, is (true));
+                String nome = "Jefferson Luis";
+                
+                List<Aluno> alunos = repository.findByNome (nome);
+                
+                assertThat (alunos.size ( ), is (1));
         }
 
         @Test

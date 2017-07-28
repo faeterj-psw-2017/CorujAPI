@@ -16,6 +16,7 @@ public class CorujaApplication {
 	public static void main (String[ ] args) {
 		SpringApplication.run (CorujaApplication.class, args);
 	}
+
 }
 
 // OK

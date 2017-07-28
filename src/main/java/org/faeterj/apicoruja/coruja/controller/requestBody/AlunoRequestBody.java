@@ -1,6 +1,6 @@
 package org.faeterj.apicoruja.coruja.controller.requestBody;
 
-public class AlunoRequestBody extends PessoaRequestBody {
+public final class AlunoRequestBody extends PessoaRequestBody {
 
     public String matricula;
 

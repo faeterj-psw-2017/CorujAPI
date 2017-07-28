@@ -21,6 +21,11 @@ public final class TurmaService {
         this.turmaRepository = turmaRepository;
 	}
 	
+	@PostConstruct
+	public void init ( ) {
+		
+	}
+	
     public List<Turma> obterTurmas( ) {
         return (List<Turma>) turmaRepository.findAll ( );
     }
