@@ -1,76 +1,105 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.faeterj.apicoruja.coruja.controller.requestBody.AlunoRequestBody;
+import javax.persistence.*;
 
-@Table(name="aluno")
 @Entity
-public class Aluno {
+@Table(name="aluno")
+public final class Aluno extends Pessoa {
 
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Id
     @Column(name="aluno_id")
-    private long id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-    @Column(name="nome")
-    private String nome;
+    @OneToOne(optional=true)
+    @JoinColumn(name                 = "historico",
+                referencedColumnName = "historico_id",
+                nullable             = true)
+    private Historico historico;
 
-    @Column(name="matricula", unique=true)
-    private long matricula;
+    @Column(name="matricula", unique=true, nullable=false)
+    private String matricula;
 
-    // ======================================================
+    // ====================================================
 
-    public Aluno (long id, String nome, long matricula) {
-        this.id        = id;
-        this.nome      = nome;
+    public Aluno ( ) {
+
+    }
+
+    public Aluno (Historico historico, String matricula) {
+        this.historico = historico;
         this.matricula = matricula;
     }
 
-    protected Aluno ( ) {
-    
+    public Aluno (String nome, String telefone, String endereco) {
+        super(nome, telefone, endereco);
     }
 
-    // =============================================
-
-    public long getId ( ) {
-        return id;
+    public Aluno (
+        String nome, String telefone, String endereco, char sexo
+    ) {
+        super(nome, telefone, endereco, sexo);
     }
 
-    public void setId (long id) {
+    public Aluno (
+        String nome,
+        String telefone,     String endereco,
+        Historico historico, String matricula
+    ) {
+        this(historico, matricula);
+
+        this.nome     = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
+    public Aluno (AlunoRequestBody requestBody) {
+        this (
+            requestBody.getNome ( ),
+            requestBody.getTelefone ( ),
+            requestBody.getEndereco ( ),
+            null,
+            requestBody.getMatricula ( )
+        );
+
+        this.sexo = requestBody.getSexo ( );
+        this.cpf  = requestBody.getCpf ( );
+        this.rg   = requestBody.getRg ( );
+    }
+
+    // ==========================================
+
+    public void setId (Long id) {
         this.id = id;
     }
 
-    // ----------------------------------------------
-
-    public String getNome ( ) {
-        return nome;
+    @JsonIgnore
+    public Long getId ( ) {
+        return id;
     }
 
-    public void setNome (String nome) {
-        this.nome = nome;
+    // ---------------------------------------------
 
-    }
-
-    // -----------------------------------------------
-
-    public long getMatricula ( ) {
-        return matricula;
-    }
-
-    public void setMatricula (long matricula) {
+    public void setMatricula (String matricula) {
         this.matricula = matricula;
     }
 
-    // =========================================================================
-
-    @Override
-    public String toString ( ) {
-        return String.format ("Aluno(matricula=%d, nome=%s)", matricula, nome);
+    public String getMatricula ( ) {
+        return matricula;
     }
+
+    // ------------------------------------
+
+    public Historico getHistorico ( ) {
+        return historico;
+    }
+
+    public void setHistorico (Historico historico) {
+        this.historico = historico;
+    }
+
 }
 
 // OK

@@ -1,64 +1,113 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
+import javax.persistence.*;
+// import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="turma")
 public class Turma {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="turma_id")
-    private long id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-    @Column(name="professor")
-    private String professor;
+    @Column(name="codigo", nullable=false)
+    private String codigo;
 
-    @Column(name="materia")
-    private String materia;
+    @Column(name="sala", nullable=false)
+    private String sala;
 
-    // =============================================
+    @Column(name="turno", nullable=false)
+    private char turno; // M = Manhã, T = Tarde, N = Noite, D = Diurno
 
-    protected Turma ( ) {
+    @ManyToOne(optional=false)
+    @JoinColumn(name                 = "professor",
+                referencedColumnName = "professor_id",
+                nullable             = false)
+    private Professor professor;
+
+    @ManyToOne(optional=false)
+    @JoinColumn(name                 = "disciplina",
+                referencedColumnName = "disciplina_id",
+                nullable             = false)
+    private Disciplina disciplina;
+
+    // ==================================================================
+
+    public Turma ( ) {
 
     }
 
-    // ============================================
+    public Turma (String codigo, String sala, char turno) {
+        this.codigo = codigo;
+        this.sala   = sala;
+        this.turno  = turno;
+    }
 
-    public long getId ( ) {
+    // ====================================================================
+  
+    @JsonIgnore
+	public Long getId ( ) {
         return id;
-    }
-
-    public void setId (long id) {
+	}
+	
+	public void setId (Long id) {
         this.id = id;
-    }
+	}
+
+	// ---------------------------------------------------
+	
+	public String getCodigo ( ) {
+        return codigo;
+	}
+	
+	public void setCodigo (String codigo) {
+        this.codigo = codigo;
+	}
+
+	// ---------------------------------------------------
+	
+	public String getSala ( ) {
+        return sala;
+	}
+	
+	public void setSala (String sala) {
+        this.sala = sala;
+	}
+
+	// ---------------------------------------------------
+
+	public char getTurno ( ) {
+        return turno;
+	}
+	
+	public void setTurno (char turno) {
+        this.turno = turno;
+	}
 
     // --------------------------------------------
 
-    public String getProfessor ( ) {
+    // @JsonIgnore
+	public Professor getProfessor ( ) {
         return professor;
-    }
+	}
 
-    public void setProfessor (String professor) {
+	public void setProfessor (Professor professor) {
         this.professor = professor;
+	}
+
+    // -------------------------------------------------
+
+    // @JsonIgnore
+    public Disciplina getDisciplina ( ) {
+        return disciplina;
     }
 
-    // ---------------------------------------------
-
-    public String getMateria ( ) {
-        return materia;
+    public void setDisciplina (Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
-
-    public void setMateria (String materia) {
-        this.materia = materia;
-    }
-
 }
+
+// OK
