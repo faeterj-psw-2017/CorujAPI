@@ -2,10 +2,12 @@ package org.faeterj.apicoruja.coruja.model.repository;
 
 import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 import org.faeterj.apicoruja.coruja.model.entity.Desempenho;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.model.entity.Turma;
 
+@Repository
 public interface DesempenhoRepository extends
     PagingAndSortingRepository<Desempenho, Long> {
 

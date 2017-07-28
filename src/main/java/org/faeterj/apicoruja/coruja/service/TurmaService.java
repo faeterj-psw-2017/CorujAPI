@@ -2,6 +2,7 @@ package org.faeterj.apicoruja.coruja.service;
 
 import java.util.List;
 
+import org.faeterj.apicoruja.coruja.log.BootMessage;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.model.entity.Professor;
 import org.faeterj.apicoruja.coruja.model.entity.Turma;
@@ -23,7 +24,7 @@ public final class TurmaService {
 	
 	@PostConstruct
 	public void init ( ) {
-		
+		BootMessage.log (this);
 	}
 	
     public List<Turma> obterTurmas( ) {
