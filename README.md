@@ -11,6 +11,19 @@
 
 ---
 
+### Contribuidores (PR e/ou commit)
+
++ Alexandre Fonseca - [@alexandre-layer](http://github.com/alexandre-layer)
++ Arthur Ávilla - [@arthuravilla7](http://github.com/arthuravilla7)
++ Bruno Bandeira - [@bandeirabruno](http://github.com/bandeirabruno)
++ Jefferson Luis - [@jtricolor16](http://github.com/jtricolor16)
++ Marco Aurélio - [@marcoonroad](http://github.com/marcoonroad)
++ Marcos Felipe - [@Marcos521](http://github.com/Marcos521)
++ William - [@Nibelung0](http://github.com/Nibelung0)
++ Rodrigo Sudano - [@SudaGaiden](http://github.com/SudaGaiden)
+
+---
+
 ### Links
 
 + [Trello](https://trello.com/faeterjpsw2017noite)
