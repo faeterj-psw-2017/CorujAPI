@@ -70,7 +70,6 @@ public class TurmaService {
     	{
     		if ( ( ( a.getCodigo().equals(original.getCodigo()) ) && ( a.getSala().equals(original.getSala()) ) ) && ( a.getTurno()==original.getTurno() ))
     		{
-    			alterar.setId(a.getId());
     			turmaRepository.delete(a);
     			turmaRepository.save(alterar);
     		}

@@ -17,7 +17,6 @@ public interface TurmaRepository extends
     List<Turma> findBySala   (String sala);
     List<Turma> findByTurno  (char   turno);
     List<Turma> findAll ();
-
 }
 
 // OK

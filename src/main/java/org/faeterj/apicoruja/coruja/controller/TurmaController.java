@@ -40,7 +40,7 @@ public class TurmaController {
         return TurmaService.obterTurmasTurno(turno);
     }
 
-    @RequestMapping(value="/turma", method = RequestMethod.POST)
+    @RequestMapping(value="/turmaAdicionar", method = RequestMethod.POST)
     public boolean adicionarTurma(@RequestBody TurmaRequestBody requestBody) {
     	Turma turma = new Turma();
     	turma.setCodigo(requestBody.getCodigo());
@@ -49,7 +49,7 @@ public class TurmaController {
         return TurmaService.adicionarTurma(turma);
     }
 
-    @RequestMapping(value="/turma", method = RequestMethod.DELETE)
+    @RequestMapping(value="/turmaRemover", method = RequestMethod.DELETE)
     public boolean removerTurma(@RequestBody TurmaRequestBody requestBody) {
     	Turma turma = new Turma();
     	turma.setCodigo(requestBody.getCodigo());
@@ -58,7 +58,7 @@ public class TurmaController {
     	return TurmaService.removerTurma(turma);
     }
 
-    @RequestMapping(value="/turma", method = RequestMethod.PUT)
+    @RequestMapping(value="/turmaAlterar", method = RequestMethod.PUT)
     public void alterarTurma(@RequestBody TurmaRequestBody requestBodyOriginal, TurmaRequestBody requestBodyAlterar) {
     	Turma original = new Turma();
     	original.setCodigo(requestBodyOriginal.getCodigo());  
