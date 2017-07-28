@@ -3,6 +3,8 @@ package org.faeterj.apicoruja.coruja.service;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+
+import org.faeterj.apicoruja.coruja.log.BootMessage;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.model.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class AlunoService {
 
 	@PostConstruct
 	public void init ( ) {
-        System.out.println ("=== Iniciando servico do Aluno... ===");
+        BootMessage.log (this);
     }
 	
     public void alterarAlunoPorMatricula (Aluno aluno) {

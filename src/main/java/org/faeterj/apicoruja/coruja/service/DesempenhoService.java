@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.service;
 
+import org.faeterj.apicoruja.coruja.log.BootMessage;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.model.entity.Desempenho;
 import org.faeterj.apicoruja.coruja.model.repository.DesempenhoRepository;
@@ -21,7 +22,7 @@ public class DesempenhoService {
 	
     @PostConstruct
     public void init ( ) {
-
+    	BootMessage.log (this);
     }
 	
 	public Desempenho encontrarTurmaAlunoNotasPeloAluno (Aluno aluno) {

@@ -12,80 +12,71 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/*
+ * 
+ *  Rota                   | Metodo | Corpo         | Resposta
+ * =====================================================================
+ * 	/professor             | GET    |               | [ professores... ]
+ * 	/professor             | POST   | { professor } | boolean
+ * 	/professor/matricula/X | GET    |               | { professor }
+ *  /professor/matricula/X | DELETE |               | boolean
+ *  /professor             | PUT    | { professor } | boolean
+ *                 
+ */
 @RestController
 public class ProfessorController {
 
-    private ProfessorService professorService;
-	private Professor professor;
+    private ProfessorService service;
 
+    @Autowired
+    public ProfessorController (ProfessorService service) {
+    	this.service = service;
+    }
+    
+    // -------------------------------------------------------------------------------
+    
     @RequestMapping(value="/professor", method=RequestMethod.GET)
     public List<Professor> listarProfessor ( ) {
-        return professorService.listarProfessores ( );
+        return service.listar ( );
     }
 
     @RequestMapping(value="/professor", method=RequestMethod.POST)
-    public boolean salvaProfessor (@RequestBody ProfessorRequestBody requestBody) {
-        Professor professor = new Professor ( );
-
-        professor.setNome      (requestBody.getNome ( ));
-        professor.setMatricula (requestBody.getMatricula ( ));
-        professor.setEndereco  (requestBody.getEndereco ( ));
-        professor.setTelefone  (requestBody.getTelefone ( ));
-        professor.setRg        (requestBody.getRg ( ));
-        professor.setCpf       (requestBody.getCpf ( ));
-
-        if (professor.getNome ( )      != null &&
-            professor.getMatricula ( ) != null &&
-            professor.getEndereco ( )  != null &&
-            professor.getTelefone ( )  != null) {
-
-    	    professorService.salvarProfessor (professor);
-    	    return true;
+    public boolean salvar (@RequestBody ProfessorRequestBody requestBody) {
+        Professor professor =
+            service.encontrarPorMatricula (requestBody.matricula);
+            
+        if (professor != null) {
+        	return false;
         }
 
-        return false;
+        service.salvar (new Professor (requestBody));
+        return true;
     }
 
-    @RequestMapping(value="/professor/{matricula}", method = RequestMethod.DELETE)
-    public boolean excluirProfessor(@PathVariable String matricula) {
-	    professor = professorService.encontrarProfessorPelaMatricula (matricula);
+    // -------------------------------------------------------------------------------------
 
-	    if(professor!=null){
-		    professorService.excluirProfessor (professor.getId ( ));
-		    return true;
-	    }
-
-	    return false;
+    @RequestMapping(value="/professor/matricula/{matricula}", method=RequestMethod.GET)
+    public Professor obter (@PathVariable String matricula) {
+    	return service.encontrarPorMatricula (matricula);
     }
-   
+
+    @RequestMapping(value="/professor/matricula/{matricula}", method=RequestMethod.DELETE)
+    public boolean excluir (@PathVariable String matricula) {
+    	return service.excluir (matricula);
+    }
+
+    // ---------------------------------------------------------------------------
+    
     @RequestMapping(value="/professor", method=RequestMethod.PUT)
-    public boolean editar(@RequestBody ProfessorRequestBody requestBody) {
-	    professor = professorService.encontrarProfessorPelaMatricula (
-            requestBody.getMatricula ( )
-        );
-
-	    if (professor!=null){
-		    if(requestBody.getNome()!=null && !professor.getNome().equals(requestBody.getNome())){
-			    professor.setNome(requestBody.getNome());
-		    }
-		   
-		    if(requestBody.getEndereco()!=null && !professor.getEndereco().equals(requestBody.getEndereco())){
-			    professor.setEndereco(requestBody.getEndereco());
-		    }
-		   
-		    if(requestBody.getTelefone()!=null && !professor.getTelefone().equals(requestBody.getTelefone())){
-			    professor.setTelefone(requestBody.getTelefone());
-		    }
-		   
-		    if(requestBody.getMatricula()!=null && !professor.getMatricula().equals(requestBody.getMatricula())){
-			    professor.setMatricula(requestBody.getMatricula());
-		    }
-
-		    professorService.salvarProfessor(professor);
-		    return true;
-	    }
-
-	    return false;
+    public boolean editar (@RequestBody ProfessorRequestBody requestBody) {
+    	return service.editar (
+    		requestBody.matricula,
+    		requestBody.nome,
+    		requestBody.endereco,
+    		requestBody.telefone
+    	);
     }
-   
+
 }
+
+// OK

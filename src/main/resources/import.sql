@@ -13,3 +13,12 @@ INSERT INTO
 INSERT INTO
   aluno  (aluno_id, endereco, nome, sexo, telefone, matricula, historico, cpf, rg)
   VALUES (12346, 'Rua KLKL', 'Arthur Avilla', 'M', '9999-5588', '1310478300032', null, '555.555.555-55', '987.654.321.0');
+INSERT INTO
+  disciplina (nome, descricao, sigla, cargaHoraria)
+  VALUES ('Algoritmo e Linguagem de Programação 1', 'Disciplina que ensina os fundamentos da programação.', 'AL1', 180.0);
+INSERT INTO
+  disciplina (nome, descricao, sigla, cargaHoraria)
+  VALUES ('Algoritmo e Linguagem de Programação 2', 'Refinando o mindset de programador dos alunos.', 'AL2', 220.0);
+INSERT INTO
+  estagio (aluno, empresa, funcao, data, cancelado)
+  VALUES (12346, 'TI Soluções', 'Suporte e Desenvolvimento', '2017-01-10', false);

@@ -2,9 +2,11 @@ package org.faeterj.apicoruja.coruja.model.repository;
 
 import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 import org.faeterj.apicoruja.coruja.model.entity.ATCOM;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 
+@Repository
 public interface ATCOMRepository extends
     PagingAndSortingRepository<ATCOM, Long> {
 
