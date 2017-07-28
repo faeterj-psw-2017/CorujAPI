@@ -7,20 +7,24 @@ import org.faeterj.apicoruja.coruja.model.entity.Professor;
 import org.faeterj.apicoruja.coruja.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 /*
  * 
  *  Rota                   | Metodo | Corpo         | Resposta
- * =====================================================================
+ * ======================================================================
  * 	/professor             | GET    |               | [ professores... ]
  * 	/professor             | POST   | { professor } | boolean
  * 	/professor/matricula/X | GET    |               | { professor }
  *  /professor/matricula/X | DELETE |               | boolean
  *  /professor             | PUT    | { professor } | boolean
+ *  /professor/sexo/X      | GET    |               | [ professores... ]
+ *  /professor/endereco/X  | GET    |               | [ professores... ]
  *                 
  */
 @RestController
@@ -35,12 +39,12 @@ public class ProfessorController {
     
     // -------------------------------------------------------------------------------
     
-    @RequestMapping(value="/professor", method=RequestMethod.GET)
+    @GetMapping(value="/professor")
     public List<Professor> listarProfessor ( ) {
         return service.listar ( );
     }
 
-    @RequestMapping(value="/professor", method=RequestMethod.POST)
+    @PostMapping(value="/professor")
     public boolean salvar (@RequestBody ProfessorRequestBody requestBody) {
         Professor professor =
             service.encontrarPorMatricula (requestBody.matricula);
@@ -55,19 +59,19 @@ public class ProfessorController {
 
     // -------------------------------------------------------------------------------------
 
-    @RequestMapping(value="/professor/matricula/{matricula}", method=RequestMethod.GET)
+    @GetMapping(value="/professor/matricula/{matricula}")
     public Professor obter (@PathVariable String matricula) {
     	return service.encontrarPorMatricula (matricula);
     }
 
-    @RequestMapping(value="/professor/matricula/{matricula}", method=RequestMethod.DELETE)
+    @DeleteMapping(value="/professor/matricula/{matricula}")
     public boolean excluir (@PathVariable String matricula) {
     	return service.excluir (matricula);
     }
 
     // ---------------------------------------------------------------------------
     
-    @RequestMapping(value="/professor", method=RequestMethod.PUT)
+    @PutMapping(value="/professor")
     public boolean editar (@RequestBody ProfessorRequestBody requestBody) {
     	return service.editar (
     		requestBody.matricula,
@@ -75,6 +79,18 @@ public class ProfessorController {
     		requestBody.endereco,
     		requestBody.telefone
     	);
+    }
+
+    // ------------------------------------------------------------------------------
+
+    @GetMapping(value="/professor/sexo/{sexo}")
+    public List<Professor> procurarPorSexo (@PathVariable char sexo) {
+    	return service.encontrarPorSexo (sexo);
+    }
+
+    @GetMapping(value="/professor/endereco/{endereco}")
+    public List<Professor> procurarPorEndereco (@PathVariable String endereco) {
+    	return service.encontrarPorEndereco (endereco);
     }
 
 }

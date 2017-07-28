@@ -39,12 +39,12 @@ public class AlunoRepositoryTest {
         }
 
         @Test
-        public void findOne ( ) {
+        public void findByMatricula ( ) {
                 String nome     = "Marco Aurélio da Silva";
                 String endereco = "Rua TB";
                 String telefone = "8888-8888";
 
-                Aluno aluno = repository.findOne (12345L);
+                Aluno aluno = repository.findByMatricula ("1410478300059");
 
                 assertThat (aluno.getNome ( ),     is (nome));
                 assertThat (aluno.getEndereco ( ), is (endereco));

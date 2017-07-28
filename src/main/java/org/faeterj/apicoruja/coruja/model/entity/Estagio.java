@@ -26,10 +26,10 @@ public class Estagio {
     @Column(name="funcao", nullable=false)
     private String funcao;
 
-    @Column(name="dataInicio", nullable=false)
+    @Column(name="data_inicio", nullable=false)
     private Date dataInicio;
 
-    @Column(name="dataFim")
+    @Column(name="data_fim")
     private Date dataFim;
 
     @Column(name="horas")
