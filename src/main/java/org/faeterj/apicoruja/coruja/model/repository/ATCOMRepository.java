@@ -1,7 +1,7 @@
 package org.faeterj.apicoruja.coruja.model.repository;
 
 import java.util.List;
-
+import org.springframework.data.repository.query.Param;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.faeterj.apicoruja.coruja.model.entity.ATCOM;
@@ -10,14 +10,14 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-@RepositoryRestResource(path="/atcom")
+@RepositoryRestResource(path="/atcom-page")
 public interface ATCOMRepository extends
         PagingAndSortingRepository<ATCOM, Long> {
 
-    List<ATCOM> findByDescricaoDocumento (String  descricaoDocumento);
-    List<ATCOM> findByHorasAtribuidas    (Double  horasAtribuidas);
-    List<ATCOM> findByValido             (boolean valido);
-    List<ATCOM> findByAluno              (Aluno aluno);
+    List<ATCOM> findByDescricao       (@Param("descricao")        String  descricao);
+    List<ATCOM> findByHorasAtribuidas (@Param("horas_atribuidas") Double  horasAtribuidas);
+    List<ATCOM> findByValido          (@Param("valido")           boolean valido);
+    List<ATCOM> findByAluno           (@Param("aluno")            Aluno   aluno);
 }
 
 // OK
