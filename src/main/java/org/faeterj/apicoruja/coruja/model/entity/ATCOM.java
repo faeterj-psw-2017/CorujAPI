@@ -16,8 +16,8 @@ public class ATCOM {
     @Column(name="foto")
     private File foto;
 
-    @Column(name="descricao_documento")
-    private String descricaoDocumento;
+    @Column(name="descricao")
+    private String descricao;
 
     @Column(name="horas_atribuidas")
     private double horasAtribuidas;
@@ -39,14 +39,13 @@ public class ATCOM {
 
     public ATCOM (
         File foto,
-        String descricaoDocumento, double horasAtribuidas,
+        String descricao, double horasAtribuidas,
         boolean valido
     ) {
-        this.id                 = id;
-        this.foto               = foto;
-        this.descricaoDocumento = descricaoDocumento;
-        this.horasAtribuidas    = horasAtribuidas;
-        this.valido             = valido;
+        this.foto            = foto;
+        this.descricao       = descricao;
+        this.horasAtribuidas = horasAtribuidas;
+        this.valido          = valido;
     }
 
     // ==================================================================
@@ -72,12 +71,12 @@ public class ATCOM {
 	
 	//------------------------------------------------------------------
 	
-	public String getDescricaoDocumento ( ) {
-	    return descricaoDocumento;
+	public String getDescricao ( ) {
+	    return descricao;
 	}
 	
-	public void setDescricaoDocumento (String descricaoDocumento) {
-	    this.descricaoDocumento = descricaoDocumento;
+	public void setDescricao (String descricao) {
+	    this.descricao = descricao;
 	}
 	
 	//------------------------------------------------------------------

@@ -3,6 +3,8 @@ package org.faeterj.apicoruja.coruja.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
+import org.faeterj.apicoruja.coruja.controller.requestBody.DisciplinaRequestBody;
+
 @Table(name="disciplina")
 @Entity
 public class Disciplina {
@@ -15,7 +17,7 @@ public class Disciplina {
     @Column(name="nome", nullable=false)
     private String nome;
 
-    @Column(name="sigla", nullable=false)
+    @Column(name="sigla", unique=true, nullable=false)
     private String sigla;
 
     @Column(name="carga_horaria", nullable=false)
@@ -24,7 +26,7 @@ public class Disciplina {
     @Column(name="descricao", nullable=false)
     private String descricao;
 
-    // ==========================================
+    // ====================================
 
     public Disciplina ( ) {
 
@@ -41,6 +43,15 @@ public class Disciplina {
         this.descricao    = descricao;
     }
 
+    public Disciplina (DisciplinaRequestBody requestBody) {
+    	this (
+    		requestBody.nome,
+    		requestBody.sigla,
+    		requestBody.cargaHoraria,
+    		requestBody.descricao
+    	);
+    }
+    
     // =====================================================================
 
     @JsonIgnore
@@ -68,7 +79,7 @@ public class Disciplina {
         return sigla;
     }
 
-    public void setSigla (String nome) {
+    public void setSigla (String sigla) {
         this.sigla = sigla;
     }
 

@@ -1,17 +1,10 @@
 package org.faeterj.apicoruja.coruja.controller.requestBody;
 
-public class AlunoRequestBody extends PessoaRequestBody {
+import org.faeterj.apicoruja.coruja.model.entity.Historico;
 
-    public String matricula;
+public final class AlunoRequestBody extends PessoaRequestBody {
 
-    // ===============================================
-
-    public String getMatricula ( ) {
-        return matricula;
-    }
-
-    public void setMatricula (String matricula) {
-        this.matricula = matricula;
-    }
+    public String               matricula;
+    public HistoricoRequestBody historico;
 
 }

@@ -57,16 +57,23 @@ public final class Aluno extends Pessoa {
 
     public Aluno (AlunoRequestBody requestBody) {
         this (
-            requestBody.getNome ( ),
-            requestBody.getTelefone ( ),
-            requestBody.getEndereco ( ),
+            requestBody.nome,
+            requestBody.telefone,
+            requestBody.endereco,
             null,
-            requestBody.getMatricula ( )
+            requestBody.matricula
         );
 
-        this.sexo = requestBody.getSexo ( );
-        this.cpf  = requestBody.getCpf ( );
-        this.rg   = requestBody.getRg ( );
+        if (requestBody.historico == null) {
+        	this.historico = null;
+        }
+        else {
+        	this.historico = new Historico (requestBody.historico);
+        }
+        
+        this.sexo = requestBody.sexo;
+        this.cpf  = requestBody.cpf;
+        this.rg   = requestBody.rg;
     }
 
     // ==========================================

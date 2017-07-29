@@ -1,6 +1,7 @@
 package org.faeterj.apicoruja.coruja.service;
 
 import org.faeterj.apicoruja.coruja.model.entity.ATCOM;
+import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.faeterj.apicoruja.coruja.model.repository.ATCOMRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.annotation.PostConstruct;

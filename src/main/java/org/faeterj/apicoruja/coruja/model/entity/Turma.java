@@ -1,6 +1,9 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
 import javax.persistence.*;
+
+import org.faeterj.apicoruja.coruja.controller.requestBody.TurmaRequestBody;
+
 // import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -46,6 +49,27 @@ public class Turma {
         this.turno  = turno;
     }
 
+    public Turma (
+    	String codigo,         String sala,
+    	char turno,            Professor professor,
+    	Disciplina disciplina
+    ) {
+    	this (codigo, sala, turno);
+
+    	this.professor  = professor;
+    	this.disciplina = disciplina;
+    }
+    
+    public Turma (TurmaRequestBody requestBody) {
+    	this (
+    		requestBody.codigo,
+    		requestBody.sala,
+    		requestBody.turno,
+    		new Professor (requestBody.professor),
+    		new Disciplina (requestBody.disciplina)
+    	);
+    }
+    
     // ====================================================================
   
     @JsonIgnore
