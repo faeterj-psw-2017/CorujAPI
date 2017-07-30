@@ -151,7 +151,6 @@ estrangeira apontando pro aluno associado.
 | /disciplinas/descricao/DESCR    | GET    |                | [ disciplinas... ] |
 | /disciplinas/sigla/SIGLA        | GET    |                | { disciplina }     |
 | /disciplina                     | PUT    | { disciplina } | { disciplina }     |
-|
 
 ---
 
