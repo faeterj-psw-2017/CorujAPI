@@ -1,15 +1,14 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
 @Table(name="desempenho")
-public class Desempenho {
+public final class Desempenho {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="desempenho_id")
+    @Column(name="desempenho_id", updatable=false)
     private Long id;
 
     @Column(name="nota_av1", nullable=true)
@@ -67,7 +66,6 @@ public class Desempenho {
         this.id = id;
     }
 
-    @JsonIgnore
     public Long getId ( ) {
         return id;
     }
@@ -132,6 +130,45 @@ public class Desempenho {
     public void setTurma (Turma turma) {
         this.turma = turma;
     }
+
+    // ---------------------------------------------
+    
+	public boolean isSegundaChamada ( ) {
+		return segundaChamada;
+	}
+
+	public void setSegundaChamada (boolean segundaChamada) {
+		this.segundaChamada = segundaChamada;
+	}
+
+	// -------------------------------------------------------
+	
+	public boolean isRecuperacao ( ) {
+		return recuperacao;
+	}
+
+	public void setRecuperacao (boolean recuperacao) {
+		this.recuperacao = recuperacao;
+	}
+
+	// -----------------------------------------------------
+
+	public double media ( ) {
+		if (segundaChamada) {
+			if (notaAv1 == null) {
+				return (notaAvs + notaAv2) / 2;
+			}
+			else {
+				return (notaAv1 + notaAvs) / 2;
+			}
+		}
+
+		return (notaAv1 + notaAv2) / 2;
+	}
+	
+	public double mediaFinal ( ) {
+		throw new RuntimeException ("Funcionalidade não implementada!");
+	}
 
 }
 

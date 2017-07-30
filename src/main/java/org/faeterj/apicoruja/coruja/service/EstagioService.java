@@ -44,7 +44,7 @@ public class EstagioService {
 
         return e;
     }
-
+    
     // ----------------------------------------------------------
     
     public List<Estagio> obterEstagioPorAluno (Aluno aluno) {
@@ -111,6 +111,10 @@ public class EstagioService {
         repo.save (e);
     }
 
+    public Estagio obterPorId (long id) {
+    	return repo.findOne (id);
+    }
+    
     // ------------------------------------------------
     
     public List<Estagio> obterEstagiosCancelados ( ) {
@@ -121,6 +125,10 @@ public class EstagioService {
     	return repo.findByCancelado (true);
     }
 
+    public void apagar (long id) {
+    	repo.delete (id);
+    }
+    
 }
 
 // OK

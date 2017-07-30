@@ -17,10 +17,20 @@ public abstract class Pessoa {
     @Column(name="sexo", nullable=false)
     protected char sexo;
 
-    @Column(name="rg", unique=true, nullable=false)
+    @Column (
+    	name      = "rg",
+    	unique    = true,
+    	nullable  = false,
+    	updatable = false
+    )
     protected String rg;
 
-    @Column(name="cpf", unique=true, nullable=false)
+    @Column (
+    	name      = "cpf",
+    	unique    = true,
+    	nullable  = false,
+    	updatable = false
+    )
     protected String cpf;
 
     // ================================================================

@@ -1,6 +1,5 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 import org.faeterj.apicoruja.coruja.controller.requestBody.EstagioRequestBody;
@@ -9,15 +8,20 @@ import java.util.Date;
 
 @Table(name="estagio")
 @Entity
-public class Estagio {
+public final class Estagio {
 
 	@Id
-	@Column(name="estagio_id")
+	@Column(name="estagio_id", updatable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
     @ManyToOne(optional=false)
-    @JoinColumn(name="aluno", referencedColumnName="aluno_id", nullable=false)
+    @JoinColumn(
+    	name                 = "aluno",
+    	referencedColumnName = "aluno_id",
+    	nullable             = false,
+    	updatable            = false
+    )
     private Aluno aluno;
 
     @Column(name="empresa", nullable=false)
@@ -33,7 +37,7 @@ public class Estagio {
     private Date dataFim;
 
     @Column(name="horas")
-    private float horas;
+    private Float horas;
 
     @Column(name="cancelado")
     private boolean cancelado;
@@ -83,11 +87,12 @@ public class Estagio {
     
 	// ===========================================
 
+    
+    
 	public void setId (Long id) {
 		this.id = id;
 	}
 
-    @JsonIgnore
 	public Long getId ( ) {
 		return id;
 	}
@@ -144,11 +149,11 @@ public class Estagio {
     
     // --------------------------------------------
 
-    public float getHoras ( ) {
+    public Float getHoras ( ) {
         return horas;
     }
 
-    public void setHoras (float horas) {
+    public void setHoras (Float horas) {
         this.horas = horas;
     }
     

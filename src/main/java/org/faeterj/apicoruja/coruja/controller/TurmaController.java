@@ -7,6 +7,7 @@ import org.faeterj.apicoruja.coruja.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +26,10 @@ public class TurmaController {
         this.service = service;
     }
 
+    // ==============================================
+
     @GetMapping(value="/turma")
-    public List<Turma> listarTurma ( ) {
+    public List<Turma> listar ( ) {
         return service.obterTodasTurmas ( );
     }
     
@@ -35,8 +38,8 @@ public class TurmaController {
         return service.obterTurmaCodigo (codigo);
     }
     
-    @GetMapping(value="/turma/turno/{char}")
-    public List<Turma> listarTurmaTurno (@RequestBody char turno) {
+    @GetMapping(value="/turma/turno/{turno}")
+    public List<Turma> listarTurmaTurno (@PathVariable char turno) {
         return service.obterTurmasTurno (turno);
     }
 
@@ -50,10 +53,12 @@ public class TurmaController {
     	return service.removerTurma (new Turma (requestBody));
     }
 
-    @PutMapping(value="/turma")
-    public void alterarTurma (@RequestBody TurmaRequestBody requestBodyOriginal, TurmaRequestBody requestBodyAlterar) {
-    	Turma original = new Turma (requestBodyOriginal);
-    	Turma alterar  = new Turma (requestBodyAlterar);
+    // -----------------------------------------------------------------------
+    
+    @PutMapping(value="/turma/codigo/{codigo}")
+    public void alterarTurma (@PathVariable String codigo, @RequestBody TurmaRequestBody body) {
+    	Turma original = service.obterTurma (codigo);
+    	Turma alterar  = new Turma (body);
 
     	service.alterarTurma (original, alterar);
     }

@@ -5,6 +5,7 @@ package org.faeterj.apicoruja.coruja.controller.requestBody;
  */
 public final class TurmaRequestBody {
 
+	public Long                  id;
 	public String                codigo;
 	public String                sala;
 	public char                  turno;

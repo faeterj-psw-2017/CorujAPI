@@ -1,14 +1,15 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Table(name="calendario")
 @Entity
-public class Calendario {
+public final class Calendario implements Serializable {
 
 	@Id
-	@Column(name="calendario_id")
+	@Column(name="calendario_id", updatable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
@@ -24,7 +25,6 @@ public class Calendario {
 		this.id = id;
 	}
 
-    @JsonIgnore
 	public Long getId ( ) {
 		return id;
 	}

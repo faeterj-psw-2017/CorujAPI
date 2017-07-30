@@ -1,6 +1,7 @@
 package org.faeterj.apicoruja.coruja.controller;
 
-import org.faeterj.apicoruja.coruja.controller.requestBody.DisciplinaRequestBody;
+import
+  org.faeterj.apicoruja.coruja.controller.requestBody.DisciplinaRequestBody;
 import org.faeterj.apicoruja.coruja.model.entity.Disciplina;
 import org.faeterj.apicoruja.coruja.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;

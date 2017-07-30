@@ -1,7 +1,8 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.faeterj.apicoruja.coruja.controller.requestBody.AlunoRequestBody;
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +10,7 @@ import javax.persistence.*;
 public final class Aluno extends Pessoa {
 
     @Id
-    @Column(name="aluno_id")
+    @Column(name="aluno_id", updatable=false)
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
@@ -19,7 +20,12 @@ public final class Aluno extends Pessoa {
                 nullable             = true)
     private Historico historico;
 
-    @Column(name="matricula", unique=true, nullable=false)
+    @Column (
+    	name      = "matricula",
+    	unique    = true,
+    	nullable  = false,
+    	updatable = false
+    )
     private String matricula;
 
     // ====================================================
@@ -75,14 +81,14 @@ public final class Aluno extends Pessoa {
         this.cpf  = requestBody.cpf;
         this.rg   = requestBody.rg;
     }
-
+    
     // ==========================================
 
     public void setId (Long id) {
         this.id = id;
     }
 
-    @JsonIgnore
+    @RestResource(exported=true)
     public Long getId ( ) {
         return id;
     }
@@ -106,7 +112,7 @@ public final class Aluno extends Pessoa {
     public void setHistorico (Historico historico) {
         this.historico = historico;
     }
-
+    
 }
 
 // OK

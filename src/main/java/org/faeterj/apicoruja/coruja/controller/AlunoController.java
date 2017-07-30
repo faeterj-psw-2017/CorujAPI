@@ -1,78 +1,69 @@
 package org.faeterj.apicoruja.coruja.controller;
 
+import java.util.List;
+
 import org.faeterj.apicoruja.coruja.controller.requestBody.AlunoRequestBody;
 import org.faeterj.apicoruja.coruja.model.entity.Aluno;
-import org.faeterj.apicoruja.coruja.model.entity.Historico;
 import org.faeterj.apicoruja.coruja.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @RestController
 public class AlunoController {
 
-    private AlunoService alunoService;
+    private AlunoService service;
 
     @Autowired
-    public AlunoController (AlunoService alunoService) {
-        this.alunoService = alunoService;
+    public AlunoController (AlunoService injected) {
+        service = injected;
+    } 
+    
+    // ===============================================================
+
+    @PostMapping(value="/aluno")
+    public boolean adicionar (@RequestBody AlunoRequestBody body) {
+    	return service.adicionar (new Aluno (body));
     }
 
-    @RequestMapping(value="/aluno", method=RequestMethod.GET)
-    public List<Aluno> listarAlunos ( ) {
-        return alunoService.listarAlunos ( );
+    @GetMapping("/aluno")
+    public List<Aluno> listar ( ) {
+    	return service.listar ( );
     }
-
-    // nova interface pra adicionar aluno, agora com todos os dados possiveis
-    @RequestMapping(value="/aluno", method=RequestMethod.POST)
-    public boolean adicionarAluno (@RequestBody AlunoRequestBody requestBody) {
-    	Aluno aluno = new Aluno (requestBody);
-
-        if (aluno.getNome ( )      != null &&
-            aluno.getMatricula ( ) != null &&
-            aluno.getEndereco ( )  != null &&
-            aluno.getTelefone ( )  != null) {
-
-            alunoService.salvarAluno (aluno);
-            return true;
-        }
-
-        return false;
-    }
-
-    // ---------------------------------------------------
-    // aluno nunca é apagado do banco
-    // ---------------------------------------------------
-
-
-    @RequestMapping(value="/aluno/{matricula}", method=RequestMethod.GET)
-    public Aluno obterAlunoPorMatricula (@PathVariable String matricula) {
-    	return alunoService.obterAlunoPorMatricula (matricula);
+ 
+    @GetMapping("/aluno/{id}")
+    public Aluno obter (@PathVariable long id) {
+    	return service.obter (id);
     }
     
+    // -----------------------------------------------------------------
+
+    @DeleteMapping(value="/aluno/matricula/{matricula}")
+    public boolean apagarPorMatricula (@PathVariable String matricula) {
+    	return service.apagarPorMatricula (matricula);
+    }
+
+    @DeleteMapping("/aluno/{id}")
+    public boolean apagar (@PathVariable long id) {
+    	return service.apagar (id);
+    }
+    
+    @GetMapping(value="/aluno/matricula/{matricula}")
+    public Aluno obterPorMatricula (@PathVariable String matricula) {
+    	return service.obterPorMatricula (matricula);
+    }
+
+    // ------------------------------------------------------------------
+    
     // matricula nunca pode ser mudada, assim como o rg e cpf
-    @RequestMapping(value="/aluno", method=RequestMethod.PUT)
-    public Aluno alterarAlunoPorMatricula (@RequestBody AlunoRequestBody requestBody) {
-    	Aluno aluno = alunoService.obterAlunoPorMatricula (requestBody.matricula);
-
-    	if (null != aluno) {
-    		aluno.setNome (requestBody.nome);
-    		aluno.setEndereco (requestBody.endereco);
-    		aluno.setSexo (requestBody.sexo);
-    		aluno.setTelefone (requestBody.telefone);
-
-    		if (requestBody.historico != null) {
-    			aluno.setHistorico (new Historico (requestBody.historico));
-    		}
-
-    		alunoService.alterarAlunoPorMatricula (aluno);
-    	}
-
-    	return aluno;
+    @PutMapping(value="/aluno")
+    public Aluno alterarPorMatricula (@RequestBody AlunoRequestBody body) {
+    	return service.alterarPorMatricula (new Aluno (body));
     }
 
 }

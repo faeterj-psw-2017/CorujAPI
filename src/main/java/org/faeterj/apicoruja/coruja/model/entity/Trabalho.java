@@ -1,14 +1,14 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-// import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+
+import org.faeterj.apicoruja.coruja.controller.requestBody.TrabalhoRequestBody;
 
 @Table(name="trabalho")
 @Entity
-public class Trabalho {
+public final class Trabalho {
 
-    @Column(name="trabalho_id")
+    @Column(name="trabalho_id", updatable=false)
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -19,13 +19,15 @@ public class Trabalho {
     @ManyToOne(optional=false)
     @JoinColumn(name                 ="turma",
                 referencedColumnName = "turma_id",
-                nullable             = false)
+                nullable             = false,
+                updatable            = false)
     private Turma turma;
 
     @ManyToOne(optional=false)
     @JoinColumn(name                 = "aluno",
                 referencedColumnName = "aluno_id",
-                nullable             = false)
+                nullable             = false,
+                updatable            = false)
     private Aluno aluno;
 
     // ==============================================
@@ -38,13 +40,24 @@ public class Trabalho {
         this.titulo = titulo;
     }
 
+    public Trabalho (TrabalhoRequestBody requestBody) {
+    	this.titulo = requestBody.titulo;
+
+    	if (requestBody.aluno != null) {
+    		this.aluno = new Aluno (requestBody.aluno);
+    	}
+    	
+    	if (requestBody.turma != null) {
+    		this.turma = new Turma (requestBody.turma);
+    	}
+    }
+    
     // ==========================================
 
     public void setId (Long id) {
         this.id = id;
     }
 
-    @JsonIgnore
     public Long getId ( ) {
         return id;
     }

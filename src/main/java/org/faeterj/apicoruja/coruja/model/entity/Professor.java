@@ -1,6 +1,5 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.faeterj.apicoruja.coruja.controller.requestBody.ProfessorRequestBody;
 import javax.persistence.*;
 
@@ -10,10 +9,15 @@ public final class Professor extends Pessoa {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="professor_id")
+	@Column(name="professor_id", updatable=false)
 	private Long id;
 
-	@Column(name="matricula", unique=true, nullable=false)
+	@Column (
+		name      = "matricula",
+		unique    = true,
+		nullable  = false,
+		updatable = false
+	)
 	private String matricula;
 
 	// ====================================================
@@ -57,7 +61,6 @@ public final class Professor extends Pessoa {
 		this.id = id;
 	}
 
-    @JsonIgnore
 	public Long getId ( ) {
 		return id;
 	}

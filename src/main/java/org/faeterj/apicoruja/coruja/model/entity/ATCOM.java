@@ -1,15 +1,16 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.File;
 import javax.persistence.*;
 
+import org.faeterj.apicoruja.coruja.controller.requestBody.ATCOMRequestBody;
+
 @Table(name="atcom")
 @Entity
-public class ATCOM {
+public final class ATCOM {
 
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="atcom_id")
+    @Column(name="atcom_id", updatable=false)
     @Id
     private Long id;
 
@@ -28,7 +29,7 @@ public class ATCOM {
     @ManyToOne(optional=false)
     @JoinColumn(name                 = "aluno",
                 referencedColumnName = "aluno_id",
-                nullable             = true)
+                nullable             = false)
     private Aluno aluno;
 
     // =============================================
@@ -38,9 +39,8 @@ public class ATCOM {
     }
 
     public ATCOM (
-        File foto,
-        String descricao, double horasAtribuidas,
-        boolean valido
+        File foto,              String descricao,
+        double horasAtribuidas, boolean valido
     ) {
         this.foto            = foto;
         this.descricao       = descricao;
@@ -48,9 +48,26 @@ public class ATCOM {
         this.valido          = valido;
     }
 
+    public ATCOM (
+    	File   foto,            String descricao,
+    	double horasAtribuidas, boolean valido,
+    	Aluno  aluno
+    ) {
+    	this (foto, descricao, horasAtribuidas, valido);
+
+    	this.aluno = aluno;
+    }
+    
+    public ATCOM (ATCOMRequestBody body) {
+    	this (
+    		null,                  body.descricao,
+    		body.horasAtribuidas,  body.valido,
+    		new Aluno (body.aluno)
+    	);
+    }
+    
     // ==================================================================
   
-    @JsonIgnore
 	public Long getId ( ) {
 	    return id;
 	}

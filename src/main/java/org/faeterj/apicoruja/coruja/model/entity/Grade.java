@@ -1,14 +1,13 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Table(name="grade")
 @Entity
-public class Grade {
+public final class Grade {
 
 	@Id
-	@Column(name="grade_id")
+	@Column(name="grade_id", updatable=false)
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
@@ -24,7 +23,6 @@ public class Grade {
 		this.id = id;
 	}
 
-    @JsonIgnore
 	public Long getId ( ) {
 		return id;
 	}

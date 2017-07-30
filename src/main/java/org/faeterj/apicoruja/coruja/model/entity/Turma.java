@@ -1,18 +1,14 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
 import javax.persistence.*;
-
 import org.faeterj.apicoruja.coruja.controller.requestBody.TurmaRequestBody;
-
-// import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="turma")
-public class Turma {
+public final class Turma {
 
     @Id
-    @Column(name="turma_id")
+    @Column(name="turma_id", updatable=false)
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
@@ -25,6 +21,16 @@ public class Turma {
     @Column(name="turno", nullable=false)
     private char turno; // M = Manhã, T = Tarde, N = Noite, D = Diurno
 
+    @Column(name="semestre", nullable=false, updatable=false)
+    private char semestre; // A = primeiro, B = segundo
+
+    @Column(name="ano", nullable=false, updatable=false)
+    private int ano;
+    
+    // por alguma razao, a turma pode ter um professor
+    // diferente, por exemplo, se acontecer algum
+    // acidente com o professor anterior, mas a turma
+    // nunca ira mudar de disciplina
     @ManyToOne(optional=false)
     @JoinColumn(name                 = "professor",
                 referencedColumnName = "professor_id",
@@ -34,7 +40,8 @@ public class Turma {
     @ManyToOne(optional=false)
     @JoinColumn(name                 = "disciplina",
                 referencedColumnName = "disciplina_id",
-                nullable             = false)
+                nullable             = false,
+                updatable            = false)
     private Disciplina disciplina;
 
     // ==================================================================
@@ -71,8 +78,7 @@ public class Turma {
     }
     
     // ====================================================================
-  
-    @JsonIgnore
+
 	public Long getId ( ) {
         return id;
 	}
@@ -132,6 +138,26 @@ public class Turma {
     public void setDisciplina (Disciplina disciplina) {
         this.disciplina = disciplina;
     }
+
+    // ------------------------------------------------------
+    
+	public char getSemestre ( ) {
+		return semestre;
+	}
+
+	public void setSemestre (char semestre) {
+		this.semestre = semestre;
+	}
+
+	// ------------------------------------------------------------
+	
+	public int getAno ( ) {
+		return ano;
+	}
+
+	public void setAno (int ano) {
+		this.ano = ano;
+	}
 
 }
 
