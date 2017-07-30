@@ -5,6 +5,7 @@ package org.faeterj.apicoruja.coruja.controller.requestBody;
  */
 public class DisciplinaRequestBody {
 
+	public Long   id;
     public String nome;
     public String sigla;
     public Double cargaHoraria;

@@ -89,7 +89,7 @@ public final class TurmaService {
     }
     
     public Turma obterTurmaCodigo (String codigo) {
-        return repository.findByCodigo(codigo);
+        return repository.findByCodigo (codigo);
     }
     
     public List<Turma> obterTurmasTurno (char turno) {

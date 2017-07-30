@@ -6,6 +6,7 @@ import org.faeterj.apicoruja.coruja.model.entity.Aluno;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 import org.faeterj.apicoruja.coruja.model.entity.Estagio;
 
@@ -37,6 +38,20 @@ public interface EstagioRepository extends
     List<Estagio> findByHorasBetween                (@Param("horas_inicio") float   horasInicio, @Param("horas_fim") float horasFim);
     List<Estagio> findByCancelado                   (@Param("cancelado")    boolean cancelado);
 
+	// --------------------------------------------------
+
+	@Override
+	@RestResource(exported=false)
+	void delete (Long id);
+
+	@Override
+	@RestResource(exported=false)
+	void delete (Estagio estagio);
+
+	@Override
+	@RestResource(exported=false)
+	Estagio save (Estagio estagio);
+	
 }
 
 // OK

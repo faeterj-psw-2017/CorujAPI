@@ -27,6 +27,131 @@
 ### Links
 
 + [Trello](https://trello.com/faeterjpsw2017noite)
++ [Heroku App](http://coruja-beta.herokuapp.com)
+
+---
+
+### Rotas
+
+| Rota                   | Método | Corpo         | Resposta           |
+| :--------------------- | -----: | :------------ | :----------------: |
+| /professor             | GET    |               | [ professores... ] |
+| /professor             | POST   | { professor } | boolean            |
+| /professor/matricula/X | GET    |               | { professor }      |
+| /professor/matricula/X | DELETE |               | boolean            |
+| /professor             | PUT    | { professor } | boolean            |
+| /professor/sexo/X      | GET    |               | [ professores... ] |
+| /professor/endereco/X  | GET    |               | [ professores... ] |
+
+Onde X é o valor associado a um atributo no banco.
+
+---
+
+| Rota                     | Método | Corpo     | Resposta      |
+| :----------------------- | -----: | :-------- | :-----------: |
+| /atcom                   | GET    |           | [ atcoms... ] |
+| /atcom                   | POST   | { atcom } | { atcom }     |
+| /atcom/PK-ID             | GET    |           | { atcom }     |
+| /atcom/PK-ID             | DELETE |           | { atcom }     |
+| /atcom/PK-ID             | PUT    | { atcom } | { atcom }     |
+| /atcom/aluno/FK-ID       | GET    |           | [ atcoms... ] |
+| /atcom/valido            | GET    |           | [ atcoms... ] |
+| /atcom/invalido          | GET    |           | [ atcoms... ] |
+| /atcom/validados/FK-ID   | GET    |           | [ atcoms... ] |
+| /atcom/invalidados/FK-ID | GET    |           | [ atcoms... ] |
+
+Onde PK-ID designa a chave da entidade no banco e FK-ID designa uma chave
+estrangeira apontando pro aluno associado.
+
+---
+
+| Rota               | Método | Corpo     | Resposta      |
+| :----------------- | -----: | :-------- | :-----------: |
+| /aluno             | GET    |           | [ alunos... ] |
+| /aluno             | POST   | { aluno } | boolean       |
+| /aluno/matricula/X | DELETE |           | boolean       |
+| /aluno/PK-ID       | DELETE |           | boolean       |
+| /aluno             | PUT    | { aluno } | { aluno }     |
+| /aluno/matricula/X | GET    |           | { aluno }     |
+| /aluno/PK-ID       | GET    |           | { aluno }     |
+
+---
+
+| Rota      | Método | Corpo        | Resposta        |
+| :-------- | -----: | :----------- | :-------------: |
+| /trabalho | GET    |              | [ trabalho... ] |
+| /trabalho | POST   | { trabalho } | boolean         |
+| /trabalho | PUT    | { trabalho } | boolean         |
+| /trabalho | DELETE |              | boolean         |
+
+---
+
+| Rota                   | Método | Corpo        | Resposta        |
+| :--------------------- | -----: | :----------- | :-------------: |
+| /turma                 | GET    |              | [ turmas... ]   |
+| /turma/codigo/CODIGO   | GET    |              | { turma }       |
+| /turma/turno/TURNO     | GET    |              | [ turmas... ]   |
+| /turma                 | POST   | { turma }    | boolean         |
+| /turma                 | DELETE | { turma }    | boolean         |
+| /turma/codigo/CODIGO   | PUT    | { turma }    |                 |
+
+---
+
+| Rota                                  | Método | Corpo        | Resposta        |
+| :------------------------------------ | -----: | :----------- | :-------------: |
+| /estagio/cancelado                    | GET    |              | [ estagios... ] |
+| /estagio/nao-cancelado                | GET    |              | [ estagios... ] |
+| /estagio                              | GET    |              | [ estagios... ] |
+| /estagio                              | POST   | { estagio }  | boolean         |
+| /estagio/aluno/FK-ID                  | GET    |              | [ estagios... ] |
+| /estagio/empresa/X                    | GET    |              | [ estagios... ] |
+| /estagio/funcao/X                     | GET    |              | [ estagios... ] |
+| /estagio/data-inicio/DATA             | GET    |              | [ estagios... ] |
+| /estagio/data-inicio/antes/DATA       | GET    |              | [ estagios... ] |
+| /estagio/data-inicio/depois/DATA      | GET    |              | [ estagios... ] |
+| /estagio/data-inicio/entre/INICIO/FIM | GET    |              | [ estagios... ] |
+| /estagio/data-fim/DATA                | GET    |              | [ estagios... ] |
+| /estagio/data-fim/depois/DATA         | GET    |              | [ estagios... ] |
+| /estagio/data-fim/antes/DATA          | GET    |              | [ estagios... ] |
+| /estagio/data-fim/entre/INICIO/FIM    | GET    |              | [ estagios... ] |
+| /estagio/horas/HORAS                  | GET    |              | [ estagios... ] |
+| /estagio/horas/acima/HORAS            | GET    |              | [ estagios... ] |
+| /estagio/horas/abaixo/HORAS           | GET    |              | [ estagios... ] |
+| /estagio/horas/entre/MIN/MAX          | GET    |              | [ estagios... ] |
+| /estagio                              | PUT    | { estagio }  | { estagio }     |
+| /estagio/PK-ID                        | DELETE |              |                 |
+
+---
+
+| Rota                                | Método | Corpo | Resposta          |
+| :---------------------------------- | -----: | :---- | :---------------: |
+| /desempenho                         | GET    |       | [ desempenho... ] |
+| /desempenho/ID                      | GET    |       | desempenho        |
+| /desempenho/turma/FK-ID             | GET    |       | [ desempenho... ] |
+| /desempenho/aluno/FK-ID             | GET    |       | [ desempenho... ] |
+| /desempenho/turma/FK-ID/media       | GET    |       | double            |
+| /desempenho/aluno/FK-ID/media       | GET    |       | double            |
+| /desempenho/turma/FK-ID/media-final | GET    |       | double            |
+| /desempenho/aluno/FK-ID/media-final | GET    |       | double            |
+| /desempenho/ID                      | DELETE |       | { desempenho }    |
+| /desempenho/{ID}/AV1/{NOTA}         | PUT    |       | boolean           |
+| /desempenho/{ID}/AV2/{NOTA}         | PUT    |       | boolean           |
+| /desempenho/{ID}/AVS/{NOTA}         | PUT    |       | boolean           |
+| /desempenho/{ID}/AVF/{NOTA}         | PUT    |       | boolean           |
+
+---
+
+| Rota                            | Método | Corpo          | Resposta           |
+| :------------------------------ | -----: | :------------- | :----------------: |
+| /disciplina/sigla/SIGLA         | DELETE |                | { disciplina }     |
+| /disciplina                     | GET    |                | [ disciplinas... ] |
+| /disciplina                     | POST   | { disciplina } | { disciplina }     |
+| /disciplina/nome/NOME           | GET    |                | [ disciplinas... ] |
+| /disciplina/carga-horaria/CARGA | GET    |                | [ disciplinas... ] |
+| /disciplinas/descricao/DESCR    | GET    |                | [ disciplinas... ] |
+| /disciplinas/sigla/SIGLA        | GET    |                | { disciplina }     |
+| /disciplina                     | PUT    | { disciplina } | { disciplina }     |
+|
 
 ---
 

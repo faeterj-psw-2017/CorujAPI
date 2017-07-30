@@ -1,7 +1,5 @@
 package org.faeterj.apicoruja.coruja.controller.requestBody;
 
-import org.faeterj.apicoruja.coruja.model.entity.Aluno;
-
 import java.util.Date;
 
 /**
@@ -14,6 +12,7 @@ import java.util.Date;
 
 public class EstagioRequestBody {
 
+	public Long             id;
     public AlunoRequestBody aluno;
     public String           empresa;
     public String           funcao;
@@ -23,3 +22,5 @@ public class EstagioRequestBody {
     public boolean          cancelado;
 
 }
+
+// OK

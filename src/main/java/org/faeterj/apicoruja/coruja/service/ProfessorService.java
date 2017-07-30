@@ -2,10 +2,8 @@ package org.faeterj.apicoruja.coruja.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.faeterj.apicoruja.coruja.log.BootMessage;
 import org.faeterj.apicoruja.coruja.model.entity.Professor;
-import org.faeterj.apicoruja.coruja.model.entity.Turma;
 import org.faeterj.apicoruja.coruja.model.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,6 +108,13 @@ public final class ProfessorService {
 	public List<Professor> encontrarPorSexo (char sexo) {
 		return repository.findBySexo (sexo);
 	}
+
+	// ------------------------------------------------------------------
+	
+	public Professor obter (long id) {
+		return repository.findOne (id);
+	}
+
 }
 
 // OK

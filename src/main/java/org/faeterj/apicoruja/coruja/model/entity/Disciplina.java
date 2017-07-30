@@ -1,15 +1,14 @@
 package org.faeterj.apicoruja.coruja.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 import org.faeterj.apicoruja.coruja.controller.requestBody.DisciplinaRequestBody;
 
 @Table(name="disciplina")
 @Entity
-public class Disciplina {
+public final class Disciplina {
 
-    @Column(name="disciplina_id")
+    @Column(name="disciplina_id", updatable=false)
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -21,7 +20,7 @@ public class Disciplina {
     private String sigla;
 
     @Column(name="carga_horaria", nullable=false)
-    private Double cargaHoraria;
+    private double cargaHoraria;
 
     @Column(name="descricao", nullable=false)
     private String descricao;
@@ -33,9 +32,8 @@ public class Disciplina {
     }
 
     public Disciplina (
-        String nome,
-        String sigla,    Double cargaHoraria,
-        String descricao
+        String nome,         String sigla,
+        double cargaHoraria, String descricao
     ) {
         this.nome         = nome;
         this.sigla        = sigla;
@@ -54,7 +52,6 @@ public class Disciplina {
     
     // =====================================================================
 
-    @JsonIgnore
     public Long getId ( ) {
         return id;
     }

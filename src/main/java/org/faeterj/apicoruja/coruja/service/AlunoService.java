@@ -2,6 +2,7 @@ package org.faeterj.apicoruja.coruja.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.faeterj.apicoruja.coruja.log.BootMessage;
@@ -13,11 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AlunoService {
 
-	private AlunoRepository alunoRepositorio;
+	private AlunoRepository repository;
 
     @Autowired
     public AlunoService (AlunoRepository alunoRepositorio) {
-        this.alunoRepositorio = alunoRepositorio;
+        this.repository = alunoRepositorio;
     }
 
 	@PostConstruct
@@ -25,63 +26,83 @@ public class AlunoService {
         BootMessage.log (this);
     }
 	
-    public void alterarAlunoPorMatricula (Aluno aluno) {
-    	alunoRepositorio.save (aluno);
-    }
+	// ===================================================================
 	
-    // TODO
-    // remover futuramente devido a compatibilidade agora?
-	public void salvarAluno (Aluno aluno) {
-        this.alterarAlunoPorMatricula (aluno);
+	public boolean apagarPorMatricula (String matricula) {
+		Aluno aluno = obterPorMatricula (matricula);
+
+		if (aluno == null) {
+			return false;
+		}
+
+		repository.delete (aluno.getId ( ));
+		return true;
+	}
+
+    // -------------------------------------------------------------
+    
+	public Aluno obterPorMatricula (String matricula) {
+        return repository.findByMatricula (matricula);
+	}
+
+	public boolean adicionar (Aluno aluno) {
+    	Aluno existente = obterPorMatricula (aluno.getMatricula ( ));
+
+    	if (existente == null) {
+    		repository.save (aluno);
+    		return true;
+    	}
+
+    	return false;
 	}
 	
-	// TODO
-	// otimizar isso com uma Stream por demanda ao invés
-	// de uma lista com uma p*rrada de alunos
-	public List<Aluno> listarAlunos ( ) {
-        List<Aluno> alunos = new ArrayList<Aluno> ( );
+	// --------------------------------------------------------------
 
-        Iterable<Aluno> iterable = alunoRepositorio.findAll ( );
+	public Aluno alterarPorMatricula (Aluno novo) {
+    	Aluno existente = obterPorMatricula (novo.getMatricula ( ));
 
-        for (Aluno aluno : iterable) {
-        	alunos.add (aluno);
-        }
-        
-        return alunos;
+    	if (existente == null) {
+    		return existente;
+    	}
+
+    	// impede que alguem limpe o historico caso este exista
+    	if (novo.getHistorico ( ) == null) {
+    		novo.setHistorico (existente.getHistorico ( ));
+    	}
+    	
+    	novo.setId (existente.getId ( ));
+    	repository.save (novo);
+
+    	return novo;
 	}
 
-	// TODO
-	// apagar metodo que esta
-	// mantendo compatibilidade com antiga interface
-    public List<Aluno> obterAlunos ( ) {
-        return this.listarAlunos ( );
-    }
+	public boolean apagar (long id) {
+		Aluno aluno = repository.findOne (id);
 
-	/*
+		if (aluno == null) {
+			return false;
+		}
 
-	// antiga interface pra adicionar aluno
-    public Aluno adicionarAluno (String nome, String matricula) {
-        Aluno aluno = new Aluno ( );
-
-        aluno.setNome (nome);
-        aluno.setMatricula (matricula);
-
-        alunoRepositorio.save (aluno);
-
-        return aluno;
-    }
-    
-    */
-
-	public Aluno encontrarAlunoPelaMatricula (String matricula) {
-        return alunoRepositorio.findByMatricula (matricula);
+		repository.delete (id);
+		return true;
 	}
-    
-	// TODO
-	// remover depois tal metodo
-    public Aluno obterAlunoPorMatricula (String matricula) {
-    	return this.encontrarAlunoPelaMatricula (matricula);
-    }
+
+	public List<Aluno> listar ( ) {
+		Iterable<Aluno> it = repository.findAll ( );
+		List<Aluno> list   = new ArrayList<Aluno> ( );
+
+		for (Aluno aluno : it) {
+			list.add (aluno);
+		}
+
+		return list;
+	}
+
+	// --------------------------------------------------------------------
+	
+	public Aluno obter (long id) {
+		return repository.findOne (id);
+	}
 
 }
 

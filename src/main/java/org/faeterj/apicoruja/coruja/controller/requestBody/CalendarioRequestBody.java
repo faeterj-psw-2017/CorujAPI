@@ -1,6 +1,6 @@
 package org.faeterj.apicoruja.coruja.controller.requestBody;
 
-public final class HistoricoRequestBody {
+public final class CalendarioRequestBody {
 
 	public Long id;
 	

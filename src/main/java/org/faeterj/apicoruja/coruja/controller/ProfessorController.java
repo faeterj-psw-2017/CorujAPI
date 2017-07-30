@@ -1,5 +1,6 @@
 package org.faeterj.apicoruja.coruja.controller;
 
+
 import java.util.List;
 
 import org.faeterj.apicoruja.coruja.controller.requestBody.ProfessorRequestBody;
@@ -14,19 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-/*
- * 
- *  Rota                   | Metodo | Corpo         | Resposta
- * ======================================================================
- * 	/professor             | GET    |               | [ professores... ]
- * 	/professor             | POST   | { professor } | boolean
- * 	/professor/matricula/X | GET    |               | { professor }
- *  /professor/matricula/X | DELETE |               | boolean
- *  /professor             | PUT    | { professor } | boolean
- *  /professor/sexo/X      | GET    |               | [ professores... ]
- *  /professor/endereco/X  | GET    |               | [ professores... ]
- *                 
- */
 @RestController
 public class ProfessorController {
 
@@ -40,7 +28,7 @@ public class ProfessorController {
     // -------------------------------------------------------------------------------
     
     @GetMapping(value="/professor")
-    public List<Professor> listarProfessor ( ) {
+    public List<Professor> listar ( ) {
         return service.listar ( );
     }
 
@@ -93,6 +81,13 @@ public class ProfessorController {
     	return service.encontrarPorEndereco (endereco);
     }
 
+    // ---------------------------------------------------------------------
+
+    @GetMapping("/professor/{id}")
+    public Professor obter (@PathVariable long id) {
+    	return service.obter (id);
+    }
+    
 }
 
 // OK
