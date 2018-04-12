@@ -194,7 +194,7 @@ do GitHub.
 
         $ mvn cobertura:cobertura
 
-Aonde o HTML resultante está localizado em:
+Onde o HTML resultante está localizado em:
 
 * target/site/cobertura/index.html (pra Unix)
 * target\site\cobertura\index.html (pra Windows)
